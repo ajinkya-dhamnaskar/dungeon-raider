@@ -95,16 +95,16 @@
         android:layout_above="@+id/txt_entername" />
 
     <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="@drawable/back_icon"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:onClick="backtomainnewgame"
         android:textSize="30dp"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
+        android:textColor="#FF0000"
         android:id="@+id/btn_back"
-
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10px"
         android:foregroundTint="@android:color/black"
 
         android:layout_alignParentTop="true"
