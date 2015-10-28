@@ -13,6 +13,7 @@ import android.view.View;
 import com.example.test.dungeonmainmenu.R;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
+import com.group2.dungeonraider.utilities.Constants;
 
 /*
 Entry point
@@ -27,25 +28,27 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("VOLUME", MODE_PRIVATE);
+        Constants.VOLUME_MODE = preferences.getInt("volume", 0);
         setContentView(R.layout.activity_main);
 
     }
 
     public void setting(View v) {
         Intent i = new Intent(this, Setting.class);
-        audio.btnClick(getApplicationContext());
+        audio.play(getApplicationContext(), R.raw.btn_click);
         startActivity(i);
     }
 
     public void help(View v) {
         Intent i = new Intent(this, Help.class);
-        audio.btnClick(getApplicationContext());
+        audio.play(getApplicationContext(), R.raw.btn_click);
         startActivity(i);
     }
 
     public void newgame(View v) {
         Intent i = new Intent(this, NewGame.class);
-        audio.btnClick(getApplicationContext());
+        audio.play(getApplicationContext(), R.raw.btn_click);
         startActivity(i);
     }
 
@@ -80,7 +83,7 @@ public class MainActivity extends Activity {
         // set title
         alertDialogBuilder.setTitle("Are you sure you want to quit the game");
 
-        audio.btnClick(getApplicationContext());
+        audio.play(getApplicationContext(), R.raw.btn_click);
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)

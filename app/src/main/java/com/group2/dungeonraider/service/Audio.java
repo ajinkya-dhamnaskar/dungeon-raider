@@ -10,5 +10,5 @@ import java.net.URI;
 public interface Audio {
     boolean mute();
     boolean unmute();
-    boolean btnClick(Context context);
+    boolean play(Context context, int resId);
 }

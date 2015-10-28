@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.example.test.dungeonmainmenu.R;
 import com.group2.dungeonraider.controller.MainActivity;
+import com.group2.dungeonraider.utilities.Constants;
 
 /**
  * Created by Ajinkya on 10/27/2015.
@@ -29,12 +30,12 @@ public class AudioImpl extends Activity implements Audio {
     }
 
     @Override
-    public boolean btnClick(Context context) {
-        int volume;
-        SharedPreferences preferences = context.getSharedPreferences("VOLUME", MODE_PRIVATE);
-        volume = preferences.getInt("volume", 0);
-        if(volume == 1) {
-            MediaPlayer.create(context, R.raw.btn_click).start();
+    public boolean play(Context context, int resId) {
+        //int volume;
+        //SharedPreferences preferences = context.getSharedPreferences("VOLUME", MODE_PRIVATE);
+        //volume = preferences.getInt("volume", 0);
+        if(Constants.VOLUME_MODE == 1) {
+            MediaPlayer.create(context, resId).start();
         }
         return true;
     }
