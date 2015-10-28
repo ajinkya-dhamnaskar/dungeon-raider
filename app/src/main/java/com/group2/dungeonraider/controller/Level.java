@@ -11,7 +11,7 @@ import com.example.test.dungeonmainmenu.R;
  * Created by Amruta on 10/27/2015.
  */
 public class Level  extends Activity {
-    //hello
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
