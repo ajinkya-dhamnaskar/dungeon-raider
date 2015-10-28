@@ -5,16 +5,22 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.test.dungeonmainmenu.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Amruta on 10/23/2015.
  */
 
-public class Setting extends Activity {
+public class Setting extends Activity implements AdapterView.OnItemSelectedListener {
     MediaPlayer mp1;
     Switch ch,ch1;
     private int sound=1;
@@ -51,7 +57,33 @@ public class Setting extends Activity {
             mp1 = MediaPlayer.create(Setting.this, R.raw.cointake);
             mp1.start();
         }
+
+
+
+        // Spinner element
+        Spinner spinner = (Spinner) findViewById(R.id.spinner_theme);
+
+        // Spinner click listener
+        spinner.setOnItemSelectedListener(this);
+
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        categories.add("BROWN");
+        categories.add("RED");
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
     }
+
+
+
 
     public void changeVolume(View v) {
 
@@ -70,6 +102,18 @@ public class Setting extends Activity {
             Toast.makeText(this, "Volume off", Toast.LENGTH_SHORT).show();
             editor.commit();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
 }

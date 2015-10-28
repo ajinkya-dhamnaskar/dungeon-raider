@@ -23,6 +23,13 @@
         </activity>
         <activity android:name="com.group2.dungeonraider.controller.Level" android:screenOrientation="landscape" android:label="Level">
         </activity>
+        <activity android:name="com.group2.dungeonraider.controller.Help" android:screenOrientation="landscape" android:label="Help">
+        </activity>
+        <activity android:name="com.group2.dungeonraider.controller.Store" android:screenOrientation="landscape" android:label="Store">
+        </activity>
+        <activity android:name="com.group2.dungeonraider.data.Play" android:screenOrientation="landscape" android:label="Play">
+        </activity>
+
     </application>
 
 

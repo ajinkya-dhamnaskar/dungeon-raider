@@ -21,12 +21,12 @@
         android:layout_weight="0.57"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/lbl_volume" />
+        android:layout_marginTop="35dp" />
 
     <TextView
-        android:layout_width="215dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text=" VOLUME"
         android:id="@+id/lbl_volume"
         android:textStyle="bold|italic"
@@ -34,27 +34,29 @@
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toLeftOf="@+id/lbl_settings"
+        android:layout_toStartOf="@+id/lbl_settings"
+        android:layout_marginRight="34dp"
+        android:layout_marginEnd="34dp" />
 
     <TextView
-        android:layout_width="212dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="THEME"
-        android:layout_marginBottom="25dp"
         android:id="@+id/lbl_theme"
         android:textStyle="bold|italic"
         android:textSize="30dp"
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
         android:layout_weight="0.10"
-        android:layout_above="@+id/imgbtn_boy"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/imgbtn_girl"
+        android:layout_alignRight="@+id/lbl_volume"
+        android:layout_alignEnd="@+id/lbl_volume"
+        android:layout_marginBottom="25dp" />
 
     <TextView
-        android:layout_width="214dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="CHARACTER"
@@ -64,10 +66,10 @@
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
         android:layout_weight="0.14"
-        android:layout_alignLeft="@+id/lbl_theme"
-        android:layout_alignStart="@+id/lbl_theme"
-        android:layout_below="@+id/lbl_theme"
-        android:layout_alignParentBottom="true" />
+
+        android:layout_alignTop="@+id/imgbtn_boy"
+        android:layout_alignLeft="@+id/lbl_volume"
+        android:layout_alignStart="@+id/lbl_volume" />
 
   <!--  <CheckBox
         android:layout_width="wrap_content"
@@ -87,8 +89,10 @@
         android:id="@+id/imgbtn_boy"
         android:background="@drawable/character_boy"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/lbl_settings"
-        android:layout_alignEnd="@+id/lbl_settings" />
+        android:layout_alignLeft="@+id/lbl_settings"
+        android:layout_alignStart="@+id/lbl_settings"
+        android:layout_marginLeft="161dp"
+        android:layout_marginStart="161dp" />
 
     <ImageButton
         android:layout_width="70dp"
@@ -96,8 +100,7 @@
         android:id="@+id/imgbtn_girl"
         android:background="@drawable/character_girl"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/lbl_character"
-        android:layout_toEndOf="@+id/lbl_character" />
+        android:layout_centerHorizontal="true" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -107,9 +110,21 @@
         android:onClick="changeVolume"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignBottom="@+id/lbl_volume"
-        android:layout_alignLeft="@+id/imgbtn_boy"
-        android:layout_alignStart="@+id/imgbtn_boy" />
+        android:layout_alignTop="@+id/lbl_volume"
+        android:layout_alignRight="@+id/imgbtn_girl"
+        android:layout_alignEnd="@+id/imgbtn_girl" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_theme"
+        android:layout_alignTop="@+id/lbl_theme"
+        android:layout_alignLeft="@+id/imgbtn_girl"
+        android:layout_alignStart="@+id/imgbtn_girl"
+        android:layout_alignRight="@+id/lbl_settings"
+        android:layout_alignEnd="@+id/lbl_settings"
+        android:layout_alignBottom="@+id/lbl_theme"
+        android:prompt="@string/spinner_title"/>
 
 
 </RelativeLayout>

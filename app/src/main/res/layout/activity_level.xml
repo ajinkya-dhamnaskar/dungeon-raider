@@ -18,27 +18,28 @@
         android:textStyle="italic"
         android:backgroundTint="@android:color/transparent"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/radioGroup"
-        android:layout_toStartOf="@+id/radioGroup" />
+        android:layout_toLeftOf="@+id/radioGrouplevel"
+        android:layout_toStartOf="@+id/radioGrouplevel" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="GO"
+        android:onClick="go"
         android:textColor="#4C0000"
         android:id="@+id/btn_go"
         android:textSize="30dp"
         android:textStyle="italic"
         android:backgroundTint="@android:color/transparent"
         android:layout_alignTop="@+id/btn_back"
-        android:layout_toRightOf="@+id/radioGroup"
-        android:layout_toEndOf="@+id/radioGroup" />
+        android:layout_toRightOf="@+id/radioGrouplevel"
+        android:layout_toEndOf="@+id/radioGrouplevel" />
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGrouplevel"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
 
