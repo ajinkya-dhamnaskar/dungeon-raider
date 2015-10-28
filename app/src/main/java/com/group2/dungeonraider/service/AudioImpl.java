@@ -14,7 +14,7 @@ import com.group2.dungeonraider.utilities.Constants;
  * Created by Ajinkya on 10/27/2015.
  */
 public class AudioImpl extends Activity implements Audio {
-//sdf
+
     private static final String LOG = AudioImpl.class.getSimpleName();
 
     @Override
@@ -31,9 +31,6 @@ public class AudioImpl extends Activity implements Audio {
 
     @Override
     public boolean play(Context context, int resId) {
-        //int volume;
-        //SharedPreferences preferences = context.getSharedPreferences("VOLUME", MODE_PRIVATE);
-        //volume = preferences.getInt("volume", 0);
         if(Constants.VOLUME_MODE == 1) {
             MediaPlayer.create(context, resId).start();
         }
