@@ -1,6 +1,54 @@
 <resources>
     <string name="app_name">DungeonMainMenu</string>
-    <string name="settings">Settings</string>
-    <string name="scorecard">ScoreCard</string>
-    <string name="spinner_title">Select a theme</string>
+    <string name="app_icon_name">Dungeon Raider</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_scorecard">ScoreCard</string>
+    <!-- Main Menu start-->
+    <string name="mm_new_game">NEW GAME</string>
+    <string name="mm_resume_game">RESUME GAME</string>
+    <string name="mm_score_board">SCOREBOARD</string>
+    <string name="mm_settings">SETTING</string>
+    <string name="mm_quit">QUIT</string>
+    <!-- Main Menu End-->
+
+    <!-- Level start-->
+    <string name="lvl_tutorial">TUTORIAL</string>
+    <string name="lvl_medium">MEDIUM</string>
+    <string name="lvl_easy">EASY</string>
+    <string name="lvl_hard">HARD</string>
+    <string name="lvl_store">STORE</string>
+    <string name="lvl_go">GO</string>
+    <!-- Level End-->
+
+    <!-- New Game start-->
+    <string name="ng_enter_name">ENTER PLAYER NAME</string>
+    <string name="ng_choose_character">CHOOSE CHARACTER</string>
+    <string name="ng_confirm">CONFIRM</string>
+    <!-- New Game End-->
+
+    <!-- Setting start-->
+    <string name="st_settings">SETTINGS</string>
+    <string name="st_volume">VOLUME</string>
+    <string name="st_theme">THEME</string>
+    <string name="st_character">CHARACTER</string>
+    <!-- Setting End-->
+
+    <!-- Scoreboard start-->
+    <string name="sc_score_card">SCORE CARD</string>
+    <!-- Scoreboard End-->
+
+    <!-- Help start-->
+    <string name="hp_how_to_play">HOW TO PLAY</string>
+    <string name="hp_tips">TIPS</string>
+    <string name="hp_about_the_game">ABOUT THE GAME</string>
+    <string name="hp_help">HELP</string>
+    <!-- Help End-->
+
+    <!-- Purchase dungeon item start-->
+    <string name="pd_purchase_dungeon_items">PURCHASE DUNGEON ITEMS</string>
+    <string name="pd_your_gold">YOUR GOLD</string>
+    <string name="hp_keys_owned">Number of keys owned</string>
+    <string name="hp_bombs">Number of bombs</string>
+    <!-- Purchase dungeon item End-->
+
 </resources>

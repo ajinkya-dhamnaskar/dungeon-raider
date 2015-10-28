@@ -9,7 +9,7 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GO"
+        android:text="@string/lvl_go"
         android:onClick="go"
         android:textColor="#4C0000"
         android:id="@+id/btn_go"
@@ -35,7 +35,7 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TUTORIAL"
+        android:text="@string/lvl_tutorial"
         android:id="@+id/radiotutorial"
         android:textSize="30dp"
         android:textStyle="italic"
@@ -49,7 +49,7 @@
         <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MEDIUM"
+        android:text="@string/lvl_medium"
         android:id="@+id/radiomedium"
         android:textSize="30dp"
         android:textStyle="italic"
@@ -75,7 +75,7 @@
         <RadioButton
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="HARD"
+    android:text="@string/lvl_hard"
     android:id="@+id/radiohard"
     android:textSize="30dp"
     android:textStyle="italic"
@@ -88,7 +88,7 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="STORE"
+        android:text="@string/lvl_store"
         android:id="@+id/radiostore"
         android:textSize="30dp"
         android:textColor="#4C0000"

@@ -13,7 +13,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="QUIT"
+        android:text="@string/mm_quit"
         android:onClick="quit"
         android:id="@+id/btn_quit"
         android:textSize="28dp"
@@ -27,7 +27,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SETTINGS"
+        android:text="@string/mm_settings"
         android:onClick="setting"
         android:id="@+id/btn_setting"
         android:textSize="28dp"
@@ -41,7 +41,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SCOREBOARD"
+        android:text="@string/mm_score_board"
         android:onClick="scorecard"
         android:id="@+id/btn_scorecard"
         android:textSize="28dp"
@@ -55,7 +55,7 @@
     <Button
         android:layout_width="10dp"
         android:layout_height="wrap_content"
-        android:text="NEW GAME"
+        android:text="@string/mm_new_game"
         android:id="@+id/btn_newgame"
         android:onClick="newgame"
         android:backgroundTint="@android:color/transparent"
@@ -74,7 +74,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RESUME GAME"
+        android:text="@string/mm_resume_game"
         android:id="@+id/btn_resume"
         android:backgroundTint="@android:color/transparent"
         android:height="@android:dimen/notification_large_icon_height"
