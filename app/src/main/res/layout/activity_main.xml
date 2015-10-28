@@ -68,7 +68,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/btn_setting"
-        android:layout_toLeftOf="@+id/btn_setting" />
+        android:layout_alignRight="@+id/btn_scorecard"
+        android:layout_alignEnd="@+id/btn_scorecard" />
 
     <Button
         android:layout_width="wrap_content"

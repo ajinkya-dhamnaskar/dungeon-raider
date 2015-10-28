@@ -5,22 +5,6 @@
     android:background="@drawable/back">
 
 
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BACK"
-        android:onClick="backtonewgame"
-        android:textColor="#4C0000"
-        android:id="@+id/btn_back"
-        android:textSize="30dp"
-        android:textStyle="italic"
-        android:backgroundTint="@android:color/transparent"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/radioGrouplevel"
-        android:layout_toStartOf="@+id/radioGrouplevel" />
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -30,11 +14,14 @@
         android:textColor="#4C0000"
         android:id="@+id/btn_go"
         android:textSize="30dp"
-        android:textStyle="italic"
+        android:textStyle="bold|italic"
+
         android:backgroundTint="@android:color/transparent"
-        android:layout_alignTop="@+id/btn_back"
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/radioGrouplevel"
-        android:layout_toEndOf="@+id/radioGrouplevel" />
+        android:layout_toEndOf="@+id/radioGrouplevel"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp" />
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,4 +97,19 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
     </RadioGroup>
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/back_button"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:onClick="backtomainnewgame"
+        android:textSize="30dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/textView"
+        android:foregroundTint="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
