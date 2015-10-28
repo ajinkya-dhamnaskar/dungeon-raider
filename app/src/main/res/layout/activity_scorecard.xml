@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/back_button"
+        android:background="@drawable/back_icon"
         android:textAppearance="?android:attr/textAppearanceSmall"
 
         android:onClick="backtomainscoreboard"

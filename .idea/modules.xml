@@ -4,9 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/dugeonraider.iml" filepath="$PROJECT_DIR$/dugeonraider.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dugeonraider.iml" filepath="$PROJECT_DIR$/dugeonraider.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dugeonraider.iml" filepath="$PROJECT_DIR$/dugeonraider.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dugeonraider_new.iml" filepath="$PROJECT_DIR$/dugeonraider_new.iml" />
     </modules>
   </component>
 </project>
