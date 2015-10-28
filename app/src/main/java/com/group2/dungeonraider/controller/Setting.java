@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -100,6 +101,19 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
     }
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
+    }
+
+    public void onBackPressed() {
+        Log.d("Level", "onBackPressed Called");
+
+        Setting.this.finish();
+        return;
+    }
+
+    public void backtomainnewgame(View v)
+    {
+        Setting.this.finish();
+
     }
 
 }

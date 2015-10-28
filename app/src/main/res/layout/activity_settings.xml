@@ -125,5 +125,20 @@
         android:layout_alignBottom="@+id/lbl_theme"
         android:prompt="@string/spinner_title"/>
 
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/back_icon"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:onClick="backtomainnewgame"
+        android:textSize="30dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/textView2"
+        android:foregroundTint="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

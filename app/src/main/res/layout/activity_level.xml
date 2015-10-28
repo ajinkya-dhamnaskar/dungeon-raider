@@ -15,13 +15,13 @@
         android:id="@+id/btn_go"
         android:textSize="30dp"
         android:textStyle="bold|italic"
-
         android:backgroundTint="@android:color/transparent"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/radioGrouplevel"
         android:layout_toEndOf="@+id/radioGrouplevel"
         android:layout_marginLeft="50dp"
         android:layout_marginStart="50dp" />
+
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,6 @@
         android:id="@+id/radioGrouplevel"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true">
-
 
 
     <RadioButton
@@ -40,46 +39,46 @@
         android:textSize="30dp"
         android:textStyle="italic"
         android:textColor="#4C0000"
-        android:checked="false"
+        android:checked="true"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/btn_back"
         android:layout_alignEnd="@+id/btn_back"
         android:layout_marginTop="94dp" />
 
-        <RadioButton
+    <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lvl_medium"
         android:id="@+id/radiomedium"
         android:textSize="30dp"
         android:textStyle="italic"
-            android:checked="false"
-            android:textColor="#4C0000"
-            android:layout_below="@+id/radiotutorial"
-            android:layout_alignLeft="@+id/radiotutorial"
-            android:layout_alignStart="@+id/radiotutorial" />
+        android:checked="false"
+        android:textColor="#4C0000"
+        android:layout_below="@+id/radiotutorial"
+        android:layout_alignLeft="@+id/radiotutorial"
+        android:layout_alignStart="@+id/radiotutorial" />
 
         <RadioButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="EASY"
-    android:id="@+id/radioeasy"
-    android:textSize="30dp"
-    android:textStyle="italic"
-    android:checked="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lvl_easy"
+        android:id="@+id/radioeasy"
+        android:textSize="30dp"
+        android:textStyle="italic"
+        android:checked="false"
         android:textColor="#4C0000"
         android:layout_alignTop="@+id/radiotutorial"
         android:layout_alignLeft="@+id/btn_go"
         android:layout_alignStart="@+id/btn_go" />
 
         <RadioButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/lvl_hard"
-    android:id="@+id/radiohard"
-    android:textSize="30dp"
-    android:textStyle="italic"
-    android:checked="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lvl_hard"
+        android:id="@+id/radiohard"
+        android:textSize="30dp"
+        android:textStyle="italic"
+        android:checked="false"
         android:textColor="#4C0000"
         android:layout_below="@+id/radioeasy"
         android:layout_alignLeft="@+id/radioeasy"
@@ -99,11 +98,11 @@
     </RadioGroup>
 
     <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="@drawable/back_icon"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:onClick="backtomainnewgame"
+        android:onClick="backtonewgame"
         android:textSize="30dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"

@@ -27,16 +27,19 @@ public class Level  extends Activity {
 
     }
 
-    public void backtonewgame(View v)
-    {
-        Level.this.finish();
-    }
+
 
     public void onBackPressed() {
         Log.d("Level", "onBackPressed Called");
 
         Level.this.finish();
         return;
+    }
+
+    public void backtonewgame(View v)
+    {
+        Level.this.finish();
+
     }
 
     public void go(View v)
