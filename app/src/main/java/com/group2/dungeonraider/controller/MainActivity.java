@@ -13,7 +13,6 @@ import com.example.test.dungeonmainmenu.R;
 /*
 Entry point
  */
-public class MainActivity extends AppCompatActivity {
 
 public class MainActivity extends Activity {
 //asdfasdfasdfasdzx
@@ -31,7 +30,6 @@ public class MainActivity extends Activity {
     }
 
     public void help(View v)
-    public void scorecard(View v)
     {
         Intent i=new Intent(this,Help.class);
         startActivity(i);
