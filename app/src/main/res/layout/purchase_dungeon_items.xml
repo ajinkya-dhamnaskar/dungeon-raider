@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:background="@drawable/back">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="PURCHASE DUNGEON ITEMS"
+        android:id="@+id/textview_store"
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/textView_gold"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Your Gold :"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/textView_gold"
+        android:layout_above="@+id/btn_buy_bombs"
+        android:layout_alignLeft="@+id/btn_buy_bombs"
+        android:layout_alignStart="@+id/btn_buy_bombs" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/btn_backstore"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+
+        android:text="Purchase Dungeon Map - $1000000"
+        android:id="@+id/btn_buy_dungeon_map"
+        android:layout_width="150dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/textview_store"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/textViewKeysOwned" />
+
+    <Button
+        android:id="@+id/btn_buy_bombs"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
+        android:backgroundTint="@android:color/transparent"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/btn_backstore"
+        android:layout_alignEnd="@+id/btn_backstore"
+        android:text="Purchase Bombs - $1000000" />
+
+    <Button
+        android:text="Purchase key - $1000000"
+        android:id="@+id/btn_buy_key"
+        android:layout_width="150dp"
+        android:layout_height="170dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_below="@+id/textView_gold"
+        android:layout_toLeftOf="@+id/textView_gold"
+        android:layout_toStartOf="@+id/textView_gold"
+        android:layout_marginRight="41dp"
+        android:layout_marginEnd="41dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="  $9999"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/textView_goldvalue"
+        android:layout_above="@+id/textview_store"
+        android:layout_toRightOf="@+id/textView_gold"
+        android:layout_toEndOf="@+id/textView_gold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of keys owned"
+        android:id="@+id/textViewKeysOwned"
+        android:layout_below="@+id/btn_buy_key"
+        android:layout_alignLeft="@+id/btn_buy_key"
+        android:layout_alignStart="@+id/btn_buy_key"
+        android:layout_alignRight="@+id/btn_buy_key"
+        android:layout_alignEnd="@+id/btn_buy_key"
+        android:layout_above="@+id/btn_backstore" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of bombs"
+        android:id="@+id/textViewBombsOwned"
+        android:layout_below="@+id/btn_buy_bombs"
+        android:layout_alignLeft="@+id/btn_buy_bombs"
+        android:layout_alignStart="@+id/btn_buy_bombs"
+        android:layout_alignRight="@+id/btn_buy_bombs"
+        android:layout_alignEnd="@+id/btn_buy_bombs"
+        android:layout_alignBottom="@+id/textViewKeysOwned" />
+
+</RelativeLayout>

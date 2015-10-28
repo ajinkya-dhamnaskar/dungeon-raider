@@ -1,24 +1,21 @@
 package com.group2.dungeonraider.controller;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.test.dungeonmainmenu.R;
-import com.group2.dungeonraider.utilities.Constants;
 
-/*
-Entry point
- */
 public class MainActivity extends AppCompatActivity {
 
     @Override
       protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void setting(View v)
@@ -27,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void scorecard(View v)
+    public void help(View v)
     {
-        Intent i=new Intent(this,ScoreCard.class);
+        Intent i=new Intent(this,Help.class);
         startActivity(i);
     }
 
@@ -39,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this);
 
         // set title
-        alertDialogBuilder.setTitle("Are you sure you want to quit the game");
-
+        alertDialogBuilder.setTitle("Do You Want To Quit ??");
 
         // set dialog message
         alertDialogBuilder
@@ -66,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         // show it
         alertDialog.show();
     }
-    }
+
+}
 
 
