@@ -4,40 +4,48 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 
 /*
 Entry point
  */
 
 public class MainActivity extends Activity {
-//asdfasdfasdfasdzx
+
+    MediaPlayer mp = null;
+    int volume;
+    Audio audio = new AudioImpl();
+
     @Override
-      protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
     }
 
-    public void setting(View v)
-    {
-        Intent i=new Intent(this,Setting.class);
+    public void setting(View v) {
+        Intent i = new Intent(this, Setting.class);
+        audio.btnClick(getApplicationContext());
         startActivity(i);
     }
 
-    public void help(View v)
-    {
-        Intent i=new Intent(this,Help.class);
+    public void help(View v) {
+        Intent i = new Intent(this, Help.class);
+        audio.btnClick(getApplicationContext());
         startActivity(i);
     }
 
-    public void newgame(View v)
-    {
-        Intent i=new Intent(this,NewGame.class);
+    public void newgame(View v) {
+        Intent i = new Intent(this, NewGame.class);
+        audio.btnClick(getApplicationContext());
         startActivity(i);
     }
 
@@ -65,29 +73,26 @@ public class MainActivity extends Activity {
 //        }
 
 
-
-
-    public void quit(View v)
-    {
+    public void quit(View v) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 MainActivity.this);
 
         // set title
         alertDialogBuilder.setTitle("Are you sure you want to quit the game");
 
-
+        audio.btnClick(getApplicationContext());
         // set dialog message
         alertDialogBuilder
                 .setCancelable(false)
-                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, close
                         // current activity
                         MainActivity.this.finish();
                     }
                 })
-                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, just close
                         // the dialog box and do nothing
                         dialog.cancel();

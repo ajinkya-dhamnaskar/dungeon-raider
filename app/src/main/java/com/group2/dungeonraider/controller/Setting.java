@@ -54,8 +54,8 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
             sound=0;
         }
         else if(sound==1) {
-            mp1 = MediaPlayer.create(Setting.this, R.raw.btn_click);
-            mp1.start();
+           // mp1 = MediaPlayer.create(this, R.raw.btn_click);
+            //mp1.start();
         }
 
 
