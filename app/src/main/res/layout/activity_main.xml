@@ -16,13 +16,13 @@
         android:text="QUIT"
         android:onClick="quit"
         android:id="@+id/btn_quit"
-        android:textSize="30dp"
+        android:textSize="28dp"
         android:backgroundTint="@android:color/transparent"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_above="@+id/btn_setting"
-        android:layout_toRightOf="@+id/btn_setting"
-        android:layout_toEndOf="@+id/btn_setting" />
+        android:layout_below="@+id/btn_resume"
+        android:layout_alignRight="@+id/button5"
+        android:layout_alignEnd="@+id/button5" />
 
     <Button
         android:layout_width="wrap_content"
@@ -30,13 +30,13 @@
         android:text="SETTINGS"
         android:onClick="setting"
         android:id="@+id/btn_setting"
-        android:textSize="30dp"
+        android:textSize="28dp"
         android:backgroundTint="@android:color/transparent"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/btn_scorecard"
-        android:layout_toRightOf="@+id/btn_scorecard" />
+        android:layout_below="@+id/btn_resume"
+        android:layout_alignLeft="@+id/btn_resume"
+        android:layout_alignStart="@+id/btn_resume" />
 
     <Button
         android:layout_width="wrap_content"
@@ -44,11 +44,11 @@
         android:text="SCOREBOARD"
         android:onClick="scorecard"
         android:id="@+id/btn_scorecard"
-        android:textSize="30dp"
+        android:textSize="28dp"
         android:backgroundTint="@android:color/transparent"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_above="@+id/btn_setting"
+        android:layout_below="@+id/btn_newgame"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -60,7 +60,7 @@
         android:onClick="newgame"
         android:backgroundTint="@android:color/transparent"
         android:height="@android:dimen/notification_large_icon_height"
-        android:textSize="30dp"
+        android:textSize="28dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:layout_centerVertical="true"
@@ -77,14 +77,14 @@
         android:id="@+id/btn_resume"
         android:backgroundTint="@android:color/transparent"
         android:height="@android:dimen/notification_large_icon_height"
-        android:textSize="30dp"
+        android:textSize="28dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:visibility="visible"
         android:textAlignment="inherit"
-        android:layout_alignTop="@+id/btn_newgame"
-        android:layout_toLeftOf="@+id/button5"
-        android:layout_toStartOf="@+id/button5" />
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/btn_quit"
+        android:layout_toStartOf="@+id/btn_quit" />
 
     <Button
         style="?android:attr/buttonStyleSmall"

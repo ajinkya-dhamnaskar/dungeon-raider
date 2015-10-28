@@ -17,9 +17,13 @@
         </activity>
         <activity android:name="com.group2.dungeonraider.controller.Setting" android:screenOrientation="landscape" android:label="Setting">
         </activity>
-        <activity android:name="com.group2.dungeonraider.controller.ScoreCard" android:screenOrientation="landscape" android:label="ScoreCard"
-            >
+        <activity android:name="com.group2.dungeonraider.controller.NewGame" android:screenOrientation="landscape" android:label="NewGame">
+        </activity>
+        <activity android:name="com.group2.dungeonraider.controller.ScoreCard" android:screenOrientation="landscape" android:label="ScoreCard">
+        </activity>
+        <activity android:name="com.group2.dungeonraider.controller.Level" android:screenOrientation="landscape" android:label="Level">
         </activity>
     </application>
+
 
 </manifest>
