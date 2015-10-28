@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_norm"
+    android:weightSum="1">
+
+
+    <TextView
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SETTINGS"
+        android:id="@+id/lbl_settings"
+        android:onClick="setting"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:gravity="center|fill_vertical"
+        android:textColor="#4C0000"
+        android:layout_weight="0.57"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/lbl_volume" />
+
+    <TextView
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=" VOLUME"
+        android:id="@+id/lbl_volume"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:gravity="center|fill_vertical"
+        android:textColor="#4C0000"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="THEME"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/lbl_theme"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:gravity="center|fill_vertical"
+        android:textColor="#4C0000"
+        android:layout_weight="0.10"
+        android:layout_above="@+id/imgbtn_boy"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="CHARACTER"
+        android:id="@+id/lbl_character"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:gravity="center|fill_vertical"
+        android:textColor="#4C0000"
+        android:layout_weight="0.14"
+        android:layout_alignLeft="@+id/lbl_theme"
+        android:layout_alignStart="@+id/lbl_theme"
+        android:layout_below="@+id/lbl_theme"
+        android:layout_alignParentBottom="true" />
+
+  <!--  <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="adjustvolume"
+        android:id="@+id/chk_volume"
+        android:onClick="changeVolume"
+        android:checked="false"
+        android:layout_alignTop="@+id/lbl_volume"
+        android:layout_centerHorizontal="true" />-->
+
+
+
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgbtn_boy"
+        android:background="@drawable/character_boy"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/lbl_settings"
+        android:layout_alignEnd="@+id/lbl_settings" />
+
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgbtn_girl"
+        android:background="@drawable/character_girl"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/lbl_character"
+        android:layout_toEndOf="@+id/lbl_character" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch_volume"
+        android:checked="false"
+        android:onClick="changeVolume"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignBottom="@+id/lbl_volume"
+        android:layout_alignLeft="@+id/imgbtn_boy"
+        android:layout_alignStart="@+id/imgbtn_boy" />
+
+
+</RelativeLayout>
