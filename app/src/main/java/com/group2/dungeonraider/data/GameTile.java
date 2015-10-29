@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
 
+import com.group2.dungeonraider.utilities.Constants;
+
 /**
  * An extension of GameImage, GameTile represents a tile used to build
  * a level in the game.
@@ -16,10 +18,21 @@ import android.graphics.Rect;
  */
 public class GameTile extends GameImage
 {
-	public static final int TYPE_EMPTY = 0;
-	public static final int TYPE_OBSTACLE = 1;
-	public static final int TYPE_DANGEROUS = 2;
-	public static final int TYPE_EXIT = 3;
+	public static final int TYPE_EMPTY = 1;
+	public static final int TYPE_WALL = 2;
+	public static final int TYPE_SLIDING = 3;
+	public static final int TYPE_DOOR = 4;
+	public static final int TYPE_KEY = 5;
+	public static final int TYPE_BOMB = 6;
+	public static final int TYPE_BREAKABLEWALL = 7;
+	public static final int TYPE_CHEST = 8;
+	public static final int TYPE_WEIGHTSWITCH = 9;
+	public static final int TYPE_FIRE = 10;
+	public static final int TYPE_SPIKE = 11;
+	public static final int TYPE_ENTRANCESTART = 12;
+	public static final int TYPE_EXITSOLVE = 13;
+	public static final int TYPE_FINISH = 14;
+	public static final int TYPE_COIN = 15;
 	
 	private int mKey = 0;
 	private int mType = TYPE_EMPTY;
@@ -46,7 +59,7 @@ public class GameTile extends GameImage
 
 	public boolean isDangerous()
 	{
-		return (this.mType == TYPE_DANGEROUS);
+		return (this.mType == TYPE_FIRE);
 	}
 
 	public boolean getCollision(float x, float y, int width, int height)

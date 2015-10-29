@@ -26,7 +26,8 @@ public class GameUnit extends GameImage
         id=count;
 		count++;
 	}
-	
+
+
 	public Rect getRect()
 	{
 		Rect rect = new Rect(mX, mY, (mX + this.getWidth()), (mY + this.getHeight()));

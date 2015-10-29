@@ -22,7 +22,7 @@ public class Constants {
 //    item type
 //     */
 //    public static String IT_KEY = drProps.getValue("it.key");
-//    public static String IY_BOMB = drProps.getValue("it.bomb");
+//    public static String IY_BOMB = drProps.getValue("it.bfomb");
 //    public static String IT_POTION = drProps.getValue("it.potion");
 //    public static String IT_MAP = drProps.getValue("it.map");
 //
@@ -57,7 +57,7 @@ public class Constants {
 //    public static String MR_FAILURE = drProps.getValue("mr.failure");
 //    public static String MR_KEY_RECEIVED = drProps.getValue("mr.key.received");
 //    public static String MR_SWITCH_ROOMS = drProps.getValue("mr.switch.rooms");
-//    public static String MR_BOMB_RECEIVED = drProps.getValue("mr.bomb.received");
+//    public static String MR_BOMB_RECEIVED = drProps.getValue("mr.cbomb.received");
 //
 //    /*
 //    block type
@@ -100,6 +100,7 @@ public class Constants {
         }
     };
 
+    public static Direction dir;
     public enum ItemType {
         KEY(1), BOMB(2), POTION(3), MAP(4);
         private int value;
@@ -163,7 +164,7 @@ public class Constants {
         EMPTY(1), WALL(2), SLIDING(3), DOOR(4),
         KEY(5), BOMB(6), BREAKABLEWALL(7), CHEST(8),
         WEIGHTSWITCH(9), FIRE(10), SPIKE(11), ENTRANCESTART(12),
-        EXITSOLVE(13), FINISH(14);
+        EXITSOLVE(13), FINISH(14), COIN(15);
         private int value;
 
         private BlockType(int value) {

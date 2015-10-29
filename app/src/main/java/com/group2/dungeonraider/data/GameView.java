@@ -18,6 +18,7 @@ import android.view.SurfaceView;
 
 
 import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,11 +45,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 	private static final int START_STAGE = 1;
 	private static final int START_LEVEL = 1;
-
-	private static final int DIRECTION_UP = 1;
-	private static final int DIRECTION_DOWN = 2;
-	private static final int DIRECTION_LEFT = 3;
-	private static final int DIRECTION_RIGHT = 4;
 
 	public static final int STATE_RUNNING = 1;
 	public static final int STATE_PAUSED = 2;
@@ -334,13 +330,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 				if (mPlayerHorizontalDirection != 0)
 				{
-					differenceX = (mPlayerHorizontalDirection == DIRECTION_RIGHT) ? getPixelValueForDensity(PlayerUnit.SPEED) : getPixelValueForDensity(-PlayerUnit.SPEED);
+					differenceX = (mPlayerHorizontalDirection == Constants.Direction.RIGHT.getValue()) ? getPixelValueForDensity(PlayerUnit.SPEED) : getPixelValueForDensity(-PlayerUnit.SPEED);
 					newX = (mPlayerUnit.getX() + differenceX);
 				}
 
 				if (mPlayerVerticalDirection != 0)
 				{
-					differenceY = (mPlayerVerticalDirection == DIRECTION_DOWN) ? getPixelValueForDensity(PlayerUnit.SPEED) : getPixelValueForDensity(-PlayerUnit.SPEED);
+					differenceY = (mPlayerVerticalDirection == Constants.Direction.DOWN.getValue()) ? getPixelValueForDensity(PlayerUnit.SPEED) : getPixelValueForDensity(-PlayerUnit.SPEED);
 					newY = (mPlayerUnit.getY() + differenceY);
 				}
 
@@ -403,10 +399,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			{
 				switch (gameTile.getType())
 				{
-				case GameTile.TYPE_DANGEROUS:
+				case GameTile.TYPE_FIRE:
 					handleDangerousTileCollision();
 					break;
-				case GameTile.TYPE_EXIT:
+				case GameTile.TYPE_EXITSOLVE:
 					handleExitTileCollision();
 					break;
 				default:
@@ -573,29 +569,32 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				{
 					Log.d("Tile Game Example", "Pressed up arrow");
 					mLastStatusMessage = "Moving up";
-					mPlayerVerticalDirection = DIRECTION_UP;
+					mPlayerVerticalDirection = Constants.Direction.UP.getValue();
 					mPlayerMoving = true;
 				}
 				else if (mCtrlDownArrow.getImpact(x, y))
 				{
 					Log.d("Tile Game Example", "Pressed down arrow");
 					mLastStatusMessage = "Moving down";
-					mPlayerVerticalDirection = DIRECTION_DOWN;
+					mPlayerVerticalDirection = Constants.Direction.DOWN.getValue();
 					mPlayerMoving = true;
 				}
 				else if (mCtrlLeftArrow.getImpact(x, y))
 				{
 					Log.d("Tile Game Example", "Pressed left arrow");
 					mLastStatusMessage = "Moving left";
-					mPlayerHorizontalDirection = DIRECTION_LEFT;
+					mPlayerHorizontalDirection = Constants.Direction.LEFT.getValue();
+					mPlayerUnit.setPlayer(mGameContext, R.drawable.player_left_1);
 					mPlayerMoving = true;
 				}
-				else if (mCtrlRightArrow.getImpact(x, y))
-				{
-					Log.d("Tile Game Example", "Pressed right arrow");
-					mLastStatusMessage = "Moving right";
-					mPlayerHorizontalDirection = DIRECTION_RIGHT;
-					mPlayerMoving = true;
+				else {
+					if (mCtrlRightArrow.getImpact(x, y)) {
+						Log.d("Tile Game Example", "Pressed right arrow");
+						mLastStatusMessage = "Moving right";
+						mPlayerHorizontalDirection = Constants.Direction.RIGHT.getValue();
+						mPlayerUnit.setPlayer(mGameContext, R.drawable.player_right_1);
+						mPlayerMoving = true;
+					}
 				}
 			}
 

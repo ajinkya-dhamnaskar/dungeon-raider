@@ -30,6 +30,11 @@ public class GameImage
 		this.setDrawable(context, drawable);
 	}
 
+	public boolean setPlayer(Context context, int drawable){
+		this.mImg = BitmapFactory.decodeResource(context.getResources(), drawable);
+		return true;
+	}
+
 	public void setDrawable(Context context, int drawable)
 	{
 		BitmapFactory.Options opts = new BitmapFactory.Options();

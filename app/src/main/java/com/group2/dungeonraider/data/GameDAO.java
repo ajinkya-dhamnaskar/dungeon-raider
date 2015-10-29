@@ -7,6 +7,7 @@ import android.util.Log;
 
 
 import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.utilities.Constants;
 
 import static android.provider.BaseColumns._ID;
 
@@ -62,31 +63,31 @@ public class GameDAO extends SQLiteOpenHelper
 	 */
 	private static final String[] POPULATE_TABLE_GAME_TILES = {
 		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(1,\"Tile 01\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_01 + ",1);",
+		+ "(1,\"Tile 01\"," + Constants.BlockType.WALL.getValue() + "," + R.drawable.tile_01 + ",1);",
+
+//		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+//		+ "(2,\"Tile 02\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_02 + ",1);",
+//
+//		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+//		+ "(3,\"Tile 03\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_03 + ",1);",
+		
+		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+		+ "(4,\"Tile 04\"," + Constants.BlockType.FIRE.getValue() + "," + R.drawable.tile_fire + ",1);",
+		
+		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+		+ "(5,\"Tile 05\"," + Constants.BlockType.COIN.getValue() + "," + R.drawable.tile_coins + ",1);",
+		
+		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+		+ "(6,\"Tile 06\"," + Constants.BlockType.ENTRANCESTART.getValue() + "," + R.drawable.tile_dooropen + ",1);",
+		
+		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+		+ "(7,\"Tile 07\"," + Constants.BlockType.SLIDING.getValue() + "," + R.drawable.tile_07 + ",1);",
 
 		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(2,\"Tile 02\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_02 + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(3,\"Tile 03\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_03 + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(4,\"Tile 04\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_04 + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(5,\"Tile 05\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_05 + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(6,\"Tile 06\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_06 + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(7,\"Tile 07\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_07 + ",1);",
+		+ "(8,\"Dangerous Tile 01\"," + Constants.BlockType.KEY.getValue() + "," + R.drawable.tile_keys+ ",1);",
 
 		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(8,\"Dangerous Tile 01\"," + GameTile.TYPE_DANGEROUS + "," + R.drawable.tile_danger_01 + ",1);",
-
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(9,\"Exit Tile\"," + GameTile.TYPE_EXIT + "," + R.drawable.tile_exit + ",1);"
+		+ "(9,\"Exit Tile\"," + Constants.BlockType.EXITSOLVE.getValue() + "," + R.drawable.tile_doorclosed + ",1);"
 	};
 
 	/**
@@ -106,7 +107,7 @@ public class GameDAO extends SQLiteOpenHelper
 	 */
 	private static final String[] POPULATE_TABLE_GAME_LEVEL_TILES = {
 		"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
-		+ "(null,1,1,2,8,\""
+		+ "(null,1,1,2,9,\""
 				// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
 		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -115,15 +116,15 @@ public class GameDAO extends SQLiteOpenHelper
 		/* 5  */+ "01,01,01,00,00,00,00,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 6  */+ "01,01,01,00,00,00,00,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 7  */+ "01,01,01,01,01,00,00,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 8  */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,09,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 9  */+ "01,00,00,00,00,00,00,00,01,01,01,00,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 8  */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,00,09" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,00,00,00,00,00,01,01,01,00,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 10 */+ "01,00,00,00,00,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,00,00,00,00,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 14 */+ "01,00,00,00,00,00,00,01,01,01,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 14 */+ "01,00,00,08,07,00,00,01,01,01,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 15 */+ "01,00,00,01,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 16 */+ "01,00,00,01,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 16 */+ "01,00,00,01,07,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		+ "\");"		
 	};
