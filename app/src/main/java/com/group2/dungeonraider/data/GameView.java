@@ -655,7 +655,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	{
 		if (mPlayerUnit == null)
 		{
-			mPlayerUnit = new PlayerUnit(mGameContext, R.drawable.player);
+			mPlayerUnit = new PlayerUnit(mGameContext, R.drawable.player_right_1);
 		}
 
 		int playerStartX = (mPlayerStartTileX * mPlayerUnit.getWidth());
