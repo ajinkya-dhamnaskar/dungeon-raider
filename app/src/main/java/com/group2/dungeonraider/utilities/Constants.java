@@ -1,5 +1,7 @@
 package com.group2.dungeonraider.utilities;
 
+import android.content.Context;
+
 /**
  * Created by Rohit on 10/27/2015.
  */
@@ -10,6 +12,7 @@ public class Constants {
    // public static FPropsLoader drProps = new FPropsLoader("DRGame");
 
     public static int VOLUME_MODE;
+    public static Context appContext;
 //    /*
 //    DB details
 //     */
@@ -164,7 +167,7 @@ public class Constants {
         EMPTY(1), WALL(2), SLIDING(3), DOOR(4),
         KEY(5), BOMB(6), BREAKABLEWALL(7), CHEST(8),
         WEIGHTSWITCH(9), FIRE(10), SPIKE(11), ENTRANCESTART(12),
-        EXITSOLVE(13), FINISH(14), COIN(15);
+        EXITSOLVE(13), FINISH(14);
         private int value;
 
         private BlockType(int value) {

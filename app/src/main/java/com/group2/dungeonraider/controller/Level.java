@@ -1,6 +1,7 @@
 package com.group2.dungeonraider.controller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.RadioGroup;
 
 import com.example.test.dungeonmainmenu.R;
 import com.group2.dungeonraider.data.Play;
+import com.group2.dungeonraider.utilities.Constants;
 
 /**
  * Created by Amruta on 10/27/2015.
@@ -21,8 +23,10 @@ public class Level  extends Activity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button btnDisplay;
-    protected void onCreate(Bundle savedInstanceState) {
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Constants.appContext = getApplicationContext();
         setContentView(R.layout.activity_level);
 
     }

@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("VOLUME", MODE_PRIVATE);
         Constants.VOLUME_MODE = preferences.getInt("volume", 0);
         setContentView(R.layout.activity_main);
-
+        Constants.appContext = getApplicationContext();
     }
 
     public void setting(View v) {

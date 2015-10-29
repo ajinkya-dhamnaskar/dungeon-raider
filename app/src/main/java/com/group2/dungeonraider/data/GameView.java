@@ -1,6 +1,8 @@
 package com.group2.dungeonraider.data;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +20,7 @@ import android.view.SurfaceView;
 
 
 import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.controller.Level;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -113,6 +116,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 	class GameThread extends Thread
 	{
+
 		public GameThread(SurfaceHolder surfaceHolder, Context context,
 				Handler handler)
 		{
@@ -400,7 +404,19 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				switch (gameTile.getType())
 				{
 				case GameTile.TYPE_FIRE:
-					handleDangerousTileCollision();
+					handleFireTileCollision(gameTile);
+					break;
+				case GameTile.TYPE_KEY:
+					handleKeyTileCollision(gameTile);
+					break;
+				case GameTile.TYPE_BOMB:
+					handleBombTileCollision(gameTile);
+					break;
+				case GameTile.TYPE_SLIDING:
+					handleSlidingTileCollision(gameTile);
+					break;
+				case GameTile.TYPE_CHEST:
+					handleChestTileCollision(gameTile);
 					break;
 				case GameTile.TYPE_EXITSOLVE:
 					handleExitTileCollision();
@@ -411,13 +427,63 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			}
 		}
 
+
+
 		/**
 		 * Handles a collision between the player unit and a dangerous
 		 * game tile.
 		 */
-		private void handleDangerousTileCollision()
+		private void handleFireTileCollision(GameTile gameTile)
 		{
+			gameTile.setVisible(false);
+			gameTile.setType(Constants.BlockType.EMPTY.getValue());
 			mLastStatusMessage = "Collision with dangerous tile";
+			Intent i=new Intent(Constants.appContext, Play.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			Constants.appContext.startActivity(i);
+		}
+
+		/**
+		 * Handles a collision between the player unit and a sliding
+		 * game tile.
+		 */
+		private void handleBombTileCollision(GameTile gameTile)
+		{
+			gameTile.setVisible(false);
+			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			mLastStatusMessage = "Collision with bomb tile";
+		}
+
+		/**
+		 * Handles a collision between the player unit and a sliding
+		 * game tile.
+		 */
+		private void handleSlidingTileCollision(GameTile gameTile)
+		{
+			gameTile.setX(gameTile.getX() + 10);
+
+			mLastStatusMessage = "Collision with sliding tile";
+		}
+
+		/**
+		 * Handles a collision between the player unit and a sliding
+		 * game tile.
+		 */
+		private void handleKeyTileCollision(GameTile gameTile)
+		{
+			gameTile.setVisible(false);
+			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			mLastStatusMessage = "Collision with key tile";
+		}
+		/**
+		 * Handles a collision between the player unit and a sliding
+		 * game tile.
+		 */
+		private void handleChestTileCollision(GameTile gameTile)
+		{
+			gameTile.setVisible(false);
+			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			mLastStatusMessage = "Collision with chest tile";
 		}
 
 		/**
