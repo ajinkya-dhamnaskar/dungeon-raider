@@ -13,6 +13,7 @@ public class Constants {
 
     public static int VOLUME_MODE;
     public static Context appContext;
+    public static int SLIDE_TILE_BY_DP = 10;
 //    /*
 //    DB details
 //     */

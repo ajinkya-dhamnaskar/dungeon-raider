@@ -321,7 +321,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		/**
 		 * Updates the direction, position and state of the player unit.
 		 */
-		private void updatePlayerUnit()
+		private boolean updatePlayerUnit()
 		{
 			GameTile collisionTile = null;
 
@@ -344,18 +344,81 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					newY = (mPlayerUnit.getY() + differenceY);
 				}
 
-				collisionTile = getCollisionTile(newX, newY, mPlayerUnit.getWidth(), mPlayerUnit .getHeight());
+				collisionTile = getCollisionTile(newX, newY, mPlayerUnit.getWidth(), mPlayerUnit.getHeight(), null);
 
-				if ((collisionTile != null)
-						&& collisionTile.isBlockerTile())
-				{
-					handleTileCollision(collisionTile);
+				if ((collisionTile != null)&& collisionTile.isBlockerTile()){
+
+					if(collisionTile.getType() == GameTile.TYPE_SLIDING){
+						updateSlidingTile(newX, newY, mPlayerUnit, collisionTile);
+					}else {
+						handleTileCollision(collisionTile);
+					}
+
 				} else
 				{
 					mPlayerUnit.setX(newX);
 					mPlayerUnit.setY(newY);
 				}
 			}
+			return true;
+		}
+
+		private boolean updateSlidingTile(int newX, int newY, PlayerUnit mPlayerUnit, GameTile slidingTile){
+
+			int plyLeft = mPlayerUnit.getX();
+			int plyRight =  plyLeft + mPlayerUnit.getWidth();
+			int plyTop = mPlayerUnit.getY();
+			int plyBottom =  plyTop + mPlayerUnit.getHeight();
+
+			int tileLeft = slidingTile.getX();
+			int tileRight =  tileLeft + slidingTile.getWidth();
+			int tileTop = slidingTile.getY();
+			int tileBottom =  tileTop + slidingTile.getHeight();
+
+			int newXTile = 0;
+			int newYTile = 0;
+			boolean result = true;
+
+			if(tileTop >= plyBottom){
+				//move down
+				newXTile = slidingTile.getX();
+				newYTile = slidingTile.getY() + Constants.SLIDE_TILE_BY_DP;
+			}else
+			if(plyTop >= tileBottom){
+				//move up
+				newXTile = slidingTile.getX();
+				newYTile = slidingTile.getY() - Constants.SLIDE_TILE_BY_DP;
+
+			} else if (plyLeft >= tileRight) {
+				//move left
+				newXTile = slidingTile.getX() - Constants.SLIDE_TILE_BY_DP;
+				newYTile = slidingTile.getY();
+			}else
+			if(tileLeft >= plyRight){
+				//move right
+				newXTile = slidingTile.getX() + Constants.SLIDE_TILE_BY_DP;
+				newYTile = slidingTile.getY();
+			}
+
+			if(canSlidingTileMove(newXTile, newYTile, slidingTile.getWidth(), slidingTile.getHeight(), slidingTile)){
+				slidingTile.setX(newXTile);
+				slidingTile.setY(newYTile);
+			}else{
+				result = false;
+			}
+
+			return result;
+		}
+
+
+		private boolean canSlidingTileMove(int newXTile, int newYTile, int width, int height, GameTile slidingTile) {
+			boolean result = true;
+			GameTile collisionTile = getCollisionTile(newXTile, newYTile, slidingTile.getWidth(), slidingTile.getHeight(), slidingTile);
+			if ((collisionTile != null)
+					&& collisionTile.isBlockerTile()){
+				result = false;
+			}
+			return result;
 		}
 
 		/**
@@ -368,7 +431,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		 * @param height - The height of the game unit.
 		 * @return GameTile - The collision game tile, if available.
 		 */
-		private GameTile getCollisionTile(int x, int y, int width, int height)
+		private GameTile getCollisionTile(int x, int y, int width, int height, GameTile tile)
 		{
 			GameTile gameTile = null;
 
@@ -386,6 +449,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 					if (gameTile.getCollision(x, y, width, height))
 					{
+						if(tile!=null && gameTile == tile){
+							continue;
+						}
 						return gameTile;
 					}
 				}
@@ -460,8 +526,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		 */
 		private void handleSlidingTileCollision(GameTile gameTile)
 		{
-			gameTile.setX(gameTile.getX() + 10);
-
+			gameTile.setX(gameTile.getX());
 			mLastStatusMessage = "Collision with sliding tile";
 		}
 
@@ -497,6 +562,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			//write code to next block
 		}
 	}
+
 
 	private GameThread thread;
 
