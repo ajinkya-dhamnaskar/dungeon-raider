@@ -485,7 +485,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					handleChestTileCollision(gameTile);
 					break;
 				case GameTile.TYPE_EXITSOLVE:
-					handleExitTileCollision();
+					handleExitTileCollision(gameTile);
 					break;
 				default:
 					mLastStatusMessage = "Collision with regular tile";
@@ -555,8 +555,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		 * Handles a collision between the player unit and an exit
 		 * game tile.
 		 */
-		private void handleExitTileCollision()
+		private void handleExitTileCollision(GameTile gameTile)
 		{
+			gameTile.setType(Constants.BlockType.ENTRANCESTART.getValue());
+			gameTile.setBitmap(setAndGetGameTileBitmap(R.drawable.tile_dooropen));
 			mLastStatusMessage = "Collision with exit tile";
 
 			//write code to next block

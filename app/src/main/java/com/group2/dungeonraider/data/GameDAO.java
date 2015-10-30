@@ -65,11 +65,11 @@ public class GameDAO extends SQLiteOpenHelper
 		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
 		+ "(1,\"Tile 01\"," + Constants.BlockType.WALL.getValue() + "," + R.drawable.tile_01 + ",1);",
 
-//		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-//		+ "(2,\"Tile 02\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_02 + ",1);",
-//
-//		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-//		+ "(3,\"Tile 03\"," + GameTile.TYPE_OBSTACLE + "," + R.drawable.tile_03 + ",1);",
+		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+		+ "(2,\"Tile 02\"," + GameTile.TYPE_BREAKABLEWALL + "," + R.drawable.tile_breakable + ",1);",
+
+		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+		+ "(3,\"Tile 03\"," + GameTile.TYPE_BOMB + "," + R.drawable.tile_bomb + ",1);",
 		
 		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
 		+ "(4,\"Tile 04\"," + Constants.BlockType.FIRE.getValue() + "," + R.drawable.tile_fire + ",1);",
@@ -123,7 +123,7 @@ public class GameDAO extends SQLiteOpenHelper
 		/* 12 */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,00,00,00,00,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 14 */+ "01,00,00,08,07,00,00,01,01,01,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 15 */+ "01,00,00,01,05,00,00,00,00,04,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 15 */+ "01,00,00,01,05,00,00,03,02,04,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 16 */+ "01,00,00,01,07,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		+ "\");"		
