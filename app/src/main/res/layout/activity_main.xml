@@ -87,13 +87,13 @@
         android:layout_toRightOf="@id/btn_newgame"
         android:layout_toStartOf="@+id/btn_quit" />
 
-    <Button
+    <ImageButton
         style="?android:attr/buttonStyleSmall"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/button5"
         android:background="@drawable/questionmark"
-
+        android:onClick="help"
         android:textSize="35sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"

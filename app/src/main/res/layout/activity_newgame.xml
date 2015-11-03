@@ -19,7 +19,6 @@
         android:editable="true"
         android:longClickable="true"
         android:height="50dp"
-        android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true" />
 
     <TextView
@@ -105,34 +104,33 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <RadioGroup
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/charradiogroup"
-        android:layout_alignBottom="@+id/imageView"
+        android:id="@+id/radioGroupCharacter"
         android:layout_below="@+id/txt_character"
-        android:weightSum="1"
-        android:layout_toRightOf="@+id/txt_character"
-        android:layout_toLeftOf="@+id/btn_confirm"
-        android:layout_toStartOf="@+id/btn_confirm">
+        android:layout_alignRight="@+id/txt_character"
+        android:layout_alignEnd="@+id/txt_character">
 
         <RadioButton
-            android:layout_width="87dp"
-            android:layout_height="match_parent"
-            android:id="@+id/radio_girl"
-            android:button="@android:color/transparent"
-            android:checked="true"
-            android:background="@drawable/character_girl"/>
+            android:layout_width="wrap_content"
+            android:drawableRight="@drawable/player_right_1"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioCharacter1"
+            android:checked="false"
+
+            android:layout_alignLeft="@+id/txt_character"
+            android:layout_marginLeft="104dp" />
 
         <RadioButton
-            android:layout_width="71dp"
-            android:layout_height="102dp"
-            android:id="@+id/radio_boy"
-            android:button="@android:color/transparent"
-            android:background="@drawable/character_boy"
-            android:checked="false" />
+            android:layout_width="wrap_content"
+            android:drawableRight="@drawable/player_left_1"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioCharacter2"
+            android:checked="false"
+            android:layout_alignLeft="@+id/txt_character"
+            android:layout_marginLeft="39dp" />
     </RadioGroup>
-
 
 </RelativeLayout>

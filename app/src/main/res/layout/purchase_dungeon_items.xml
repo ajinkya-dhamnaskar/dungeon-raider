@@ -15,112 +15,135 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/pd_purchase_dungeon_items"
         android:id="@+id/textview_store"
-        android:textSize="20dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/textView_gold"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/imageViewBackButton"
+        android:layout_alignRight="@+id/imgBtnPotion"
+        android:layout_alignEnd="@+id/imgBtnPotion" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/pd_your_gold"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:id="@+id/textView_gold"
-        android:layout_above="@+id/btn_buy_bombs"
-        android:layout_alignLeft="@+id/btn_buy_bombs"
-        android:layout_alignStart="@+id/btn_buy_bombs" />
-
-
-
-    <Button
-
-        android:text="Purchase Dungeon Map - $1000000"
-        android:id="@+id/btn_buy_dungeon_map"
-        android:layout_width="150dp"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:backgroundTint="@android:color/transparent"
-        android:layout_height="120dp"
-        android:layout_below="@+id/textview_store"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/textViewKeysOwned" />
-
-    <Button
-        android:id="@+id/btn_buy_bombs"
-        android:layout_width="150dp"
-        android:layout_height="170dp"
-        android:backgroundTint="@android:color/transparent"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:text="Purchase Bombs - $1000000"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Purchase key - $1000000"
-        android:id="@+id/btn_buy_key"
-        android:layout_width="150dp"
-        android:layout_height="170dp"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:backgroundTint="@android:color/transparent"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textview_store" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="  $9999"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:id="@+id/textView_goldvalue"
-        android:layout_above="@+id/textview_store"
-        android:layout_toRightOf="@+id/textView_gold"
-        android:layout_toEndOf="@+id/textView_gold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Number of keys owned"
-        android:id="@+id/textViewKeysOwned"
-        android:layout_below="@+id/btn_buy_key"
-        android:layout_alignLeft="@+id/btn_buy_key"
-        android:layout_alignStart="@+id/btn_buy_key"
-        android:layout_alignRight="@+id/btn_buy_key"
-        android:layout_alignEnd="@+id/btn_buy_key"
-        android:layout_above="@+id/btn_backstore" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Number of bombs"
-        android:id="@+id/textViewBombsOwned"
-        android:layout_below="@+id/btn_buy_bombs"
-        android:layout_alignLeft="@+id/btn_buy_bombs"
-        android:layout_alignStart="@+id/btn_buy_bombs"
-        android:layout_alignRight="@+id/btn_buy_bombs"
-        android:layout_alignEnd="@+id/btn_buy_bombs"
-        android:layout_alignBottom="@+id/textViewKeysOwned" />
 
     <ImageView
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/back_icon"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:onClick="backtomainnewgame"
+        android:onClick="backtostorescreen"
         android:textSize="30dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:id="@+id/imageView2"
+        android:id="@+id/imageViewBackButton"
         android:foregroundTint="@android:color/black"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgBtnKey"
+        android:onClick="buydungeonkey"
+        android:background="@drawable/img_key"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_alignTop="@+id/imgBtnPotion"
+        android:layout_toLeftOf="@+id/imgBtnPotion"
+        android:layout_toStartOf="@+id/imgBtnPotion" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgBtnMap"
+        android:onClick="buydungeonmap"
+        android:background="@drawable/map"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_alignTop="@+id/imgBtnKey"
+        android:layout_toLeftOf="@+id/imgBtnKey"
+        android:layout_toStartOf="@+id/imgBtnKey" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgBtnPotion"
+        android:background="@drawable/potion"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imgBtnBomb"
+        android:layout_toStartOf="@+id/imgBtnBomb" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgBtnBomb"
+        android:background="@drawable/bomb"
+        android:layout_alignTop="@+id/imgBtnPotion"
+        android:layout_toLeftOf="@+id/imageViewBackButton"
+        android:layout_toStartOf="@+id/imageViewBackButton"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="YOUR GOLD"
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/textView3"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/textview_store"
+        android:layout_toLeftOf="@+id/textView_goldvalue"
+        android:layout_toStartOf="@+id/textView_goldvalue" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="$99999"
+        android:id="@+id/textView_goldvalue"
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toLeftOf="@+id/imageViewBackButton"
+        android:layout_toStartOf="@+id/imageViewBackButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textViewKeysOwned"
+        android:layout_below="@+id/imgBtnKey"
+        android:layout_alignLeft="@+id/imgBtnKey"
+        android:layout_alignStart="@+id/imgBtnKey"
+        android:layout_toLeftOf="@+id/imgBtnPotion"
+        android:layout_toStartOf="@+id/imgBtnPotion" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textViewPotionsOwned"
+        android:layout_below="@+id/imgBtnPotion"
+        android:layout_alignLeft="@+id/imgBtnPotion"
+        android:layout_alignStart="@+id/imgBtnPotion"
+        android:layout_alignRight="@+id/imgBtnPotion"
+        android:layout_alignEnd="@+id/imgBtnPotion" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textViewBombsOwned"
+        android:layout_below="@+id/imgBtnBomb"
+        android:layout_alignLeft="@+id/imgBtnBomb"
+        android:layout_alignStart="@+id/imgBtnBomb"
+        android:layout_alignRight="@+id/imgBtnBomb"
+        android:layout_alignEnd="@+id/imgBtnBomb" />
 
 </RelativeLayout>

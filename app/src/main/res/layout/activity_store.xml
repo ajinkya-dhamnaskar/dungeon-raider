@@ -37,20 +37,20 @@
         android:textColor="#4C0000"
         android:textStyle="bold|italic" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_backstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/btn_buy_items"
-        android:layout_marginTop="48dp"
+        android:src="@drawable/back_icon"
         android:backgroundTint="@android:color/transparent"
         android:onClick="backtolevel"
-        android:text="Back"
+
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#4C0000"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_alignParentTop="true" />
 
     <Button
 
@@ -65,10 +65,10 @@
         android:text="Browse character mutators"
         android:textColor="#4C0000"
         android:textStyle="bold|italic" />
-    android:layout_alignStart="" />
 
     <Button
         android:id="@+id/btn_buy_items"
+        android:onClick="browsedungeonitems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/btn_view_equip_mutator"
@@ -85,13 +85,13 @@
 
     <Button
         android:id="@+id/btn_view_equip_mutator"
+        android:onClick="viewequipmutator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/btn_buy_mutator"
         android:layout_alignLeft="@+id/textview_store"
         android:layout_alignStart="@+id/textview_store"
         android:layout_alignTop="@+id/btn_buy_mutator"
-
         android:layout_toLeftOf="@+id/btn_buy_items"
         android:layout_toStartOf="@+id/btn_buy_items"
         android:backgroundTint="@android:color/transparent"

@@ -9,9 +9,28 @@ public class Constants {
 
     private static final String LOG = Constants.class.getSimpleName();
 
-   // public static FPropsLoader drProps = new FPropsLoader("DRGame");
+    // public static FPropsLoader drProps = new FPropsLoader("DRGame");
 
     public static int VOLUME_MODE;
+    public static String THEME_MODE;
+    public static int CHARACTER_SELECTED;
+
+    public static String ITEM_POTION="POTION";
+    public static String ITEM_KEY="KEY";
+    public static String ITEM_BOMB="BOMB";
+    public static String ITEM_MAP="MAP";
+    public static int ITEM_POTION_VALUE=200;
+    public static int ITEM_BOMB_VALUE=400;
+    public static int ITEM_MAP_VALUE=500;
+    public static int ITEM_KEY_VALUE=1200;
+    public static int INITIAL_GOLD=100;
+
+
+
+
+
+
+
     public static Context appContext;
     public static int SLIDE_TILE_BY_DP = 10;
 //    /*

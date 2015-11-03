@@ -6,12 +6,15 @@ package com.group2.dungeonraider.domain;
 public class Item {
     private int id;
     private String name;
-    private float value;
+    private int value;
 
-    public Item(int id, String name, float value) {
+    public Item(int id, String name, int value) {
         this.id = id;
         this.name = name;
         this.value = value;
+    }
+    public Item(){
+
     }
 
     public int getId() {
@@ -30,11 +33,11 @@ public class Item {
         this.name = name;
     }
 
-    public float getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(int value) {
         this.value = value;
     }
 

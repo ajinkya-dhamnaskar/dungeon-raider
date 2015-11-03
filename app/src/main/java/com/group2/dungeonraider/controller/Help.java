@@ -3,9 +3,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.utilities.Constants;
 
 /**
  * Created by ukara on 10/27/2015.
@@ -17,44 +20,46 @@ public class Help extends Activity {
         setContentView(R.layout.help);
     }
 
-    public void backtomain(View v)
-    {
+    public void backtomain(View v) {
         Help.this.finish();
     }
 
-    public void howtoplay(View v)
-    {
-        String alertTitle = "How To Play";
-        String alertMessage = "How to Play Details";
-        displayAlert(alertTitle, alertMessage);
+    public void howtoplay(View v) {
+        String alertTitle = getResources().getString(R.string.help_how_to_play);
+        ;
+        String alertMessage = getResources().getString(R.string.help_how_to_play_details);
+        displayAlert(alertTitle, alertMessage, false);
     }
 
-    public void tips(View view)
-    {
-        String alertTitle = "Tips";
-        String alertMessage = "Tips details";
-        displayAlert(alertTitle, alertMessage);
+    public void tips(View view) {
+        String alertTitle = getResources().getString(R.string.help_tips);
+        String alertMessage = getResources().getString(R.string.help_tips_details);
+        displayAlert(alertTitle, alertMessage, false);
     }
 
-    public void aboutthegame(View view)
-    {
-        final String alertTitle = "About The Game";
-        final String alertMessage = "About the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game detailsAbout the game details";
-        displayAlert(alertTitle, alertMessage);
+    public void aboutthegame(View view) {
+        final String alertTitle = getResources().getString(R.string.help_about_the_game);
+        final String alertMessage = getResources().getString(R.string.help_about_the_game_details);
+        displayAlert(alertTitle, alertMessage, true);
     }
 
-    public void displayAlert(String alertTitle, String alertMessage)
+    public void displayAlert(String alertTitle, String alertMessage, boolean centerAligned)
     {
-       new AlertDialog.Builder(this).setMessage(alertMessage)
-                .setTitle(alertTitle)
-                .setCancelable(true)
-                .setNeutralButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton){
-                                dialog.dismiss();
-                            }
-                        })
-                .show();
-    }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(alertTitle);
+        builder.setMessage(alertMessage);
+        builder.setNeutralButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.show();
 
+        // Must call show() prior to fetching text view
+        TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+        if(centerAligned == true)
+            messageView.setGravity(Gravity.CENTER);
+
+    }
 }
