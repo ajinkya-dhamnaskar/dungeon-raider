@@ -106,7 +106,6 @@
         android:layout_above="@+id/textview_store"
         android:layout_toEndOf="@+id/textView_gold"
         android:layout_toRightOf="@+id/textView_gold"
-        android:text="  $9999"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#4C0000"
         android:textStyle="bold|italic" />

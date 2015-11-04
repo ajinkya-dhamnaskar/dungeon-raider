@@ -29,6 +29,8 @@
         </activity>
         <activity android:name="com.group2.dungeonraider.data.Play" android:screenOrientation="landscape" android:label="Play" android:noHistory="true">
         </activity>
+        <activity android:name="com.group2.dungeonraider.controller.PurchaseDungeonItems" android:screenOrientation="landscape" android:label="PurchaseDungeonItems ">
+        </activity>
 
     </application>
 
