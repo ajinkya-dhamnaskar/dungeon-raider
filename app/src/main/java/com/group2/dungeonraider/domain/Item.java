@@ -8,6 +8,16 @@ public class Item {
     private String name;
     private int value;
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    private int count;
+
     public Item(int id, String name, int value) {
         this.id = id;
         this.name = name;

@@ -64,6 +64,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buydungeonpotion"
         android:id="@+id/imgBtnPotion"
         android:background="@drawable/potion"
         android:layout_marginLeft="20dp"
@@ -75,6 +76,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buydungeonbombs"
         android:id="@+id/imgBtnBomb"
         android:background="@drawable/bomb"
         android:layout_alignTop="@+id/imgBtnPotion"
@@ -101,7 +103,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="$99999"
         android:id="@+id/textView_goldvalue"
         android:textSize="20dp"
         android:textColor="#4C0000"

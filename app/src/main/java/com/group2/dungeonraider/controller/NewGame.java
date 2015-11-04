@@ -36,7 +36,7 @@ public class NewGame extends Activity {
     DatabaseHelper db;
     Player player = Player.getInstance();
     List<Item> itemList = new ArrayList<Item>();
-    List<PlayerItem> playerItemList = new ArrayList<PlayerItem>();
+    List<Item> playerItemList = new ArrayList<Item>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -15,37 +15,40 @@ public class Player {
     private int score;
     private int gold;
     private int time;
-    private List<PlayerItem> itemList;
 
-
-    public List<PlayerItem> getItemList() {
+    public List<Item> getItemList() {
         return itemList;
     }
 
-    public void setItemList(List<PlayerItem> itemList) {
+    public void setItemList(List<Item> itemList) {
         this.itemList = itemList;
     }
 
+    private List<Item> itemList;
+
+
+
+
     public int getItemCount(String itemName)
     {
-        List<PlayerItem> lstItem = this.getItemList();
+        List<Item> lstItem = this.getItemList();
         int count = 0;
-        for (PlayerItem item: lstItem)
+        for (Item item: lstItem)
         {
-            if(item.getItemName().equals(Constants.ITEM_BOMB)) {
-                count = item.getItemQuantity();
+            if(item.getName().equals(Constants.ITEM_BOMB)) {
+                count = item.getCount();
                 break;
             }
-            else if(item.getItemName().equals(Constants.ITEM_KEY)) {
-                count = item.getItemQuantity();
+            else if(item.getName().equals(Constants.ITEM_KEY)) {
+                count = item.getCount();
                 break;
             }
-            else if(item.getItemName().equals(Constants.ITEM_POTION)) {
-                count = item.getItemQuantity();
+            else if(item.getName().equals(Constants.ITEM_POTION)) {
+                count = item.getCount();
                 break;
             }
             else{
-                count = item.getItemQuantity();
+                count = item.getCount();
                 break;
             }
         }
@@ -54,23 +57,23 @@ public class Player {
 
     public int setItemCount(String itemName,int itemCount)
     {
-        List<PlayerItem> lstItem = this.getItemList();
-        for (PlayerItem item: lstItem)
+        List<Item> lstItem = this.getItemList();
+        for (Item item: lstItem)
         {
-            if(item.getItemName().equals(Constants.ITEM_BOMB)) {
-                item.setItemQuantity(itemCount);
+            if(item.getName().equals(Constants.ITEM_BOMB)) {
+                item.setCount(itemCount);
                 break;
             }
-            else if(item.getItemName().equals(Constants.ITEM_KEY)) {
-                item.setItemQuantity(itemCount);
+            else if(item.getName().equals(Constants.ITEM_KEY)) {
+                item.setCount(itemCount);
                 break;
             }
-            else if(item.getItemName().equals(Constants.ITEM_POTION)) {
-                item.setItemQuantity(itemCount);
+            else if(item.getName().equals(Constants.ITEM_POTION)) {
+                item.setCount(itemCount);
                 break;
             }
             else{
-                item.setItemQuantity(itemCount);
+                item.setCount(itemCount);
                 break;
             }
         }

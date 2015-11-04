@@ -19,7 +19,7 @@ public class Constants {
     public static String ITEM_KEY="KEY";
     public static String ITEM_BOMB="BOMB";
     public static String ITEM_MAP="MAP";
-    public static int ITEM_POTION_VALUE=200;
+    public static int ITEM_POTION_VALUE=100;
     public static int ITEM_BOMB_VALUE=400;
     public static int ITEM_MAP_VALUE=500;
     public static int ITEM_KEY_VALUE=1200;

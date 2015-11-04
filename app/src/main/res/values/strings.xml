@@ -53,6 +53,10 @@
     <string name="pd_your_gold">YOUR GOLD</string>
     <string name="hp_keys_owned">Number of keys owned</string>
     <string name="hp_bombs">Number of bombs</string>
+    <string name="pd_number_of_keys_owned">Number of keys owned :</string>
+    <string name="pd_number_of_potions_owned">Number of potions owned :</string>
+    <string name="pd_number_of_bombs_owned">Number of bombs owned :</string>
+
     <!-- Purchase dungeon item End-->
 
     <!--Help start -->
