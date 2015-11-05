@@ -57,7 +57,9 @@
         android:id="@+id/btn_equip"
         android:backgroundTint="@android:color/transparent"
         android:onClick="buymutator"
-
+        android:textSize="25dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
         android:layout_below="@+id/imgview_mutator"
         android:layout_toStartOf="@+id/radio_selection_group" />
 
