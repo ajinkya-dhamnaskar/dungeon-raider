@@ -2,17 +2,19 @@ package com.group2.dungeonraider.controller;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -24,6 +26,9 @@ import java.util.List;
 
 public class Setting extends Activity implements AdapterView.OnItemSelectedListener {
     Switch ch,ch1;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton1,radioButton2;
+    Player player = Player.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +39,11 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
 
         ch=(Switch) findViewById(R.id.switch_volume);
 
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("VOLUME", MODE_PRIVATE);
-
-     //   Log.d(LOG, "onCreate() -> Get current volume mode.");
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
 
         Constants.VOLUME_MODE=preferences.getInt("volume", 0);
-
-      //  Log.d(LOG,"onCreate() -> Current volume mode. Mode : " + volume);
+        Constants.THEME_MODE=preferences.getString("theme", "BROWN");
+        Constants.CHARACTER_SELECTED=preferences.getInt("character", 0);
 
 
         // checkbox check
@@ -50,6 +53,8 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
 
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner_theme);
+        radioButton1=(RadioButton)findViewById(R.id.radioCharacterSettings1);
+        radioButton2=(RadioButton)findViewById(R.id.radioCharacterSettings2);
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
@@ -57,23 +62,63 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("BROWN");
-        categories.add("RED");
+        categories.add("BLUE");
 
-
-        // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
-        // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
+
+        if (!Constants.THEME_MODE.equals(null)) {
+            int spinnerPosition = dataAdapter.getPosition(Constants.THEME_MODE);
+            spinner.setSelection(spinnerPosition);
+        }
+
+
+        if(Constants.CHARACTER_SELECTED==1) {
+
+            radioButton1.setChecked(true);
+            //radio group
+        }
+        else if(Constants.CHARACTER_SELECTED==2)
+        {
+            radioButton2.setChecked(true);
+        }
+
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroupCharacterSettings);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
+                if(checkedId == R.id.radioCharacterSettings1) {
+
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.putInt("character", 1);
+                    editor.commit();
+                    Constants.CHARACTER_SELECTED=1;
+
+
+                }
+                else if(checkedId== R.id.radioCharacterSettings2) {
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putInt("character", 2);
+                    editor.commit();
+                    Constants.CHARACTER_SELECTED=2;
+                }
+
+            }
+        });
+
+
     }
 
     public void changeVolume(View v) {
 
         ch1 = (Switch)v;
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("VOLUME", MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         if(ch1.isChecked())
         {
@@ -94,26 +139,59 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
 
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        String item = parent.getItemAtPosition(position).toString();
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("theme", item);
+        editor.commit();
+        Constants.THEME_MODE=item;
+
+
     }
+
+
+
+    public void radioListener(View v)
+    {
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupCharacterSettings);
+
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+        if (selectedId == -1) {
+            Toast.makeText(this, "Select a Character to proceed ", Toast.LENGTH_SHORT).show();
+        } else {
+            if (selectedId == R.id.radioCharacterSettings1) {
+                //save characarer 1
+                Constants.CHARACTER_SELECTED = 1;
+
+                player.setPlayerCharacter(Constants.PLAYER_A);
+            } else if (selectedId == R.id.radioCharacterSettings2) {
+                //save characarer 2
+                Constants.CHARACTER_SELECTED = 2;
+                player.setPlayerCharacter(Constants.PLAYER_B);
+            }
+
+        }
+    }
+
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
     }
 
     public void onBackPressed() {
-        Log.d("Level", "onBackPressed Called");
+        Log.d("Settings", "onBackPressed Called");
 
         Setting.this.finish();
         return;
     }
 
-    public void backtomainnewgame(View v)
+    public void backtomaingame(View v)
     {
         Setting.this.finish();
 
     }
+
+
 
 }

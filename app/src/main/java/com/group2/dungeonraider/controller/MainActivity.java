@@ -5,11 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.test.dungeonmainmenu.R;
@@ -29,6 +25,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("VOLUME", MODE_PRIVATE);
         Constants.VOLUME_MODE = preferences.getInt("volume", 0);
+        Constants.THEME_MODE = preferences.getString("theme", "BROWN");
+        Constants.CHARACTER_SELECTED = preferences.getInt("character", 0);
         setContentView(R.layout.activity_main);
         Constants.appContext = getApplicationContext();
     }
@@ -108,6 +106,11 @@ public class MainActivity extends Activity {
         alertDialog.show();
     }
 
+    public void scorecard(View v) {
+        Intent i = new Intent(this, ScoreCard.class);
+        audio.play(getApplicationContext(), R.raw.btn_click);
+        startActivity(i);
+    }
 }
 
 

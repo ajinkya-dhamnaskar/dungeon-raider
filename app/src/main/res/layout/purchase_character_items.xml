@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:background="@drawable/back_norm">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="PURCHASE CHARACTER ITEMS"
+        android:id="@+id/textView3"
+        android:textSize="28dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/back_icon"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:onClick="backtostore"
+        android:textSize="30dp"
+        android:textColor="#FF0000"
+        android:id="@+id/btn_back"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10px"
+        android:foregroundTint="@android:color/black"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+
+        android:id="@+id/imgview_mutator"
+        android:layout_width="200dp"
+        android:layout_height="180dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BUY"
+        android:id="@+id/btn_equip"
+        android:backgroundTint="@android:color/transparent"
+        android:onClick="buymutator"
+
+        android:layout_below="@+id/imgview_mutator"
+        android:layout_toStartOf="@+id/radio_selection_group" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/txt_mutatorcost"
+
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold"
+        android:text=""
+        android:layout_below="@+id/radio_selection_group"
+        android:layout_alignEnd="@+id/textView_gold_purchasemutators" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_alignRight="@+id/btn_back"
+        android:layout_alignEnd="@+id/btn_back"
+        android:layout_toEndOf="@+id/imgview_mutator"
+        android:layout_below="@+id/btn_back"
+        android:id="@+id/radio_selection_group"
+        android:layout_alignBottom="@+id/btn_equip"></RadioGroup>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="GOLD :"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/btn_back"
+        android:layout_alignStart="@+id/imgview_mutator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="10dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:text=""
+        android:id="@+id/textView_gold_purchasemutators"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="COST:"
+        android:id="@+id/textViewCOST"
+        android:textColor="#4C0000"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        android:textStyle="bold|italic"
+        android:layout_alignBottom="@+id/txt_mutatorcost"
+        android:layout_toStartOf="@+id/txt_mutatorcost" />
+
+
+</RelativeLayout>

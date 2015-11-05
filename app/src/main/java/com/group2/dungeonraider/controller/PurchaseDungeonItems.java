@@ -1,4 +1,5 @@
 package com.group2.dungeonraider.controller;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -6,12 +7,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.group2.dungeonraider.data.DatabaseHelper;
-import com.group2.dungeonraider.utilities.Constants;
 
 import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.data.DatabaseHelper;
 import com.group2.dungeonraider.domain.Item;
 import com.group2.dungeonraider.domain.Player;
+import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.List;
 

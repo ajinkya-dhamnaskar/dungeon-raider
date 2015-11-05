@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,9 +15,9 @@ import android.widget.Toast;
 import com.example.test.dungeonmainmenu.R;
 import com.group2.dungeonraider.data.DatabaseHelper;
 import com.group2.dungeonraider.domain.Item;
+import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.domain.PlayerItem;
-import com.group2.dungeonraider.domain.PlayerView;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -37,6 +36,7 @@ public class NewGame extends Activity {
     Player player = Player.getInstance();
     List<Item> itemList = new ArrayList<Item>();
     List<Item> playerItemList = new ArrayList<Item>();
+    List<Mutator> playerMutatorList= new ArrayList<Mutator>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,39 +64,34 @@ public class NewGame extends Activity {
                 if (selectedId == R.id.radioCharacter1) {
                     //save characarer 1
 
-                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pref.edit();
+//                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = pref.edit();
+//
+//                    editor.putInt("character", 1);
+//                    editor.commit();
+//                    Constants.CHARACTER_SELECTED = 1;
+                    player.setPlayerCharacter(Constants.PLAYER_A);
 
-                    editor.putInt("character", 1);
-                    editor.commit();
-                    Constants.CHARACTER_SELECTED = 1;
+                } else if (selectedId == R.id.radioCharacter2) {
 
-                } else if (selectedId == R.id.radioCharacter1) {
-
-                    //save characarer 2
-                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = pref.edit();
-
-                    editor.putInt("character", 2);
-                    editor.commit();
-                    Constants.CHARACTER_SELECTED = 2;
+//                    //save characarer 2
+//                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = pref.edit();
+//
+//                    editor.putInt("character", 2);
+//                    editor.commit();
+//                    Constants.CHARACTER_SELECTED = 2;
+                    player.setPlayerCharacter(Constants.PLAYER_B);
                 }
-                //check if exists from database....check by name...then load...
-                // else create...
-                //else  create new..
 
 
-                db = new DatabaseHelper(getApplicationContext());
+                db = new DatabaseHelper(Constants.appContext);
 
                 if (db.checkIfPlayerExists(Name)) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                             NewGame.this);
 
-
-
                     alertDialogBuilder.setTitle(getResources().getString(R.string.loadProfile));
-
-
 
 
                     alertDialogBuilder
@@ -107,7 +102,10 @@ public class NewGame extends Activity {
                                     player =  db.loadProfile(Name);
 
                                     playerItemList =  db.loadPlayerItems(player.getId());
+
                                     player.setItemList(playerItemList);
+                                    playerMutatorList=db.loadPlayerMutators(player.getId());
+                                    player.setMutatorList(playerMutatorList);
 
                                     launchIntent();
                                 }
@@ -128,20 +126,15 @@ public class NewGame extends Activity {
                     player.setTime(0);
                     player.setGold(Constants.INITIAL_GOLD);
 
-
                     long returnValue = db.addPlayerDetail(player);
 
-                    //insert blank entries in player item table.
 
                     if (returnValue == -1) {
                         Toast.makeText(this, "Player Already Exists", Toast.LENGTH_LONG).show();
                     } else if (returnValue == -2 || returnValue == -3) {
                         Toast.makeText(this, "Error occurred while creating player", Toast.LENGTH_LONG).show();
                     } else {
-
                         player =  db.loadProfile(Name);
-
-
                         itemList=db.getAllItems();
                         if (!itemList.isEmpty()) {
                             for (Item i : itemList)
@@ -154,8 +147,11 @@ public class NewGame extends Activity {
                             }
                         }
 
+
                         playerItemList =  db.loadPlayerItems(player.getId());
                         player.setItemList(playerItemList);
+                        List<Mutator> playerMutatorList= new ArrayList<Mutator>();
+                        player.setMutatorList((playerMutatorList));
                         Intent i = new Intent(this, Level.class);
                         openFlag=false;
                         startActivity(i);
@@ -171,7 +167,6 @@ public class NewGame extends Activity {
     public void backtomainnewgame(View v)
     {
         NewGame.this.finish();
-
     }
 
     public void onBackPressed() {

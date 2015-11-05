@@ -60,6 +60,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:onClick="purchase_character_items"
         android:layout_toLeftOf="@+id/btn_view_equip_mutator"
         android:backgroundTint="@android:color/transparent"
         android:text="Browse character mutators"
@@ -85,13 +86,13 @@
 
     <Button
         android:id="@+id/btn_view_equip_mutator"
-        android:onClick="viewequipmutator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/btn_buy_mutator"
         android:layout_alignLeft="@+id/textview_store"
         android:layout_alignStart="@+id/textview_store"
         android:layout_alignTop="@+id/btn_buy_mutator"
+        android:onClick="equip_character_items"
         android:layout_toLeftOf="@+id/btn_buy_items"
         android:layout_toStartOf="@+id/btn_buy_items"
         android:backgroundTint="@android:color/transparent"
@@ -106,6 +107,7 @@
         android:layout_above="@+id/textview_store"
         android:layout_toEndOf="@+id/textView_gold"
         android:layout_toRightOf="@+id/textView_gold"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#4C0000"
         android:textStyle="bold|italic" />

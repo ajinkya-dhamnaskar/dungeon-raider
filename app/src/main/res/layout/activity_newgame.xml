@@ -14,11 +14,14 @@
         android:id="@+id/txt_name"
         android:width="10dp"
         style="@android:style/TextAppearance"
+        android:background="@android:color/transparent"
         android:layout_centerVertical="true"
+        android:cursorVisible="true"
+        android:outlineProvider="none"
         android:textSize="30dp"
         android:editable="true"
         android:longClickable="true"
-        android:height="50dp"
+        android:height="75dp"
         android:layout_alignParentLeft="true" />
 
     <TextView
@@ -115,8 +118,8 @@
 
         <RadioButton
             android:layout_width="wrap_content"
-            android:drawableRight="@drawable/player_right_1"
-            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/bbpwar"
+            android:layout_height="83dp"
             android:id="@+id/radioCharacter1"
             android:checked="false"
 
@@ -125,8 +128,8 @@
 
         <RadioButton
             android:layout_width="wrap_content"
-            android:drawableRight="@drawable/player_left_1"
-            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/bbpwbr"
+            android:layout_height="match_parent"
             android:id="@+id/radioCharacter2"
             android:checked="false"
             android:layout_alignLeft="@+id/txt_character"

@@ -1,4 +1,5 @@
 package com.group2.dungeonraider.controller;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.test.dungeonmainmenu.R;
-import com.group2.dungeonraider.utilities.Constants;
 
 /**
  * Created by ukara on 10/27/2015.

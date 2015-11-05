@@ -1,9 +1,9 @@
 package com.group2.dungeonraider.domain;
 
-import java.sql.Time;
-import java.util.List;
 import com.group2.dungeonraider.utilities.Constants;
 
+import java.sql.Time;
+import java.util.List;
 
 /**
  * Created by Rohit on 10/27/2015.
@@ -15,6 +15,19 @@ public class Player {
     private int score;
     private int gold;
     private int time;
+    private List<Item> itemList;
+    private String playerCharacter;
+    private List<Mutator> mutatorList;
+
+    public List<Mutator> getMutatorList() {
+        return mutatorList;
+    }
+
+    public void setMutatorList(List<Mutator> mutatorList) {
+        this.mutatorList = mutatorList;
+    }
+
+
 
     public List<Item> getItemList() {
         return itemList;
@@ -24,61 +37,15 @@ public class Player {
         this.itemList = itemList;
     }
 
-    private List<Item> itemList;
 
 
 
 
-    public int getItemCount(String itemName)
-    {
-        List<Item> lstItem = this.getItemList();
-        int count = 0;
-        for (Item item: lstItem)
-        {
-            if(item.getName().equals(Constants.ITEM_BOMB)) {
-                count = item.getCount();
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_KEY)) {
-                count = item.getCount();
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_POTION)) {
-                count = item.getCount();
-                break;
-            }
-            else{
-                count = item.getCount();
-                break;
-            }
-        }
-        return count;
-    }
 
-    public int setItemCount(String itemName,int itemCount)
-    {
-        List<Item> lstItem = this.getItemList();
-        for (Item item: lstItem)
-        {
-            if(item.getName().equals(Constants.ITEM_BOMB)) {
-                item.setCount(itemCount);
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_KEY)) {
-                item.setCount(itemCount);
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_POTION)) {
-                item.setCount(itemCount);
-                break;
-            }
-            else{
-                item.setCount(itemCount);
-                break;
-            }
-        }
-        return itemCount;
-    }
+
+
+
+
 
 
     private  volatile static Player instance;
@@ -149,6 +116,10 @@ public class Player {
         this.score = score;
     }
 
+    public String getPlayerCharacter() { return playerCharacter; }
+
+    public void setPlayerCharacter(String playerCharacter) { this.playerCharacter = playerCharacter;}
+
 
     @Override
     public String toString() {
@@ -160,6 +131,57 @@ public class Player {
         sb.append(", time=").append(time);
         sb.append('}');
         return sb.toString();
+    }
+
+    public int getItemCount(String itemName)
+    {
+        List<Item> lstItem = this.getItemList();
+        int count = 0;
+        for (Item item: lstItem)
+        {
+            if(item.getName().equals(Constants.ITEM_BOMB)) {
+                count = item.getCount();
+                break;
+            }
+            else if(item.getName().equals(Constants.ITEM_KEY)) {
+                count = item.getCount();
+                break;
+            }
+            else if(item.getName().equals(Constants.ITEM_POTION)) {
+                count = item.getCount();
+                break;
+            }
+            else{
+                count = item.getCount();
+                break;
+            }
+        }
+        return count;
+    }
+
+    public int setItemCount(String itemName,int itemCount)
+    {
+        List<Item> lstItem = this.getItemList();
+        for (Item item: lstItem)
+        {
+            if(item.getName().equals(Constants.ITEM_BOMB)) {
+                item.setCount(itemCount);
+                break;
+            }
+            else if(item.getName().equals(Constants.ITEM_KEY)) {
+                item.setCount(itemCount);
+                break;
+            }
+            else if(item.getName().equals(Constants.ITEM_POTION)) {
+                item.setCount(itemCount);
+                break;
+            }
+            else{
+                item.setCount(itemCount);
+                break;
+            }
+        }
+        return itemCount;
     }
 
 

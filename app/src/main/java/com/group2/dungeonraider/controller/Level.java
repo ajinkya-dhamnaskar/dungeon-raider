@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.test.dungeonmainmenu.R;
 import com.group2.dungeonraider.data.Play;
@@ -62,12 +63,17 @@ public class Level  extends Activity {
 
 
 
-       else if(selectedId==R.id.radioeasy){
+        else if(selectedId==R.id.radioeasy){
 
             Intent i=new Intent(this,Play.class);
             startActivity(i);
 
         }
-            
+        else if(selectedId==R.id.radiohard || selectedId==R.id.radiomedium || selectedId==R.id.radiotutorial){
+
+            Toast.makeText(this, "This option will be available in the future releases", Toast.LENGTH_LONG).show();
+
+        }
+
     }
 }
