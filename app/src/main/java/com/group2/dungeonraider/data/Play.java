@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -11,8 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.controller.Help;
+import com.group2.dungeonraider.utilities.Constants;
+import com.group2.dungeonraider.utilities.Utils;
 
 
 /**
@@ -35,6 +38,7 @@ public class Play extends Activity
 		super.onCreate(savedInstanceState);
 		
 		Context mContext = getApplicationContext();
+		//Constants.appContext = getApplicationContext();
 
 		/**
 		 * Get the screen density that all pixel values will be based on.
@@ -52,14 +56,15 @@ public class Play extends Activity
 		 * passed to this activity.
 		 */
 		int stage = 1;
-		int level = 1;
-	    
-		Log.d("Tile Game Example", "Starting game at stage: " + stage + ", level: " + level);
-		mGameView = new GameView(mContext, this, stage, level, mScreenDensity);
-
+		Log.d("Tile Game Example", "Starting game at stage: " + stage + ", level: " + Constants.GAME_LEVEL);
+		mGameView = new GameView(mContext, this, stage, Constants.GAME_LEVEL, mScreenDensity);
+		Utils.clearGameData();
+		Constants.GAME_NO_OF_POTIONS = 2;
+		Constants.GAME_NO_OF_MAP = 1;
+		Constants.GAME_START_TIME = System.currentTimeMillis();
 		setContentView(mGameView);
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -97,7 +102,15 @@ public class Play extends Activity
 	protected void onPause()
 	{
 		super.onPause();
+		//Constants.DELAY_LAST_TIME = System.currentTimeMillis() - Constants.LAST_TIME;
+		//mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
 
-		mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		//mGameView.getThread().setState(GameView.STATE_RUNNING);
 	}
 }

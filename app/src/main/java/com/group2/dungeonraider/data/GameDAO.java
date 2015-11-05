@@ -6,17 +6,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.utilities.Constants;
 
 import static android.provider.BaseColumns._ID;
 
 /**
  * The GameDAO class provides access to the database layer of the game.
- * 
+ *
  * The class includes the initial queries required to create the
- * database used by the game. 
- * 
+ * database used by the game.
+ *
  * @author Dan Ruscoe (ruscoe.org)
  * @version 1.0
  */
@@ -31,24 +31,24 @@ public class GameDAO extends SQLiteOpenHelper
 	 * The table containing the definitions of each available game tile type.
 	 */
 	private static final String CREATE_TABLE_GAME_TILES = "CREATE TABLE " + GameTileData.TABLE_NAME + " ("
-		+ _ID + " INTEGER PRIMARY KEY, "
-		+ GameTileData.NAME + " STRING,"
-		+ GameTileData.TYPE + " INTEGER DEFAULT 0,"
-		+ GameTileData.DRAWABLE + " INTEGER DEFAULT 0,"
-		+ GameTileData.VISIBLE + " INTEGER DEFAULT 1"
-		+ ");";
+			+ _ID + " INTEGER PRIMARY KEY, "
+			+ GameTileData.NAME + " STRING,"
+			+ GameTileData.TYPE + " INTEGER DEFAULT 0,"
+			+ GameTileData.DRAWABLE + " INTEGER DEFAULT 0,"
+			+ GameTileData.VISIBLE + " INTEGER DEFAULT 1"
+			+ ");";
 
 	/**
 	 * The table containing the definitions of each level.
 	 */
 	private static final String CREATE_TABLE_GAME_LEVEL_TILES = "CREATE TABLE " + GameLevelTileData.TABLE_NAME + " ("
-		+ _ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-		+ GameLevelTileData.STAGE + " INTEGER DEFAULT 0,"
-		+ GameLevelTileData.LEVEL + " INTEGER DEFAULT 0,"
-		+ GameLevelTileData.PLAYER_START_TILE_X + " INTEGER DEFAULT 0,"
-		+ GameLevelTileData.PLAYER_START_TILE_Y + " INTEGER DEFAULT 0,"
-		+ GameLevelTileData.TILE_DATA + " TEXT NOT NULL"
-		+ ");";
+			+ _ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+			+ GameLevelTileData.STAGE + " INTEGER DEFAULT 0,"
+			+ GameLevelTileData.LEVEL + " INTEGER DEFAULT 0,"
+			+ GameLevelTileData.PLAYER_START_TILE_X + " INTEGER DEFAULT 0,"
+			+ GameLevelTileData.PLAYER_START_TILE_Y + " INTEGER DEFAULT 0,"
+			+ GameLevelTileData.TILE_DATA + " TEXT NOT NULL"
+			+ ");";
 
 	// Populate table statements
 
@@ -62,32 +62,38 @@ public class GameDAO extends SQLiteOpenHelper
 	 * - The tile visibility option (1 = visible, 0 = invisible.)
 	 */
 	private static final String[] POPULATE_TABLE_GAME_TILES = {
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(1,\"Tile 01\"," + Constants.BlockType.WALL.getValue() + "," + R.drawable.tile_01 + ",1);",
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(1,\"Tile 01\"," + Constants.BlockType.WALL.getValue() + "," + R.drawable.tile_01 + ",1);",
 
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(2,\"Tile 02\"," + GameTile.TYPE_BREAKABLEWALL + "," + R.drawable.tile_breakable + ",1);",
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(2,\"Tile 02\"," + Constants.BlockType.BREAKABLEWALL.getValue() + "," + R.drawable.tile_breakable + ",1);",
 
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(3,\"Tile 03\"," + GameTile.TYPE_BOMB + "," + R.drawable.tile_bomb + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(4,\"Tile 04\"," + Constants.BlockType.FIRE.getValue() + "," + R.drawable.tile_fire + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(5,\"Tile 05\"," + Constants.BlockType.CHEST.getValue() + "," + R.drawable.tile_coins + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(6,\"Tile 06\"," + Constants.BlockType.ENTRANCESTART.getValue() + "," + R.drawable.tile_dooropen + ",1);",
-		
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(7,\"Tile 07\"," + Constants.BlockType.SLIDING.getValue() + "," + R.drawable.tile_07 + ",1);",
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(3,\"Tile 03\"," + GameTile.TYPE_BOMB + "," + R.drawable.tile_bomb + ",1);",
 
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(8,\"Dangerous Tile 01\"," + Constants.BlockType.KEY.getValue() + "," + R.drawable.tile_keys+ ",1);",
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(4,\"Tile 04\"," + Constants.BlockType.FIRE.getValue() + "," + R.drawable.tile_fire + ",1);",
 
-		"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-		+ "(9,\"Exit Tile\"," + Constants.BlockType.EXITSOLVE.getValue() + "," + R.drawable.tile_doorclosed + ",1);"
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(5,\"Tile 05\"," + Constants.BlockType.CHEST.getValue() + "," + R.drawable.tile_coins + ",1);",
+
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(6,\"Tile 06\"," + Constants.BlockType.ENTRANCESTART.getValue() + "," + R.drawable.tile_roomstart + ",1);",
+
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(7,\"Tile 07\"," + Constants.BlockType.SLIDING.getValue() + "," + R.drawable.tile_07 + ",1);",
+
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(8,\"Dangerous Tile 01\"," + Constants.BlockType.KEY.getValue() + "," + R.drawable.tile_keys+ ",1);",
+
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(9,\"Exit Tile\"," + Constants.BlockType.EXITSOLVE.getValue() + "," + R.drawable.tile_doorclosed + ",1);",
+
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(10,\"Goal Tile\"," + Constants.BlockType.FINISH.getValue() + "," + R.drawable.tile_goal + ",1);",
+
+			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+					+ "(11,\"Weight Switch\"," + Constants.BlockType.WEIGHTSWITCH.getValue() + "," + R.drawable.tile_switch + ",1);"
 	};
 
 	/**
@@ -101,32 +107,33 @@ public class GameDAO extends SQLiteOpenHelper
 	 * 		Level tile data consists of rows of comma-delimited game tile IDs.
 	 * 		The tile IDs used correspond to the unique IDs found in the game
 	 * 		tile definition table.
-	 * 
+	 *
 	 * 		The position of each game tile ID corresponds to the position the
 	 * 		tile will be drawn in the game.
 	 */
 	private static final String[] POPULATE_TABLE_GAME_LEVEL_TILES = {
-		"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
-		+ "(null,1,1,2,9,\""
+
+			"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
+					+ "(null,1,1,2,9,\""
 				// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
 		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 3  */+ "01,01,00,00,00,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 4  */+ "01,01,00,00,00,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 5  */+ "01,01,01,00,00,00,00,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 6  */+ "01,01,01,00,00,00,00,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 7  */+ "01,01,01,01,01,00,00,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 8  */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,00,09" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 9  */+ "06,00,00,00,00,00,00,00,01,01,01,00,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 10 */+ "01,00,00,00,00,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 11 */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 12 */+ "01,01,01,01,01,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 13 */+ "01,00,00,00,00,00,00,01,01,01,01,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 14 */+ "01,00,00,08,07,00,00,01,01,01,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 15 */+ "01,00,00,01,05,00,00,03,02,04,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 16 */+ "01,00,00,01,07,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 3  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 4  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 5  */+ "01,00,00,00,07,00,00,01,00,00,00,00,07,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 6  */+ "01,00,07,00,07,00,00,07,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 7  */+ "01,00,00,11,01,11,07,11,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 8  */+ "01,00,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,04,04,04,04,04,04,00,00,00,00,00,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,00,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 11 */+ "01,00,00,01,11,07,11,01,11,02,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 12 */+ "01,00,07,00,00,07,01,01,02,07,07,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 13 */+ "01,00,00,00,00,00,00,00,00,00,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 14 */+ "01,03,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 15 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 16 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		+ "\");"		
+					+ "\");"
 	};
 
 	public GameDAO(Context ctx)
@@ -138,21 +145,21 @@ public class GameDAO extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase db)
 	{
 		// Create game tables
-		
+
 		Log.d("Tile Game Example", "Creating DB tables");
-		
+
 		db.execSQL(CREATE_TABLE_GAME_TILES);
 		db.execSQL(CREATE_TABLE_GAME_LEVEL_TILES);
 
 		// Populate game tables
-		
+
 		Log.d("Tile Game Example", "Populating DB tables");
-		
+
 		for (String query : POPULATE_TABLE_GAME_TILES)
 		{
 			db.execSQL(query);
 		}
-		
+
 		for (String query : POPULATE_TABLE_GAME_LEVEL_TILES)
 		{
 			db.execSQL(query);
@@ -164,7 +171,7 @@ public class GameDAO extends SQLiteOpenHelper
 	{
 		db.execSQL("DROP TABLE IF EXISTS " + GameTileData.TABLE_NAME);
 		db.execSQL("DROP TABLE IF EXISTS " + GameLevelTileData.TABLE_NAME);
-		
+
 		onCreate(db);
 	}
 

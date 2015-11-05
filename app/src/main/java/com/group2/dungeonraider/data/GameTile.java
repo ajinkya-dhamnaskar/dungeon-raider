@@ -138,7 +138,6 @@ public class GameTile extends GameImage
 
 	public boolean isBlockerTile()
 	{
-		return this.mType != GameTile.TYPE_EMPTY;
-
+		return mType != GameTile.TYPE_EMPTY;
 	}
 }

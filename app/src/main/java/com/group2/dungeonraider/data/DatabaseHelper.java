@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.domain.Item;
 import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
@@ -30,6 +30,9 @@ import java.util.List;
 /**
  * Created by Rohit on 10/28/2015.
  */
+
+
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     // Database Name
     public static String DATABASE_NAME = "DUNGEON_DATABASE";
