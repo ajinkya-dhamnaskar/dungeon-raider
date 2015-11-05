@@ -89,7 +89,7 @@ public class EquipMutator extends Activity {
                     if (rb.getText().equals("CAP-YELLOW")) {
                         ImageView img;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
-
+                        filename = player.getPlayerCharacter();
                         //filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
                         pant = filename.charAt(2);
@@ -109,7 +109,7 @@ public class EquipMutator extends Activity {
                        // TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
                         //mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
-
+                        filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
                         pant = filename.charAt(2);
@@ -129,7 +129,7 @@ public class EquipMutator extends Activity {
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
                         mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
-
+                        filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         cap = filename.charAt(0);
                         pant = filename.charAt(2);
@@ -149,7 +149,7 @@ public class EquipMutator extends Activity {
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
                         mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
-
+                        filename = player.getPlayerCharacter();
                         //filename = (String) img.getTag();
                         cap = filename.charAt(0);
                         pant = filename.charAt(2);
@@ -169,7 +169,7 @@ public class EquipMutator extends Activity {
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
                         mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
-
+                        filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
                         cap = filename.charAt(0);
@@ -189,7 +189,7 @@ public class EquipMutator extends Activity {
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
                         mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
-
+                        filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
                         cap = filename.charAt(0);
@@ -210,7 +210,7 @@ public class EquipMutator extends Activity {
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
                         mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
-
+                        filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
                         pant = filename.charAt(2);

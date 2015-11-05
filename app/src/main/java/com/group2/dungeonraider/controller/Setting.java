@@ -98,7 +98,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
                     editor.putInt("character", 1);
                     editor.commit();
                     Constants.CHARACTER_SELECTED=1;
-
+                    player.setPlayerCharacter(Constants.PLAYER_A);
 
                 }
                 else if(checkedId== R.id.radioCharacterSettings2) {
@@ -107,6 +107,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
                     editor.putInt("character", 2);
                     editor.commit();
                     Constants.CHARACTER_SELECTED=2;
+                    player.setPlayerCharacter(Constants.PLAYER_B);
                 }
 
             }
@@ -137,7 +138,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
         // On selecting a spinner item
 
         String item = parent.getItemAtPosition(position).toString();
@@ -152,28 +153,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
 
 
 
-    public void radioListener(View v)
-    {
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupCharacterSettings);
 
-        int selectedId = radioGroup.getCheckedRadioButtonId();
-
-        if (selectedId == -1) {
-            Toast.makeText(this, "Select a Character to proceed ", Toast.LENGTH_SHORT).show();
-        } else {
-            if (selectedId == R.id.radioCharacterSettings1) {
-                //save characarer 1
-                Constants.CHARACTER_SELECTED = 1;
-
-                player.setPlayerCharacter(Constants.PLAYER_A);
-            } else if (selectedId == R.id.radioCharacterSettings2) {
-                //save characarer 2
-                Constants.CHARACTER_SELECTED = 2;
-                player.setPlayerCharacter(Constants.PLAYER_B);
-            }
-
-        }
-    }
 
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub

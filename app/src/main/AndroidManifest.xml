@@ -31,7 +31,10 @@
         </activity>
         <activity android:name="com.group2.dungeonraider.controller.PurchaseDungeonItems" android:screenOrientation="landscape" android:label="PurchaseDungeonItems ">
         </activity>
-
+        <activity android:name="com.group2.dungeonraider.controller.Purchase_Mutator" android:screenOrientation="landscape" android:label="PurchaseMutator">
+        </activity>
+        <activity android:name="com.group2.dungeonraider.controller.EquipMutator" android:screenOrientation="landscape" android:label="EquipMutator ">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
