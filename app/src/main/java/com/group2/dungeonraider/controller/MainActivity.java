@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
@@ -27,8 +27,9 @@ public class MainActivity extends Activity {
         Constants.VOLUME_MODE = preferences.getInt("volume", 0);
         Constants.THEME_MODE = preferences.getString("theme", "BROWN");
         Constants.CHARACTER_SELECTED = preferences.getInt("character", 0);
-        setContentView(R.layout.activity_main);
+       
         Constants.appContext = getApplicationContext();
+        setContentView(R.layout.activity_main);
     }
 
     public void setting(View v) {
@@ -73,7 +74,7 @@ public class MainActivity extends Activity {
 //        }
 
 
-    public void quit(View v) {
+    public void quit(final View v) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 MainActivity.this);
 
@@ -88,7 +89,10 @@ public class MainActivity extends Activity {
                     public void onClick(DialogInterface dialog, int id) {
                         // if this button is clicked, close
                         // current activity
+
                         MainActivity.this.finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(0);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -112,5 +116,4 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 }
-
 

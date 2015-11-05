@@ -11,7 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.Play;
 import com.group2.dungeonraider.utilities.Constants;
 
@@ -29,10 +29,7 @@ public class Level  extends Activity {
         super.onCreate(savedInstanceState);
         Constants.appContext = getApplicationContext();
         setContentView(R.layout.activity_level);
-
     }
-
-
 
     public void onBackPressed() {
         Log.d("Level", "onBackPressed Called");

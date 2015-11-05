@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.DatabaseHelper;
 import com.group2.dungeonraider.domain.Item;
 import com.group2.dungeonraider.domain.Mutator;

@@ -9,9 +9,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import com.group2.dungeonraider.R;
+
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.domain.Player;
 
 /**

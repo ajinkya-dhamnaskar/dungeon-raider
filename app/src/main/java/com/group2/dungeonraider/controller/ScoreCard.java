@@ -10,9 +10,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.DatabaseHelper;
-import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.domain.PlayerView;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class ScoreCard extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scorecard);
         tl = (TableLayout) findViewById(R.id.maintable);
-        addHeaders();
+
         addData();
     }
 
@@ -104,7 +103,7 @@ public class ScoreCard extends Activity{
         playerViewListlist = db.getAllPlayerListDescendingScore();
 
         if (!playerViewListlist.isEmpty()) {
-
+            addHeaders();
             for (PlayerView p : playerViewListlist) {
 
                 tr = new TableRow(this);

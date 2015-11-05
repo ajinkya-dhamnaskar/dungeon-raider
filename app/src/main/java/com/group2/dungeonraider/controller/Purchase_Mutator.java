@@ -11,7 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.DatabaseHelper;
 import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
@@ -54,7 +54,7 @@ public class Purchase_Mutator extends Activity {
 
 
         filename = player.getPlayerCharacter();
-        int res = getResources().getIdentifier(filename, "drawable", "com.example.test.dungeonmainmenu");
+        int res = getResources().getIdentifier(filename, "drawable", "com.group2.dungeonraider");
         img.setImageResource(res);
         //img.setTag("bbppa");
 
@@ -126,7 +126,7 @@ public class Purchase_Mutator extends Activity {
                     skin = filename.charAt(3);
                     character = filename.charAt(4);
                     imagename = "y" + tshirt + pant + skin + character;
-                    int res = getResources().getIdentifier(imagename, "drawable", "com.example.test.dungeonmainmenu");
+                    int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                     img.setImageResource(res);
                    // img.setTag(imagename);
                     TextView mutator_costText;
@@ -146,7 +146,7 @@ public class Purchase_Mutator extends Activity {
                     skin = filename.charAt(3);
                     character = filename.charAt(4);
                     imagename = "b" + tshirt + pant + skin + character;
-                    int res = getResources().getIdentifier(imagename, "drawable", "com.example.test.dungeonmainmenu");
+                    int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                     img.setImageResource(res);
                    // img.setTag(imagename);
                     TextView mutator_costText;
@@ -166,7 +166,7 @@ public class Purchase_Mutator extends Activity {
                     skin = filename.charAt(3);
                     character = filename.charAt(4);
                     imagename = cap + "b" + pant + skin + character;
-                    int res = getResources().getIdentifier(imagename, "drawable", "com.example.test.dungeonmainmenu");
+                    int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                     img.setImageResource(res);
                    // img.setTag(imagename);
                     TextView mutator_costText;
@@ -187,7 +187,7 @@ public class Purchase_Mutator extends Activity {
                     skin = filename.charAt(3);
                     character = filename.charAt(4);
                     imagename = cap + "g" + pant + skin + character;
-                    int res = getResources().getIdentifier(imagename, "drawable", "com.example.test.dungeonmainmenu");
+                    int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                     img.setImageResource(res);
                    // img.setTag(imagename);
                     TextView mutator_costText;
@@ -208,7 +208,7 @@ public class Purchase_Mutator extends Activity {
                     skin = filename.charAt(3);
                     character = filename.charAt(4);
                     imagename = ""+cap+tshirt+"r"+skin+character;
-                    int res = getResources().getIdentifier(imagename, "drawable", "com.example.test.dungeonmainmenu");
+                    int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                     img.setImageResource(res);
                    // img.setTag(imagename);
                     TextView mutator_costText;
@@ -229,7 +229,7 @@ public class Purchase_Mutator extends Activity {
                     skin = filename.charAt(3);
                     character = filename.charAt(4);
                     imagename = ""+cap+tshirt+"p"+skin+character;
-                    int res = getResources().getIdentifier(imagename, "drawable", "com.example.test.dungeonmainmenu");
+                    int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                     img.setImageResource(res);
                   //  img.setTag(imagename);
                     TextView mutator_costText;
@@ -251,7 +251,7 @@ public class Purchase_Mutator extends Activity {
                     cap = filename.charAt(0);
                     character = filename.charAt(4);
                     imagename = ""+cap+tshirt+pant+"p"+character;
-                    int res = getResources().getIdentifier(imagename, "drawable", "com.example.test.dungeonmainmenu");
+                    int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                     img.setImageResource(res);
                  //   img.setTag(imagename);
                     TextView mutator_costText;

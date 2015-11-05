@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.utilities.Constants;
 
@@ -62,7 +62,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("BROWN");
-        categories.add("BLUE");
+        categories.add("PURPLE");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);

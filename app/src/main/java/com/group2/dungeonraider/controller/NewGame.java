@@ -12,12 +12,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.DatabaseHelper;
 import com.group2.dungeonraider.domain.Item;
 import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.domain.PlayerItem;
+import com.group2.dungeonraider.domain.PlayerView;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class NewGame extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newgame);
+        Constants.appContext = getApplicationContext();
         NameEditText = (EditText) findViewById(R.id.txt_name);
 
     }
