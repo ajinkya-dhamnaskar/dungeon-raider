@@ -1,6 +1,12 @@
 package com.group2.dungeonraider.utilities;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.os.Handler;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * Created by Rohit on 10/27/2015.
@@ -53,6 +59,60 @@ public class Constants {
 
     public static Context appContext;
     public static int SLIDE_TILE_BY_DP = 10;
+    public static int GAME_LEVEL = 1;
+    public static long GAME_START_TIME = System.currentTimeMillis();
+    public static long LAST_TIME = 0;
+    public static long DELAY_LAST_TIME = 0;
+    public static boolean IS_SLOW_DOWN_TIMER = false;
+    public static int TICK_COUNTER_FOR_DELAY = 0;
+    public static int MAX_TICK_COUNTER_FOR_DELAY = 5;
+    public static int TIME_DELAY = 0;
+    public static int MAX_TIME_DELAY = 1000;
+    public static long LAST_CURR_TIME = 0;
+    public static MediaPlayer MP = new MediaPlayer();
+
+    public static int GAME_NO_OF_BOMBS;
+    public static int GAME_NO_OF_POTIONS;
+    public static int GAME_NO_OF_KEYS;
+    public static int GAME_NO_OF_MAP;
+
+    static MediaPlayer getMediaPlayer(Context context){
+
+        MediaPlayer MP = new MediaPlayer();
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
+            return MP;
+        }
+
+        try {
+            Class<?> cMediaTimeProvider = Class.forName( "android.media.MediaTimeProvider" );
+            Class<?> cSubtitleController = Class.forName( "android.media.SubtitleController" );
+            Class<?> iSubtitleControllerAnchor = Class.forName( "android.media.SubtitleController$Anchor" );
+            Class<?> iSubtitleControllerListener = Class.forName( "android.media.SubtitleController$Listener" );
+
+            Constructor constructor = cSubtitleController.getConstructor(new Class[]{Context.class, cMediaTimeProvider, iSubtitleControllerListener});
+
+            Object subtitleInstance = constructor.newInstance(context, null, null);
+
+            Field f = cSubtitleController.getDeclaredField("mHandler");
+
+            f.setAccessible(true);
+            try {
+                f.set(subtitleInstance, new Handler());
+            }
+            catch (IllegalAccessException e) {return MP;}
+            finally {
+                f.setAccessible(false);
+            }
+
+            Method setsubtitleanchor = MP.getClass().getMethod("setSubtitleAnchor", cSubtitleController, iSubtitleControllerAnchor);
+
+            setsubtitleanchor.invoke(MP, subtitleInstance, null);
+            //Log.e("", "subtitle is setted :p");
+        } catch (Exception e) {}
+
+        return MP;
+    }
 //    /*
 //    DB details
 //     */
@@ -207,7 +267,7 @@ public class Constants {
         EMPTY(1), WALL(2), SLIDING(3), DOOR(4),
         KEY(5), BOMB(6), BREAKABLEWALL(7), CHEST(8),
         WEIGHTSWITCH(9), FIRE(10), SPIKE(11), ENTRANCESTART(12),
-        EXITSOLVE(13), FINISH(14);
+        EXITSOLVE(13), FINISH(14), DOOROPEN(15);
         private int value;
 
         private BlockType(int value) {
