@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgBtnKey"
         android:onClick="buydungeonkey"
-        android:background="@drawable/img_key"
+        android:background="@drawable/icon"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_alignTop="@+id/imgBtnPotion"
