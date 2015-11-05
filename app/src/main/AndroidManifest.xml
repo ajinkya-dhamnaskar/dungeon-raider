@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test.dungeonmainmenu" >
+    package="com.group2.dungeonraider" >
 
     <application
         android:allowBackup="true"
@@ -33,6 +33,6 @@
         </activity>
 
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>
