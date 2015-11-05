@@ -30,6 +30,7 @@ public class GameDAO extends SQLiteOpenHelper
 	/**
 	 * The table containing the definitions of each available game tile type.
 	 */
+
 	private static final String CREATE_TABLE_GAME_TILES = "CREATE TABLE " + GameTileData.TABLE_NAME + " ("
 			+ _ID + " INTEGER PRIMARY KEY, "
 			+ GameTileData.NAME + " STRING,"
@@ -47,6 +48,7 @@ public class GameDAO extends SQLiteOpenHelper
 			+ GameLevelTileData.LEVEL + " INTEGER DEFAULT 0,"
 			+ GameLevelTileData.PLAYER_START_TILE_X + " INTEGER DEFAULT 0,"
 			+ GameLevelTileData.PLAYER_START_TILE_Y + " INTEGER DEFAULT 0,"
+			+GameLevelTileData.DESIRED_TIME +" INTEGER NOT NULL,"
 			+ GameLevelTileData.TILE_DATA + " TEXT NOT NULL"
 			+ ");";
 
@@ -93,7 +95,7 @@ public class GameDAO extends SQLiteOpenHelper
 					+ "(10,\"Goal Tile\"," + Constants.BlockType.FINISH.getValue() + "," + R.drawable.tile_goal + ",1);",
 
 			"INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-					+ "(11,\"Weight Switch\"," + Constants.BlockType.WEIGHTSWITCH.getValue() + "," + R.drawable.tile_switch + ",1);"
+					+ "(11,\"Goal Tile\"," + Constants.BlockType.WEIGHTSWITCH.getValue() + "," + R.drawable.tile_goal + ",1);"
 	};
 
 	/**
@@ -112,10 +114,53 @@ public class GameDAO extends SQLiteOpenHelper
 	 * 		tile will be drawn in the game.
 	 */
 	private static final String[] POPULATE_TABLE_GAME_LEVEL_TILES = {
+			"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
+					+ "(null,1,1,2,9,180,\""
+					// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
+		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 3  */+ "01,01,05,00,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 4  */+ "01,01,01,00,00,00,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 5  */+ "01,01,01,01,01,00,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 6  */+ "01,01,01,01,01,00,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 7  */+ "01,01,01,01,01,00,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 8  */+ "01,01,01,01,01,00,01,01,01,01,01,00,00,00,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,07,00,00,00,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,01,01,01,01,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 11 */+ "01,01,01,01,01,00,01,01,01,01,01,09,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 12 */+ "01,01,01,01,01,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 13 */+ "01,00,00,00,00,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 14 */+ "01,00,01,00,01,01,01,01,01,01,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 15 */+ "01,00,01,00,01,01,01,01,01,01,07,07,07,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 16 */+ "01,08,01,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+					+ "\");",
 
 			"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
-					+ "(null,1,1,2,9,\""
-				// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
+					+ "(null,1,2,2,9,220,\""
+					// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
+		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 2  */+ "01,03,00,01,01,01,00,00,00,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 3  */+ "01,01,00,01,01,01,00,01,01,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 4  */+ "01,01,00,01,01,01,00,01,01,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 5  */+ "01,01,00,01,01,01,00,01,01,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 6  */+ "01,01,00,01,01,01,00,01,01,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 7  */+ "01,01,00,01,01,01,00,01,01,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 8  */+ "01,01,00,01,01,01,00,00,01,00,00,00,00,10,09" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,00,00,00,07,00,01,00,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,00,00,01,01,01,11,00,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 11 */+ "01,00,00,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 12 */+ "01,00,11,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 13 */+ "01,00,07,00,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 14 */+ "01,00,00,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 15 */+ "01,00,00,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 16 */+ "01,00,00,00,09,00,03,01,00,00,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+					+ "\");",
+
+			"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
+					+ "(null,1,3,2,9,350,\""
+					// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
 		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 3  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -133,7 +178,52 @@ public class GameDAO extends SQLiteOpenHelper
 		/* 15 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 16 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+					+ "\");",
+
+			"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
+					+ "(null,1,4,2,9,380,\""
+					// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
+		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 3  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 4  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 5  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 6  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 7  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 8  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,01,00,00,00,00,00,00,00,00,10,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 11 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 12 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 13 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 14 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 15 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 16 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+					+ "\");",
+			"INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
+					+ "(null,1,0,2,9,,480\""
+					// 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
+		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 3  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 4  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 5  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 6  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 7  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 8  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,00,00,00,00,00,00,00,00,00,00,10,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 11 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 12 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 13 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 14 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 15 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 16 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 17 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 					+ "\");"
+
+
 	};
 
 	public GameDAO(Context ctx)
