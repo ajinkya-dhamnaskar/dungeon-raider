@@ -139,19 +139,8 @@ public class Player {
         int count = 0;
         for (Item item: lstItem)
         {
-            if(item.getName().equals(Constants.ITEM_BOMB)) {
-                count = item.getCount();
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_KEY)) {
-                count = item.getCount();
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_POTION)) {
-                count = item.getCount();
-                break;
-            }
-            else{
+            if(item.getName().equals(itemName))
+            {
                 count = item.getCount();
                 break;
             }
@@ -164,19 +153,7 @@ public class Player {
         List<Item> lstItem = this.getItemList();
         for (Item item: lstItem)
         {
-            if(item.getName().equals(Constants.ITEM_BOMB)) {
-                item.setCount(itemCount);
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_KEY)) {
-                item.setCount(itemCount);
-                break;
-            }
-            else if(item.getName().equals(Constants.ITEM_POTION)) {
-                item.setCount(itemCount);
-                break;
-            }
-            else{
+            if(item.getName().equals(itemName)) {
                 item.setCount(itemCount);
                 break;
             }
