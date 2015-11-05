@@ -17,10 +17,8 @@
         android:textStyle="bold|italic"
         android:backgroundTint="@android:color/transparent"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/radioGrouplevel"
-        android:layout_toEndOf="@+id/radioGrouplevel"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp" />
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"

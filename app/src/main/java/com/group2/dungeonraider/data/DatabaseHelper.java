@@ -314,78 +314,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-
-
-
-
-
-
-
-
-
-    //
-//    public int updateEntry(Player player) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        // Creating content values
-//        ContentValues values = new ContentValues();
-//        values.put(KEY_NAME, student.name);
-//        values.put(KEY_PHONENUMBER, student.phone_number);
-//
-//        // update row in students table base on students.is value
-//        return db.update(TABLE_STUDENTS, values, KEY_ID + " = ?",
-//                new String[] { String.valueOf(student.id) });
-//    }
-//
-//    /**
-//     * Used to delete particular student entry
-//     *
-//     * @param id
-//     */
-//    public void deleteEntry(long id) {
-//
-//        // delete row in students table based on id
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        db.delete(TABLE_STUDENTS, KEY_ID + " = ?",
-//                new String[] { String.valueOf(id) });
-//    }
-//
-//    /**
-//     * Used to get particular student details
-//     *
-//     * @param id
-//     * @return
-//     */
-//
-//    public StudentsModel getStudent(long id) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        // SELECT * FROM students WHERE id = ?;
-//        String selectQuery = "SELECT  * FROM " + TABLE_STUDENTS + " WHERE "
-//                + KEY_ID + " = " + id;
-//        Log.d(TAG, selectQuery);
-//
-//        Cursor c = db.rawQuery(selectQuery, null);
-//
-//        if (c != null)
-//            c.moveToFirst();
-//
-//        StudentsModel students = new StudentsModel();
-//        students.id = c.getInt(c.getColumnIndex(KEY_ID));
-//        students.phone_number = c.getString(c.getColumnIndex(KEY_PHONENUMBER));
-//        students.name = c.getString(c.getColumnIndex(KEY_NAME));
-//
-//        return students;
-//    }
-//
-//    /**
-//     * Used to get detail of entire database and save in array list of data type
-//     * StudentsModel
-//     *
-//     * @return
-//     */
-
-
     public List<PlayerView> getAllPlayerListDescendingScore() {
         List<PlayerView> playerArrayList = new ArrayList<PlayerView>();
         String selectQuery = "SELECT  * FROM " + TABLE_PLAYER+"  ORDER BY " +KEY_SCORE + " DESC";
@@ -634,7 +562,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(strSQL);
 
     }
-    public int updatePlayerGoldVlaue(Player player) {
+    public int updatePlayerGoldValue(Player player) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Creating content values
@@ -645,16 +573,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_PLAYER, valuesPlayer, KEY_ID + " = ?",
                 new String[] { String.valueOf(player.getId()) });
     }
-    public int updatePlayerItemCount(Player player, String itemName) {
+    public void updatePlayerItemCount(String itemName,int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         // Creating content values
-        ContentValues valuesPlayerItem = new ContentValues();
-        valuesPlayerItem.put(KEY_ITEM_QUANTITY, player.getItemCount(itemName));
+        Player player=Player.getInstance();
+        String strSQL = "UPDATE PLAYER_ITEMS SET ITEM_QUANTITY ="+player.getItemCount(itemName)+" WHERE "+ KEY_PLAYER_ID + "="+ player.getId()+" AND "+KEY_ITEM_ID+"="+id;
 
-        // update row in students table base on students.is value
-        return db.update(TABLE_PLAYER_ITEM, valuesPlayerItem, KEY_PLAYER_ID + " = ?",
-                new String[] { String.valueOf(player.getId()) });
+        db.execSQL(strSQL);
+
     }
 
 }
