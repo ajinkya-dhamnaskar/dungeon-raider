@@ -3,10 +3,11 @@ package com.group2.dungeonraider.service;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.util.Log;
 
-import com.example.test.dungeonmainmenu.R;
+import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.controller.MainActivity;
 import com.group2.dungeonraider.utilities.Constants;
 
@@ -31,8 +32,9 @@ public class AudioImpl extends Activity implements Audio {
 
     @Override
     public boolean play(Context context, int resId) {
+        Constants.MP.setAudioStreamType(AudioManager.STREAM_MUSIC);
         if(Constants.VOLUME_MODE == 1) {
-            MediaPlayer.create(context, resId).start();
+            Constants.MP.create(context, resId).start();
         }
         return true;
     }
