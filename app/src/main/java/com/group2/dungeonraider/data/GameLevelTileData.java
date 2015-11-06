@@ -31,7 +31,8 @@ public class GameLevelTileData extends GameDAO
 	public static final int FIELD_ID_LEVEL = 2;
 	public static final int FIELD_ID_PLAYER_START_TILE_X = 3;
 	public static final int FIELD_ID_PLAYER_START_TILE_Y = 4;
-	public static final int FIELD_ID_TILE_DATA = 5;
+	public static final int FIELD_ID_DESIRED_TIME= 5;
+	public static final int FIELD_ID_TILE_DATA = 6;
 
 	public static final String TILE_DATA_LINE_BREAK = "//";
 
