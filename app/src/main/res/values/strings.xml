@@ -70,6 +70,6 @@
 
     <!-- Purchase dungeon item End-->
 
-    <string name="loadProfile">USERNAME ALREADY EXISTS..DO YOU WANT TO CONTINUE ?</string>
+    <string name="loadProfile">USERNAME ALREADY EXISTS. DO YOU WANT TO CONTINUE?</string>
 
 </resources>

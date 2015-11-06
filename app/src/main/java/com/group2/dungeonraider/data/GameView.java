@@ -1,7 +1,10 @@
 package com.group2.dungeonraider.data;
 
+import android.app.AlertDialog;
 import android.app.Application;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -11,19 +14,30 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.controller.Level;
+import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
@@ -130,7 +144,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	private int mTileWidth = 0;
 	private int mTileHeight = 0;
 	Audio audio = new AudioImpl();
-
+	DatabaseHelper db=new DatabaseHelper(Constants.appContext);
 	class GameThread extends Thread
 	{
 		long timeElapsed = 0;
@@ -654,13 +668,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			mLastStatusMessage = "Collision with finish tile";
 
-			try {
-				Intent i = new Intent(Constants.appContext, Play.class);
-				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				Constants.appContext.startActivity(i);
-			}catch (Exception e){
-				e.printStackTrace();
-			}
+			Intent i=new Intent(Constants.appContext,Play.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			Constants.appContext.startActivity(i);
+			Constants.GAME_LEVEL++;
+			Player.getInstance().setItemCount(Constants.ITEM_POTION, Constants.GAME_NO_OF_POTIONS);
+			Player.getInstance().setItemCount(Constants.ITEM_MAP, Constants.GAME_NO_OF_MAP);
+			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
+			Player.getInstance().setItemCount(Constants.ITEM_KEY, Constants.GAME_NO_OF_KEYS);
+			Player.getInstance().setGold(Constants.PLAYER_GOLD);
+			Player.getInstance().setScore(Constants.PLAYER_SCORE);
+			db.saveProfile();
 		}
 
 		private void handleBreakableTileCollision(GameTile gameTile)
@@ -700,7 +719,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			gameTile.setVisible(false);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
-			Constants.GAME_NO_OF_COINS++;
+			Constants.GAME_NO_OF_KEYS++;
 			audio.play(Constants.appContext, R.raw.coin);
 			mLastStatusMessage = "Collision with key tile";
 		}
@@ -713,6 +732,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			gameTile.setVisible(false);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
 			audio.play(Constants.appContext, R.raw.coin);
+			Constants.PLAYER_GOLD = Constants.PLAYER_GOLD + Constants.CHEST_PRIZE;
+			Constants.PLAYER_SCORE = Constants.PLAYER_SCORE + Constants.CHEST_PRIZE;
 			mLastStatusMessage = "Collision with chest tile";
 		}
 
@@ -724,7 +745,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			//gameTile.setBitmap(setAndGetGameTileBitmap(R.drawable.tile_dooropen));
 			mLastStatusMessage = "Collision with exit tile";
-//			Constants.GAME_LEVEL = 2;
+//			Constants.GAME_LEVEL++;
 //			Intent i=new Intent(Constants.appContext,Play.class);
 //			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //			Constants.appContext.startActivity(i);
@@ -891,7 +912,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						Log.d("Tile Game Example", "Pressed left arrow");
 						mLastStatusMessage = "Moving left";
 						mPlayerHorizontalDirection = Constants.Direction.LEFT.getValue();
-						mPlayerUnit.setPlayer(mGameContext, R.drawable.player_left_1);
+						mPlayerUnit.setPlayer(mGameContext,
+								getResources().getIdentifier(Player.getInstance().getPlayerCharacter()+Constants.PLAYER_LEFT, "drawable", "com.group2.dungeonraider"));
 						mPlayerMoving = true;
 					}
 					else {
@@ -899,7 +921,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 							Log.d("Tile Game Example", "Pressed right arrow");
 							mLastStatusMessage = "Moving right";
 							mPlayerHorizontalDirection = Constants.Direction.RIGHT.getValue();
-							mPlayerUnit.setPlayer(mGameContext, R.drawable.player_right_1);
+							mPlayerUnit.setPlayer(mGameContext,
+									getResources().getIdentifier(Player.getInstance().getPlayerCharacter()+Constants.PLAYER_RIGHT, "drawable", "com.group2.dungeonraider"));
+
 							mPlayerMoving = true;
 						}else if(mCtrlBomb.getImpact(x, y)){
 							if(Constants.GAME_NO_OF_BOMBS > 0) {
@@ -953,16 +977,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 									tile.setType(Constants.BlockType.DOOROPEN.getValue());
 									Constants.GAME_NO_OF_KEYS--;
 									audio.play(Constants.appContext, R.raw.btn_click);
-//								if(newX != 0){
-//									mPlayerUnit.setX(mPlayerUnit.getX() + (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics()));
-//								}
-//								if(newY != 0){
-//									mPlayerUnit.setY(mPlayerUnit.getY() - (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics()));
-//								}
 								}
 
 							}else{
 								mLastStatusMessage = "Do not have bombs";
+							}
+						}else if(mctrlMap.getImpact(x, y)) {
+							if (Constants.GAME_NO_OF_MAP > 0) {
+								mLastStatusMessage = "Map used";
+								showImage();
+								Constants.GAME_NO_OF_MAP--;
 							}
 						}
 					}
@@ -978,6 +1002,40 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		}
 
 		return true;
+	}
+
+	public void showImage() {
+
+//		AlertDialog.Builder builder = new AlertDialog.Builder(Constants.appContext);
+//		builder.setTitle("asdf");
+//		builder.setMessage("asdfASDF");
+//		builder.setNeutralButton(android.R.string.ok,
+//				new DialogInterface.OnClickListener() {
+//					public void onClick(DialogInterface dialog, int whichButton) {
+//						dialog.dismiss();
+//					}
+//				});
+//
+//		AlertDialog dialog = builder.show();
+
+		final Dialog dialog = new Dialog(Constants.appContext);
+
+		//setting custom layout to dialog
+		dialog.setContentView(R.layout.img_blueprint_dialog);
+
+		ImageView image = (ImageView)dialog.findViewById(R.id.image);
+		image.setImageDrawable(getResources().getDrawable(R.drawable.blueprint));
+
+		//adding button click event
+		Button dismissButton = (Button) dialog.findViewById(R.id.button);
+		dismissButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+		dialog.show();
 	}
 
 	private GameTile getCollisionTile(int x, int y, int width, int height, GameTile tile)
@@ -1083,7 +1141,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	{
 		if (mPlayerUnit == null)
 		{
-			mPlayerUnit = new PlayerUnit(mGameContext, R.drawable.player_right_1);
+			mPlayerUnit = new PlayerUnit(mGameContext,
+					getResources().getIdentifier(Player.getInstance().getPlayerCharacter()+Constants.PLAYER_RIGHT, "drawable", "com.group2.dungeonraider"));
 		}
 
 		int playerStartX = (mPlayerStartTileX * mPlayerUnit.getWidth());

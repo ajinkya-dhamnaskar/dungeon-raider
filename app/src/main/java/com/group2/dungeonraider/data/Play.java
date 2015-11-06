@@ -1,6 +1,7 @@
 package com.group2.dungeonraider.data;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.ImageView;
 
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.controller.Help;
+import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.utilities.Constants;
 import com.group2.dungeonraider.utilities.Utils;
 
@@ -38,7 +41,7 @@ public class Play extends Activity
 		super.onCreate(savedInstanceState);
 		
 		Context mContext = getApplicationContext();
-		//Constants.appContext = getApplicationContext();
+		Constants.appContext = getApplicationContext();
 
 		/**
 		 * Get the screen density that all pixel values will be based on.
@@ -60,8 +63,12 @@ public class Play extends Activity
 		Log.d("Tile Game Example", "Starting game at stage: " + stage + ", level: " + Constants.GAME_LEVEL);
 		mGameView = new GameView(mContext, this, stage, Constants.GAME_LEVEL, mScreenDensity);
 		Utils.clearGameData();
-		Constants.GAME_NO_OF_POTIONS = 2;
-		Constants.GAME_NO_OF_MAP = 1;
+		Constants.GAME_NO_OF_POTIONS = Player.getInstance().getItemCount(Constants.ITEM_POTION);
+		Constants.GAME_NO_OF_MAP = 5;//Player.getInstance().getItemCount(Constants.ITEM_MAP);
+		Constants.GAME_NO_OF_BOMBS = Player.getInstance().getItemCount(Constants.ITEM_BOMB);
+		Constants.GAME_NO_OF_KEYS = Player.getInstance().getItemCount(Constants.ITEM_KEY);
+		Constants.PLAYER_GOLD = Player.getInstance().getGold();
+		Constants.PLAYER_SCORE = Player.getInstance().getScore();
 		Constants.GAME_START_TIME = System.currentTimeMillis();
 		setContentView(mGameView);
 	}
@@ -114,4 +121,6 @@ public class Play extends Activity
 
 		//mGameView.getThread().setState(GameView.STATE_RUNNING);
 	}
+
+
 }
