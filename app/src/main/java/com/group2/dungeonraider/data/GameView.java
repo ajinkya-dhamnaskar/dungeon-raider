@@ -141,13 +141,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	private int mPlayerStartTileX = 0;
 	private int mPlayerStartTileY = 0;
 
+	private int mDesiredTime = 0;
+
 	private int mTileWidth = 0;
 	private int mTileHeight = 0;
 	Audio audio = new AudioImpl();
 	DatabaseHelper db=new DatabaseHelper(Constants.appContext);
+	long timeElapsed = 0;
 	class GameThread extends Thread
 	{
-		long timeElapsed = 0;
+
 		public GameThread(SurfaceHolder surfaceHolder, Context context,
 						  Handler handler)
 		{
@@ -336,10 +339,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					Constants.IS_SLOW_DOWN_TIMER = false;
 					Constants.TIME_DELAY=0;
 				}
-				canvas.drawText((new SimpleDateFormat("mm:ss:SSS")).format(new Date(timeElapsed)).toString(), 20, 50, text);
+				canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
+				canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(mDesiredTime*1000)).toString(), 250, 50, text);
 				Constants.LAST_TIME = timeElapsed;
 				Constants.LAST_CURR_TIME = currTime;
-				canvas.drawText(mLastStatusMessage, 100, 50, mUiTextPaint);
+				//canvas.drawText(mLastStatusMessage, 100, 50, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_BOMBS), 100, 140, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_POTIONS), 100, 220, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_KEYS), 100, 300, mUiTextPaint);
@@ -678,6 +682,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
 			Player.getInstance().setItemCount(Constants.ITEM_KEY, Constants.GAME_NO_OF_KEYS);
 			Player.getInstance().setGold(Constants.PLAYER_GOLD);
+			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
+				Constants.PLAYER_SCORE += ((mDesiredTime*1000 - Constants.LAST_TIME)*7/1000);
+			}
 			Player.getInstance().setScore(Constants.PLAYER_SCORE);
 			db.saveProfile();
 		}
@@ -1177,6 +1184,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		// Get player start position.
 		mPlayerStartTileX = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_PLAYER_START_TILE_X));
 		mPlayerStartTileY = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_PLAYER_START_TILE_Y));
+		mDesiredTime = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_DESIRED_TIME));
 
 		// Clear any existing loaded game tiles.
 		mGameTiles.clear();

@@ -42,6 +42,7 @@ public class NewGame extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Constants.GAME_LEVEL = 0;
         setContentView(R.layout.activity_newgame);
         Constants.appContext = getApplicationContext();
         NameEditText = (EditText) findViewById(R.id.txt_name);
