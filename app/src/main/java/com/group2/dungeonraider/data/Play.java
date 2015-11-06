@@ -56,6 +56,7 @@ public class Play extends Activity
 		 * passed to this activity.
 		 */
 		int stage = 1;
+		//Constants.GAME_LEVEL++;
 		Log.d("Tile Game Example", "Starting game at stage: " + stage + ", level: " + Constants.GAME_LEVEL);
 		mGameView = new GameView(mContext, this, stage, Constants.GAME_LEVEL, mScreenDensity);
 		Utils.clearGameData();

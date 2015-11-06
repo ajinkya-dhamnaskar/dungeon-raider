@@ -75,6 +75,7 @@ public class Constants {
     public static int GAME_NO_OF_POTIONS;
     public static int GAME_NO_OF_KEYS;
     public static int GAME_NO_OF_MAP;
+    public static int GAME_NO_OF_COINS;
 
     static MediaPlayer getMediaPlayer(Context context){
 

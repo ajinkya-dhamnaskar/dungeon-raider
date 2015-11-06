@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.group2.dungeonraider.R;
-import com.group2.dungeonraider.utilities.Constants;
 
 /**
  * Created by ukara on 10/27/2015.

@@ -17,6 +17,7 @@ public class Utils {
         Constants.GAME_NO_OF_BOMBS = 0;
         Constants.GAME_NO_OF_POTIONS = 0;
         Constants.GAME_NO_OF_KEYS = 0;
+        Constants.GAME_NO_OF_COINS = 0;
         return result;
     }
 }
