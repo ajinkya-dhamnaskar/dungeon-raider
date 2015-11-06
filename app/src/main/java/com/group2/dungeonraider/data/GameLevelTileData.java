@@ -11,7 +11,7 @@ import static android.provider.BaseColumns._ID;
 /**
  * The GameTileData class represents a definition of a game
  * level stored in the database.
- * 
+ *
  * @author Dan Ruscoe (ruscoe.org)
  * @version 1.0
  */
@@ -25,7 +25,6 @@ public class GameLevelTileData extends GameDAO
 	public static final String PLAYER_START_TILE_Y = "playerStartTileY";
 	public static final String TILE_DATA = "tileData";
 	public static final String DESIRED_TIME = "desiredTime";
-	//asdfasdf
 
 	public static final int FIELD_ID_ID = 0;
 	public static final int FIELD_ID_STAGE = 1;
@@ -50,30 +49,31 @@ public class GameLevelTileData extends GameDAO
 	 */
 	public ArrayList<String> getGameLevelData(int stage, int level)
 	{
-    	SQLiteDatabase db = this.getReadableDatabase();
-    	
-    	String[] from = { _ID, STAGE, LEVEL, PLAYER_START_TILE_X, PLAYER_START_TILE_Y, TILE_DATA };
-    	String where = STAGE + " = " + stage + " AND " + LEVEL + " = " + level;
-    	
-    	Cursor cursor = db.query(TABLE_NAME, from, where, null, null, null, null);
-    	
-    	ArrayList<String> levelData = new ArrayList<String>();
-    	
-    	if (cursor != null)
-    	{
-    		while (cursor.moveToNext())
-        	{
-    			levelData.add(cursor.getString(FIELD_ID_ID));
-    			levelData.add(cursor.getString(FIELD_ID_STAGE));
-    			levelData.add(cursor.getString(FIELD_ID_LEVEL));
-    			levelData.add(cursor.getString(FIELD_ID_PLAYER_START_TILE_X));
-    			levelData.add(cursor.getString(FIELD_ID_PLAYER_START_TILE_Y));
-    			levelData.add(cursor.getString(FIELD_ID_TILE_DATA));
-        	}
-    		cursor.close();
-    	}
-    	
-    	db.close();
-    	return levelData;
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		String[] from = { _ID, STAGE, LEVEL, PLAYER_START_TILE_X, PLAYER_START_TILE_Y, DESIRED_TIME, TILE_DATA };
+		String where = STAGE + " = " + stage + " AND " + LEVEL + " = " + level;
+
+		Cursor cursor = db.query(TABLE_NAME, from, where, null, null, null, null);
+
+		ArrayList<String> levelData = new ArrayList<String>();
+
+		if (cursor != null)
+		{
+			while (cursor.moveToNext())
+			{
+				levelData.add(cursor.getString(FIELD_ID_ID));
+				levelData.add(cursor.getString(FIELD_ID_STAGE));
+				levelData.add(cursor.getString(FIELD_ID_LEVEL));
+				levelData.add(cursor.getString(FIELD_ID_PLAYER_START_TILE_X));
+				levelData.add(cursor.getString(FIELD_ID_PLAYER_START_TILE_Y));
+				levelData.add(cursor.getString(FIELD_ID_DESIRED_TIME));
+				levelData.add(cursor.getString(FIELD_ID_TILE_DATA));
+			}
+			cursor.close();
+		}
+
+		db.close();
+		return levelData;
 	}
 }
