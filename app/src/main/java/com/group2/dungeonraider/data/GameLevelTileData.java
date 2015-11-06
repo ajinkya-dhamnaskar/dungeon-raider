@@ -25,6 +25,7 @@ public class GameLevelTileData extends GameDAO
 	public static final String PLAYER_START_TILE_Y = "playerStartTileY";
 	public static final String TILE_DATA = "tileData";
 	public static final String DESIRED_TIME = "desiredTime";
+	//asdfasdf
 
 	public static final int FIELD_ID_ID = 0;
 	public static final int FIELD_ID_STAGE = 1;
