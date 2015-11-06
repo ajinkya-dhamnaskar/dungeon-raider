@@ -31,6 +31,10 @@ public class Constants {
     public static int ITEM_KEY_VALUE=1200;
     public static int INITIAL_GOLD=1000;
 
+    public static int CHEST_PRIZE=100;
+
+    public static int PLAYER_GOLD;
+    public static int PLAYER_SCORE;
 
     public static String MUTATOR_SHIRT="SHIRT";
     public static String MUTATOR_PANT="PANT";
@@ -48,6 +52,8 @@ public class Constants {
     public static String PLAYER_A="bbpwa";
     public static String PLAYER_B="bbpwb";
 
+    public static String PLAYER_RIGHT="r";
+    public static String PLAYER_LEFT="l";
 
     public static int CAP_VALUE=200;
     public static int SHIRT_VALUE=400;
@@ -59,7 +65,7 @@ public class Constants {
 
     public static Context appContext;
     public static int SLIDE_TILE_BY_DP = 10;
-    public static int GAME_LEVEL = 1;
+    public static int GAME_LEVEL = 0;
     public static long GAME_START_TIME = System.currentTimeMillis();
     public static long LAST_TIME = 0;
     public static long DELAY_LAST_TIME = 0;

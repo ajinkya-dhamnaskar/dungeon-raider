@@ -1,4 +1,4 @@
-package com.example.test.dungeonmainmenu;
+package com.group2.dungeonraider;
 
 import org.junit.Test;
 

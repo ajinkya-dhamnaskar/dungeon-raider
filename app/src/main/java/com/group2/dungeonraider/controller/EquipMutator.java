@@ -73,7 +73,7 @@ public class EquipMutator extends Activity {
                 rb.setText(mutator.getName() + "-" + mutator.getColor());
 
                 rb.setId(mutator.getId());
-                rb.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                //rb.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 rb.setTextSize((float) 18.0);
                 rb.setTextColor(Color.parseColor("#4C0000"));
                 rb.setTag(mutator.getName() + "-" + mutator.getColor());
@@ -98,18 +98,12 @@ public class EquipMutator extends Activity {
                         imagename = "y" + tshirt + pant + skin + character;
                         int res = getResources().getIdentifier(imagename, "drawable", "com.group2.dungeonraider");
                         img.setImageResource(res);
-                        // img.setTag(imagename);
-                        TextView mutator_costText;
-                      //  mutator_costText = (TextView) findViewById(R.id.textViewCOST);
-                       // mutator_costText.setVisibility(View.VISIBLE);
-                        //mutator_cost.setText(String.valueOf(getMutatorValue(Constants.MUTATOR_CAP)));
                         mutatorCost = getMutatorValue(Constants.MUTATOR_CAP);
                     } else if (rb.getText().equals("CAP-BROWN")) {
                         ImageView img;
-                       // TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
                         //mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
-                        filename = player.getPlayerCharacter();
+
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
                         pant = filename.charAt(2);

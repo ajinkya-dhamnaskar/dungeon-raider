@@ -2,14 +2,19 @@ package com.group2.dungeonraider.controller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.group2.dungeonraider.R;
-import com.group2.dungeonraider.utilities.Constants;
 
 /**
  * Created by ukara on 10/27/2015.
