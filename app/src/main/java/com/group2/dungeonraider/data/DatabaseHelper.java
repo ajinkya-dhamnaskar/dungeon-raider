@@ -586,5 +586,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void saveProfile() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Player player = Player.getInstance();
+        // Creating content values
+        List<Item> itemList=new ArrayList<Item>();
+        itemList=player.getItemList();
+        for (Item item:itemList)
+        {
+            String strSQL = "UPDATE PLAYER_ITEMS SET ITEM_QUANTITY = "+item.getCount()+" WHERE "+ KEY_PLAYER_ID + "="+ player.getId()+" AND "+KEY_ITEM_ID+ "=" +item.getId();
+
+            Log.d(TAG, strSQL);
+            db.execSQL(strSQL);
+        }
+
+        String strSQLSave = "UPDATE PLAYER SET GOLD =" + player.getGold() + ", SCORE =" + player.getScore() + ", TIME =" + player.getTime() + " WHERE ID = " + player.getId();
+        Log.d(TAG, strSQLSave);
+        db.execSQL(strSQLSave);
+    }
+
 }
 

@@ -13,12 +13,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="PURCHASE CHARACTER ITEMS"
-        android:id="@+id/textView3"
+        android:id="@+id/txtdungeongold"
         android:textSize="28dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toStartOf="@+id/btn_back"
+        android:layout_alignBottom="@+id/textView_gold_purchasemutators" />
 
     <TextView
         android:layout_width="32dp"
@@ -56,7 +57,9 @@
         android:id="@+id/btn_equip"
         android:backgroundTint="@android:color/transparent"
         android:onClick="buymutator"
-
+        android:textSize="25dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
         android:layout_below="@+id/imgview_mutator"
         android:layout_toStartOf="@+id/radio_selection_group" />
 
@@ -93,11 +96,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="GOLD :"
+        android:text="Your Gold :"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:id="@+id/textView4"
+        android:id="@+id/txtequipgold"
         android:layout_below="@+id/btn_back"
         android:layout_alignStart="@+id/imgview_mutator" />
 
@@ -110,8 +113,8 @@
         android:textStyle="bold|italic"
         android:text=""
         android:id="@+id/textView_gold_purchasemutators"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_toEndOf="@+id/textView4" />
+        android:layout_alignTop="@+id/txtequipgold"
+        android:layout_toEndOf="@+id/txtequipgold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -125,6 +128,16 @@
         android:textStyle="bold|italic"
         android:layout_alignBottom="@+id/txt_mutatorcost"
         android:layout_toStartOf="@+id/txt_mutatorcost" />
+
+    <ImageButton
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageButton4"
+        android:background="@drawable/logo_eye"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/txtdungeongold"
+        android:layout_above="@+id/txtequipgold"
+        android:layout_toLeftOf="@+id/txtdungeongold" />
 
 
 </RelativeLayout>

@@ -137,7 +137,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/radioCharacterSettings1"
             android:checked="false"
-            android:onClick=""
             android:layout_alignTop="@+id/lbl_character"
             android:layout_centerHorizontal="true" />
 
@@ -150,5 +149,14 @@
             android:layout_toRightOf="@+id/radioCharacter1"
             android:layout_toEndOf="@+id/radioCharacter1" />
     </RadioGroup>
+
+    <ImageButton
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageButton2"
+        android:background="@drawable/logo_eye"
+        android:layout_alignBottom="@+id/lbl_settings"
+        android:layout_alignRight="@+id/lbl_theme"
+        android:layout_alignEnd="@+id/lbl_theme" />
 
 </RelativeLayout>

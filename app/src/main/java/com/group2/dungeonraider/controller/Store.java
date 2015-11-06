@@ -45,6 +45,7 @@ public class Store extends Activity {
         Integer t = 01;
 
         tv = (TextView) findViewById(R.id.textView_goldvalue);
+        tv.setText(String.valueOf(player.getGold()));
     }
 
 

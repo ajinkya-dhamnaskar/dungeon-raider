@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -66,23 +67,24 @@ public class NewGame extends Activity {
                 if (selectedId == R.id.radioCharacter1) {
                     //save characarer 1
 
-//                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = pref.edit();
-//
-//                    editor.putInt("character", 1);
-//                    editor.commit();
-//                    Constants.CHARACTER_SELECTED = 1;
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putInt("character", 1);
+                    editor.commit();
+                    Constants.CHARACTER_SELECTED = 1;
+
                     player.setPlayerCharacter(Constants.PLAYER_A);
 
                 } else if (selectedId == R.id.radioCharacter2) {
 
-//                    //save characarer 2
-//                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = pref.edit();
-//
-//                    editor.putInt("character", 2);
-//                    editor.commit();
-//                    Constants.CHARACTER_SELECTED = 2;
+
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    editor.putInt("character", 2);
+                    editor.commit();
+                    Constants.CHARACTER_SELECTED = 2;
+
                     player.setPlayerCharacter(Constants.PLAYER_B);
                 }
 
@@ -102,9 +104,7 @@ public class NewGame extends Activity {
                                 public void onClick(DialogInterface dialog, int id) {
 
                                     player =  db.loadProfile(Name);
-
                                     playerItemList =  db.loadPlayerItems(player.getId());
-
                                     player.setItemList(playerItemList);
                                     playerMutatorList=db.loadPlayerMutators(player.getId());
                                     player.setMutatorList(playerMutatorList);
