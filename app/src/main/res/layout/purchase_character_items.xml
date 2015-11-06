@@ -19,7 +19,7 @@
         android:textStyle="bold|italic"
         android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/btn_back"
-        android:layout_alignBottom="@+id/textView_gold_purchasemutators" />
+        android:layout_above="@+id/radio_selection_group" />
 
     <TextView
         android:layout_width="32dp"
@@ -30,8 +30,6 @@
         android:textSize="30dp"
         android:textColor="#FF0000"
         android:id="@+id/btn_back"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10px"
         android:foregroundTint="@android:color/black"
 
         android:layout_alignParentTop="true"

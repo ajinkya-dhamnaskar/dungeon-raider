@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.DatabaseHelper;
@@ -247,11 +248,13 @@ public class EquipMutator extends Activity {
 
             player.setPlayerCharacter(imagename);
 
+
     }
 
     public void backtostorefromequip(View v)
     {
         EquipMutator.this.finish();
+        Toast.makeText(this, "Mutator equipped.", Toast.LENGTH_LONG).show();
 
     }
 }

@@ -15,13 +15,13 @@
         android:onClick="setting"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold|italic"
-        android:textSize="30dp"
+        android:textSize="34dp"
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
         android:layout_weight="0.57"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,9 +33,9 @@
         android:textSize="30dp"
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
-        android:layout_below="@+id/lbl_settings"
-        android:layout_toLeftOf="@+id/lbl_settings"
-        android:layout_toStartOf="@+id/lbl_settings" />
+        android:layout_above="@+id/spinner_theme"
+        android:layout_alignLeft="@+id/imageButton2"
+        android:layout_alignStart="@+id/imageButton2" />
        
 
     <TextView
@@ -49,36 +49,13 @@
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
         android:layout_weight="0.10"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/spinner_theme"
         android:layout_alignLeft="@+id/lbl_volume"
         android:layout_alignStart="@+id/lbl_volume" />
        
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/st_character"
-        android:id="@+id/lbl_character"
-        android:textStyle="bold|italic"
-        android:textSize="30dp"
-        android:gravity="center|fill_vertical"
-        android:textColor="#4C0000"
-        android:layout_weight="0.14"
 
-        android:layout_alignBottom="@+id/radioGroupCharacterSettings"
-        android:layout_alignLeft="@+id/lbl_theme"
-        android:layout_alignStart="@+id/lbl_theme" />
 
-  <!--  <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="adjustvolume"
-        android:id="@+id/chk_volume"
-        android:onClick="changeVolume"
-        android:checked="false"
-        android:layout_alignTop="@+id/lbl_volume"
-        android:layout_centerHorizontal="true" />-->
 
 
     <Switch
@@ -89,21 +66,24 @@
         android:onClick="changeVolume"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_alignTop="@+id/lbl_volume"
-        android:layout_centerHorizontal="true" />
+
+        android:layout_alignBottom="@+id/lbl_volume"
+        android:layout_toRightOf="@+id/imageButton2"
+        android:layout_toEndOf="@+id/imageButton2" />
 
     <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:id="@+id/spinner_theme"
         android:prompt="@string/spinner_title"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/switch_volume"
-        android:layout_alignStart="@+id/switch_volume"
-        android:layout_alignRight="@+id/lbl_settings"
-        android:layout_alignEnd="@+id/lbl_settings"
         android:spinnerMode="dropdown"
-        android:popupBackground="@drawable/back_norm"/>
+
+        android:popupBackground="@drawable/back_norm"
+        android:layout_marginTop="57dp"
+        android:layout_alignTop="@+id/radioGroupCharacterSettings"
+        android:layout_toRightOf="@+id/lbl_volume"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp" />
 
         <ImageView
             android:layout_width="32dp"
@@ -126,37 +106,55 @@
             android:orientation="horizontal"
             android:id="@+id/radioGroupCharacterSettings"
             android:onClick="radioListener"
-            android:layout_marginTop="28dp"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/lbl_character"
-            android:layout_below="@id/spinner_theme">
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:drawableRight="@drawable/bbpwar"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioCharacterSettings1"
-            android:checked="false"
-            android:layout_alignTop="@+id/lbl_character"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentBottom="true">
 
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:drawableRight="@drawable/bbpwbr"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioCharacterSettings2"
-            android:checked="false"
-            android:layout_toRightOf="@+id/radioCharacter1"
-            android:layout_toEndOf="@+id/radioCharacter1" />
-    </RadioGroup>
+            <RadioButton
+                android:layout_width="142dp"
+                android:drawableRight="@drawable/bbpwa"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioCharacterSettings1"
+                android:checked="false"
+                android:layout_alignBottom="@+id/radioCharacterSettings2"
+                android:layout_toLeftOf="@+id/radioCharacterSettings2"
+                />
+
+            <RadioButton
+                android:layout_width="128dp"
+                android:drawableRight="@drawable/bbpwb"
+                android:layout_height="208dp"
+                android:id="@+id/radioCharacterSettings2"
+                android:checked="false"
+                android:layout_alignBottom="@+id/radioGroupCharacterSettings"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                 />
+
+        </RadioGroup>
 
     <ImageButton
         android:layout_width="180dp"
         android:layout_height="80dp"
         android:id="@+id/imageButton2"
         android:background="@drawable/logo_eye"
-        android:layout_alignBottom="@+id/lbl_settings"
-        android:layout_alignRight="@+id/lbl_theme"
-        android:layout_alignEnd="@+id/lbl_theme" />
+        android:layout_toLeftOf="@+id/lbl_settings"
+        android:layout_toStartOf="@+id/lbl_settings"
+        android:layout_above="@+id/lbl_character" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/st_character"
+        android:id="@+id/lbl_character"
+        android:textStyle="bold|italic"
+        android:textSize="30dp"
+        android:gravity="center|fill_vertical"
+        android:textColor="#4C0000"
+        android:layout_weight="0.14"
+        android:layout_above="@+id/switch_volume"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2" />
 
 </RelativeLayout>

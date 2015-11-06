@@ -8,8 +8,8 @@
 
 
     <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:background="@drawable/back_icon"
         android:textAppearance="?android:attr/textAppearanceSmall"
 
@@ -45,9 +45,11 @@
         android:textColor="#4C0000"
         android:textSize="40dp"
         android:textStyle="bold|italic"
-        android:layout_alignBottom="@+id/btn_back"
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageEye"
-        android:layout_toEndOf="@+id/imageEye" />
+        android:layout_toEndOf="@+id/imageEye"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp" />
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

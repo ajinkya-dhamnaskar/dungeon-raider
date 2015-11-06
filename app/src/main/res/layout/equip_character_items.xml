@@ -17,8 +17,11 @@
         android:textSize="28dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/btn_equip" />
+        android:layout_alignTop="@+id/imageButton3"
+        android:layout_alignLeft="@+id/btn_equip"
+        android:layout_alignStart="@+id/btn_equip"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp" />
 
     <TextView
         android:layout_width="32dp"
@@ -29,8 +32,6 @@
         android:textSize="30dp"
         android:textColor="#FF0000"
         android:id="@+id/btn_back"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10px"
         android:foregroundTint="@android:color/black"
 
         android:layout_alignParentTop="true"
@@ -119,11 +120,10 @@
         android:layout_height="80dp"
         android:id="@+id/imageButton3"
         android:background="@drawable/logo_eye"
-        android:layout_above="@+id/radio_selection_group"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/txtdungeongold"
-        android:layout_toStartOf="@+id/txtdungeongold" />
+        android:layout_toStartOf="@+id/txtdungeongold"
+        android:layout_above="@+id/imgview_mutator" />
 
 
 </RelativeLayout>
