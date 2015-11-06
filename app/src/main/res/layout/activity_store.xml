@@ -33,7 +33,7 @@
         android:layout_toEndOf="@+id/textview_store"
         android:layout_toRightOf="@+id/textview_store"
         android:text="Your Gold :"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#4C0000"
         android:textStyle="bold|italic" />
@@ -42,16 +42,15 @@
         android:id="@+id/btn_backstore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:src="@drawable/back_icon"
         android:backgroundTint="@android:color/transparent"
         android:onClick="backtolevel"
-
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
 
@@ -124,8 +123,8 @@
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/textview_store"
         android:layout_toStartOf="@+id/textview_store"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/textview_store" />
+        android:layout_above="@+id/textview_store"
+        android:layout_alignParentTop="true" />
 
 
 </RelativeLayout>

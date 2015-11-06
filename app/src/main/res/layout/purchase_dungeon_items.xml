@@ -17,11 +17,10 @@
         android:id="@+id/textview_store"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_alignBottom="@+id/imageViewBackButton"
-        android:layout_toRightOf="@+id/imageButton5"
-        android:layout_toEndOf="@+id/imageButton5"
-        android:layout_marginLeft="44dp"
-        android:layout_marginStart="44dp" />
+        android:textSize="30dp"
+        android:layout_below="@+id/imageViewBackButton"
+        android:layout_alignRight="@+id/textView_goldvalue"
+        android:layout_alignEnd="@+id/textView_goldvalue" />
 
 
     <ImageView
@@ -91,10 +90,9 @@
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:id="@+id/txtdungeongold"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/textview_store"
-        android:layout_toLeftOf="@+id/textView_goldvalue"
-        android:layout_toStartOf="@+id/textView_goldvalue" />
+        android:layout_alignRight="@+id/imgBtnBomb"
+        android:layout_alignEnd="@+id/imgBtnBomb"
+        android:layout_below="@+id/textview_store" />
 
     <TextView
         android:layout_width="wrap_content"

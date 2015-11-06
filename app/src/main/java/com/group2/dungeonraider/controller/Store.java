@@ -42,7 +42,7 @@ public class Store extends Activity {
         setContentView(R.layout.activity_store);
 
         Player player = Player.getInstance();
-        Integer t = 01;
+
 
         tv = (TextView) findViewById(R.id.textView_goldvalue);
         tv.setText(String.valueOf(player.getGold()));
@@ -75,6 +75,13 @@ public class Store extends Activity {
         Log.d("Store", "BrowseDungeonItems Called");
         Intent i = new Intent(this, PurchaseDungeonItems.class);
         startActivity(i);
+    }
+    public void onResume ()
+    {
+        super.onResume();
+        Player player = Player.getInstance();
+        tv = (TextView) findViewById(R.id.textView_goldvalue);
+        tv.setText(String.valueOf(player.getGold()));
     }
 
 }

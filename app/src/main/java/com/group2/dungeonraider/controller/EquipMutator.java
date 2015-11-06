@@ -1,6 +1,8 @@
 package com.group2.dungeonraider.controller;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -45,8 +47,7 @@ public class EquipMutator extends Activity {
         filename = player.getPlayerCharacter();
         int res = getResources().getIdentifier(filename, "drawable", "com.group2.dungeonraider");
         img.setImageResource(res);
-        goldview = (TextView) findViewById(R.id.textView_gold_purchasemutators);
-        goldview.setText(String.valueOf(player.getGold()));
+
 
       /*  if((playerownedmutators != null) && !playerownedmutators.isEmpty()) {
             for (Mutator mutator : playerMutatorList) {
@@ -123,7 +124,7 @@ public class EquipMutator extends Activity {
                         ImageView img;
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
-                        mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
+                        //mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
                         filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         cap = filename.charAt(0);
@@ -143,7 +144,7 @@ public class EquipMutator extends Activity {
                         ImageView img;
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
-                        mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
+                       // mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
                         filename = player.getPlayerCharacter();
                         //filename = (String) img.getTag();
                         cap = filename.charAt(0);
@@ -163,7 +164,7 @@ public class EquipMutator extends Activity {
                         ImageView img;
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
-                        mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
+                        //mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
                         filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
@@ -183,7 +184,7 @@ public class EquipMutator extends Activity {
                         ImageView img;
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
-                        mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
+                        //mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
                         filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
@@ -204,7 +205,7 @@ public class EquipMutator extends Activity {
                         ImageView img;
                         TextView mutator_cost;
                         img = (ImageView) findViewById(R.id.imgview_mutator);
-                        mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
+                        //mutator_cost = (TextView) findViewById(R.id.txt_mutatorcost);
                         filename = player.getPlayerCharacter();
                         // filename = (String) img.getTag();
                         tshirt = filename.charAt(1);
@@ -246,7 +247,34 @@ public class EquipMutator extends Activity {
 
     public void equipmutator(View v) {
 
-            player.setPlayerCharacter(imagename);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                EquipMutator.this);
+
+        alertDialogBuilder.setTitle("Are you sure you want to equip the mutator?");
+
+
+        alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        player.setPlayerCharacter(imagename);
+
+                        //launchIntent();
+                    }
+                })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+
 
 
     }
@@ -254,7 +282,7 @@ public class EquipMutator extends Activity {
     public void backtostorefromequip(View v)
     {
         EquipMutator.this.finish();
-        Toast.makeText(this, "Mutator equipped.", Toast.LENGTH_LONG).show();
+
 
     }
 }

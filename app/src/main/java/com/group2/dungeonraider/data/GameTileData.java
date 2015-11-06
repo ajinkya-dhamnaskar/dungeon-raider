@@ -16,7 +16,7 @@ import static android.provider.BaseColumns._ID;
  * @author Dan Ruscoe (ruscoe.org)
  * @version 1.0
  */
-public class GameTileData extends GameDAO
+public class GameTileData extends DatabaseHelper
 {
 	public static final String TABLE_NAME = "gameTileData";
 	

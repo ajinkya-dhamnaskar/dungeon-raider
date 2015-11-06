@@ -19,6 +19,16 @@ public class Player {
     private String playerCharacter;
     private List<Mutator> mutatorList;
 
+    public List<Room> getRoomList() {
+        return roomList;
+    }
+
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
+    }
+
+    private List<Room> roomList;
+
     public List<Mutator> getMutatorList() {
         return mutatorList;
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.group2.dungeonraider.R;
@@ -184,5 +185,13 @@ public class NewGame extends Activity {
         startActivity(i);
     }
 
+    public void onResume ()
+    {
+        super.onResume();
+        Player player = Player.getInstance();
+        NameEditText = (EditText) findViewById(R.id.txt_name);
+
+        NameEditText.setText("");
+    }
 
 }

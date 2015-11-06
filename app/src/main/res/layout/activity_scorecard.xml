@@ -43,13 +43,13 @@
         android:text="@string/sc_score_card"
         android:id="@+id/textViewScoreCard"
         android:textColor="#4C0000"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:textStyle="bold|italic"
-        android:layout_alignParentTop="true"
+        android:layout_marginLeft="74dp"
+        android:layout_marginStart="74dp"
+        android:layout_below="@+id/btn_back"
         android:layout_toRightOf="@+id/imageEye"
-        android:layout_toEndOf="@+id/imageEye"
-        android:layout_marginLeft="52dp"
-        android:layout_marginStart="52dp" />
+        android:layout_toEndOf="@+id/imageEye" />
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

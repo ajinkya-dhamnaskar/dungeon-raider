@@ -70,17 +70,17 @@
         android:layout_alignEnd="@+id/txt_entername" />
 
     <ImageView
-        android:layout_width="25dp"
+        android:layout_width="20dp"
         android:layout_height="15dp"
         android:id="@+id/imageButton"
 
         android:background="@drawable/logo_eye"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/txt_entername"
-        android:layout_alignRight="@+id/txt_entername"
-        android:layout_alignEnd="@+id/txt_entername"
         android:layout_alignLeft="@+id/txt_entername"
-        android:layout_alignStart="@+id/txt_entername" />
+        android:layout_alignStart="@+id/txt_entername"
+        android:layout_above="@+id/txt_entername"
+        android:layout_toLeftOf="@+id/radioGroupCharacter"
+        android:layout_toStartOf="@+id/radioGroupCharacter" />
 
     <TextView
         android:layout_width="32dp"
@@ -109,9 +109,7 @@
         android:textStyle="bold|italic"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/txt_character"
-        android:layout_alignStart="@+id/txt_character"
-        android:layout_marginLeft="48dp"
-        android:layout_marginStart="48dp" />
+        android:layout_alignStart="@+id/txt_character" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"

@@ -15,7 +15,7 @@ import static android.provider.BaseColumns._ID;
  * @author Dan Ruscoe (ruscoe.org)
  * @version 1.0
  */
-public class GameLevelTileData extends GameDAO
+public class GameLevelTileData extends DatabaseHelper
 {
 	public static final String TABLE_NAME = "gameLevelTileData";
 
