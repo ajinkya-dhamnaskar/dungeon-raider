@@ -18,8 +18,10 @@
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:layout_alignBottom="@+id/imageViewBackButton"
-        android:layout_alignLeft="@+id/imgBtnKey"
-        android:layout_alignStart="@+id/imgBtnKey" />
+        android:layout_toRightOf="@+id/imageButton5"
+        android:layout_toEndOf="@+id/imageButton5"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp" />
 
 
     <ImageView
@@ -43,11 +45,9 @@
         android:id="@+id/imgBtnKey"
         android:onClick="buydungeonkey"
         android:background="@drawable/img_key"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
         android:layout_alignTop="@+id/imgBtnPotion"
         android:layout_toLeftOf="@+id/imgBtnPotion"
-        android:layout_toStartOf="@+id/imgBtnPotion" />
+        android:layout_above="@+id/textViewPotionsOwned" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -55,11 +55,8 @@
         android:id="@+id/imgBtnMap"
         android:onClick="buydungeonmap"
         android:background="@drawable/map"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_alignTop="@+id/imgBtnKey"
-        android:layout_toLeftOf="@+id/imgBtnKey"
-        android:layout_toStartOf="@+id/imgBtnKey" />
+        android:layout_above="@+id/textViewKeysOwned"
+        android:layout_toLeftOf="@+id/imgBtnKey" />
 
     <ImageButton
         android:layout_width="wrap_content"

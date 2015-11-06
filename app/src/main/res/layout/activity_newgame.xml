@@ -22,14 +22,17 @@
         android:editable="true"
         android:longClickable="true"
         android:height="75dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignLeft="@+id/txt_entername"
+        android:layout_alignStart="@+id/txt_entername"
+        android:layout_toLeftOf="@+id/radioGroupCharacter"
+        android:layout_toStartOf="@+id/radioGroupCharacter" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/ng_enter_name"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:id="@+id/txt_entername"
@@ -38,7 +41,9 @@
 
         android:layout_above="@+id/txt_name"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,13 +53,13 @@
         android:id="@+id/txt_character"
 
         android:foregroundTint="@android:color/black"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
 
         android:layout_below="@+id/txt_name"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        android:layout_alignRight="@+id/txt_name"
+        android:layout_alignEnd="@+id/txt_name" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -65,17 +70,17 @@
         android:layout_alignEnd="@+id/txt_entername" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:layout_height="15dp"
         android:id="@+id/imageButton"
 
         android:background="@drawable/logo_eye"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_above="@+id/txt_entername"
-        android:layout_alignRight="@+id/txt_character"
-        android:layout_alignEnd="@+id/txt_character" />
+        android:layout_alignRight="@+id/txt_entername"
+        android:layout_alignEnd="@+id/txt_entername"
+        android:layout_alignLeft="@+id/txt_entername"
+        android:layout_alignStart="@+id/txt_entername" />
 
     <TextView
         android:layout_width="32dp"
@@ -86,8 +91,6 @@
         android:textSize="30dp"
         android:textColor="#FF0000"
         android:id="@+id/btn_back"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="10px"
         android:foregroundTint="@android:color/black"
 
         android:layout_alignParentTop="true"
@@ -104,37 +107,44 @@
         android:textSize="25dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/txt_character"
+        android:layout_alignStart="@+id/txt_character"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp" />
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/radioGroupCharacter"
-        android:layout_below="@+id/txt_character"
-        android:layout_alignRight="@+id/txt_character"
-        android:layout_alignEnd="@+id/txt_character">
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentBottom="true">
+
 
         <RadioButton
             android:layout_width="wrap_content"
-            android:drawableRight="@drawable/bbpwar"
-            android:layout_height="83dp"
+            android:drawableRight="@drawable/bbpwa"
+            android:layout_height="204dp"
             android:id="@+id/radioCharacter1"
             android:checked="false"
 
-            android:layout_alignLeft="@+id/txt_character"
-            android:layout_marginLeft="104dp" />
+            android:layout_above="@+id/imageView"
+            android:layout_toRightOf="@+id/txt_character"
+            android:layout_below="@+id/imageButton" />
 
         <RadioButton
             android:layout_width="wrap_content"
-            android:drawableRight="@drawable/bbpwbr"
+            android:drawableRight="@drawable/bbpwb"
             android:layout_height="match_parent"
             android:id="@+id/radioCharacter2"
             android:checked="false"
-            android:layout_alignLeft="@+id/txt_character"
-            android:layout_marginLeft="39dp" />
+            android:layout_toRightOf="@+id/radioCharacter1"
+            android:layout_below="@+id/imageButton"
+            android:layout_alignParentBottom="true"
+            />
     </RadioGroup>
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.group2.dungeonraider.controller;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -273,125 +275,164 @@ public class Purchase_Mutator extends Activity {
 
 
     public void buymutator(View v) {
+
+
+        // if this button is clicked, close
+        // current activity
+
+        //start
         RadioGroup radiogroup;
-        int selectedId;
-        Player player = Player.getInstance();
+        final int selectedId;
+        final Player player = Player.getInstance();
         radiogroup = (RadioGroup) findViewById(R.id.radio_selection_group);
-        Integer playergold=player.getGold();
+        final int playergold = player.getGold();
 
         selectedId = radiogroup.getCheckedRadioButtonId();
-
         if (selectedId == -1) {
             Toast.makeText(this, "Please select a mutator to buy", Toast.LENGTH_SHORT).show();
         } else {
-             if(playergold<mutatorCost)
-             {
-                 Toast.makeText(this, "You do not have enough gold to buy this mutator", Toast.LENGTH_SHORT).show();
-             }
-            else{
-                 RadioButton rb = (RadioButton) findViewById(selectedId);
-
-                 if (rb.getText().equals("CAP-YELLOW")) {
+            if (playergold < mutatorCost) {
+                Toast.makeText(this, "You do not have enough gold to buy this mutator", Toast.LENGTH_SHORT).show();
+            } else {
 
 
-                     Integer mutatorid=getMutatorId(Constants.MUTATOR_CAP, Constants.COLOR_YELLOW);
-                     PlayerMutator playerMutator=new PlayerMutator();
-                     playerMutator.setMutatorId(mutatorid);
-                     player.setGold(playergold - mutatorCost);
-                     playerMutator.setPlayerId(player.getId());
-                     db.insertPlayerMutator(playerMutator);
-                     //update player gold
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        Purchase_Mutator.this);
 
-                     rb.setChecked(false);
-                     rb.setEnabled(false);
-                     //set texview =""
-                     //set cost not visible
+                // set title
+                alertDialogBuilder.setTitle("Are you sure you want to buy the mutator");
 
-                 } else if (rb.getText().equals("CAP-BROWN")) {
-                     Integer mutatorid=getMutatorId(Constants.MUTATOR_CAP, Constants.COLOR_BROWN);
-                     PlayerMutator playerMutator=new PlayerMutator();
-                     playerMutator.setMutatorId(mutatorid);
-                     player.setGold(playergold - mutatorCost);
-                     playerMutator.setPlayerId(player.getId());
-                     db.insertPlayerMutator(playerMutator);
-                     //update player gold
+                // audio.play(getApplicationContext(), R.raw.btn_click);
+                // set dialog message
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, close
+                                // current activity
 
-                     rb.setChecked(false);
-                     rb.setEnabled(false);
+                                //start
+
+                                RadioButton rb = (RadioButton) findViewById(selectedId);
+
+                                if (rb.getText().equals("CAP-YELLOW")) {
 
 
-                 } else if (rb.getText().equals("SHIRT-BLUE")) {
+                                    Integer mutatorid = getMutatorId(Constants.MUTATOR_CAP, Constants.COLOR_YELLOW);
+                                    PlayerMutator playerMutator = new PlayerMutator();
+                                    playerMutator.setMutatorId(mutatorid);
+                                    player.setGold(playergold - mutatorCost);
+                                    playerMutator.setPlayerId(player.getId());
+                                    db.insertPlayerMutator(playerMutator);
+                                    //update player gold
 
-                     Integer mutatorid=getMutatorId(Constants.MUTATOR_SHIRT, Constants.COLOR_BLUE);
-                     PlayerMutator playerMutator=new PlayerMutator();
-                     playerMutator.setMutatorId(mutatorid);
-                     player.setGold(playergold - mutatorCost);
-                     playerMutator.setPlayerId(player.getId());
-                     db.insertPlayerMutator(playerMutator);
-                     //update player gold
+                                    rb.setChecked(false);
+                                 //   rb.setEnabled(false);
+                                    //set texview =""
+                                    //set cost not visible
 
-                     rb.setChecked(false);
-                     rb.setEnabled(false);
-                 }
-                 else if (rb.getText().equals("SHIRT-GREEN")) {
+                                } else if (rb.getText().equals("CAP-BROWN")) {
+                                    Integer mutatorid = getMutatorId(Constants.MUTATOR_CAP, Constants.COLOR_BROWN);
+                                    PlayerMutator playerMutator = new PlayerMutator();
+                                    playerMutator.setMutatorId(mutatorid);
+                                    player.setGold(playergold - mutatorCost);
+                                    playerMutator.setPlayerId(player.getId());
+                                    db.insertPlayerMutator(playerMutator);
+                                    //update player gold
 
-                     Integer mutatorid=getMutatorId(Constants.MUTATOR_SHIRT, Constants.COLOR_GREEN);
-                     PlayerMutator playerMutator=new PlayerMutator();
-                     playerMutator.setMutatorId(mutatorid);
-                     player.setGold(playergold - mutatorCost);
-                     playerMutator.setPlayerId(player.getId());
-                     db.insertPlayerMutator(playerMutator);
-                     //update player gold
-
-                     rb.setChecked(false);
-                     rb.setEnabled(false);
-                 }
-                 else if (rb.getText().equals("PANT-RED")) {
-
-                     Integer mutatorid=getMutatorId(Constants.MUTATOR_PANT, Constants.COLOR_RED);
-                     PlayerMutator playerMutator=new PlayerMutator();
-                     playerMutator.setMutatorId(mutatorid);
-                     player.setGold(playergold - mutatorCost);
-                     playerMutator.setPlayerId(player.getId());
-                     db.insertPlayerMutator(playerMutator);
-                     //update player gold
-
-                     rb.setChecked(false);
-                     rb.setEnabled(false);
-                 }
-                 else if (rb.getText().equals("PANT-PINK")) {
-
-                     Integer mutatorid=getMutatorId(Constants.MUTATOR_PANT, Constants.COLOR_PINK);
-                     PlayerMutator playerMutator=new PlayerMutator();
-                     playerMutator.setMutatorId(mutatorid);
-                     player.setGold(playergold - mutatorCost);
-                     playerMutator.setPlayerId(player.getId());
-                     db.insertPlayerMutator(playerMutator);
-                     //update player gold
-
-                     rb.setChecked(false);
-                     rb.setEnabled(false);
-                 }
-                 else if (rb.getText().equals("SKIN-PINK")) {
-
-                     Integer mutatorid=getMutatorId(Constants.MUTATOR_SKIN, Constants.COLOR_PINK);
-                     PlayerMutator playerMutator=new PlayerMutator();
-                     playerMutator.setMutatorId(mutatorid);
-                     player.setGold(playergold - mutatorCost);
-                     playerMutator.setPlayerId(player.getId());
-                     db.insertPlayerMutator(playerMutator);
+                                    rb.setChecked(false);
+                                   // rb.setEnabled(false);
 
 
-                     rb.setChecked(false);
-                     rb.setEnabled(false);
-                 }
-                 db.updatePlayerGold();
-                 mutatorList=db.loadPlayerMutators(player.getId());
-                 player.setMutatorList(mutatorList);
-                 goldview = (TextView) findViewById(R.id.textView_gold_purchasemutators);
-                 goldview.setText(String.valueOf(player.getGold()));
+                                } else if (rb.getText().equals("SHIRT-BLUE")) {
 
-             }
+                                    Integer mutatorid = getMutatorId(Constants.MUTATOR_SHIRT, Constants.COLOR_BLUE);
+                                    PlayerMutator playerMutator = new PlayerMutator();
+                                    playerMutator.setMutatorId(mutatorid);
+                                    player.setGold(playergold - mutatorCost);
+                                    playerMutator.setPlayerId(player.getId());
+                                    db.insertPlayerMutator(playerMutator);
+                                    //update player gold
+
+                                    rb.setChecked(false);
+                                    //rb.setEnabled(false);
+                                } else if (rb.getText().equals("SHIRT-GREEN")) {
+
+                                    Integer mutatorid = getMutatorId(Constants.MUTATOR_SHIRT, Constants.COLOR_GREEN);
+                                    PlayerMutator playerMutator = new PlayerMutator();
+                                    playerMutator.setMutatorId(mutatorid);
+                                    player.setGold(playergold - mutatorCost);
+                                    playerMutator.setPlayerId(player.getId());
+                                    db.insertPlayerMutator(playerMutator);
+                                    //update player gold
+
+                                    rb.setChecked(false);
+                                    //rb.setEnabled(false);
+                                } else if (rb.getText().equals("PANT-RED")) {
+
+                                    Integer mutatorid = getMutatorId(Constants.MUTATOR_PANT, Constants.COLOR_RED);
+                                    PlayerMutator playerMutator = new PlayerMutator();
+                                    playerMutator.setMutatorId(mutatorid);
+                                    player.setGold(playergold - mutatorCost);
+                                    playerMutator.setPlayerId(player.getId());
+                                    db.insertPlayerMutator(playerMutator);
+                                    //update player gold
+
+                                    rb.setChecked(false);
+                                    //rb.setEnabled(false);
+                                } else if (rb.getText().equals("PANT-PINK")) {
+
+                                    Integer mutatorid = getMutatorId(Constants.MUTATOR_PANT, Constants.COLOR_PINK);
+                                    PlayerMutator playerMutator = new PlayerMutator();
+                                    playerMutator.setMutatorId(mutatorid);
+                                    player.setGold(playergold - mutatorCost);
+                                    playerMutator.setPlayerId(player.getId());
+                                    db.insertPlayerMutator(playerMutator);
+                                    //update player gold
+
+                                    rb.setChecked(false);
+                                    //rb.setEnabled(false);
+                                } else if (rb.getText().equals("SKIN-PINK")) {
+
+                                    Integer mutatorid = getMutatorId(Constants.MUTATOR_SKIN, Constants.COLOR_PINK);
+                                    PlayerMutator playerMutator = new PlayerMutator();
+                                    playerMutator.setMutatorId(mutatorid);
+                                    player.setGold(playergold - mutatorCost);
+                                    playerMutator.setPlayerId(player.getId());
+                                    db.insertPlayerMutator(playerMutator);
+
+
+                                    rb.setChecked(false);
+                               //     rb.setEnabled(false);
+                                }
+                                db.updatePlayerGold();
+                                mutatorList = db.loadPlayerMutators(player.getId());
+                                player.setMutatorList(mutatorList);
+                                goldview = (TextView) findViewById(R.id.textView_gold_purchasemutators);
+                                goldview.setText(String.valueOf(player.getGold()));
+
+                            }
+
+
+                            //end
+
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+            }
+
+
         }
     }
 

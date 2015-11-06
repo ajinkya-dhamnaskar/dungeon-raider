@@ -42,7 +42,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
 
         Constants.VOLUME_MODE=preferences.getInt("volume", 0);
-        Constants.THEME_MODE=preferences.getString("theme", "BROWN");
+        Constants.THEME_MODE=preferences.getString("theme", "BLACK");
         Constants.CHARACTER_SELECTED=preferences.getInt("character", 0);
 
 
@@ -61,7 +61,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
-        categories.add("BROWN");
+        categories.add("BLACK");
         categories.add("PURPLE");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);

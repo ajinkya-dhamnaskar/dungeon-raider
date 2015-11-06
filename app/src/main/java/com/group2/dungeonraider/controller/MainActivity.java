@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         SharedPreferences preferences = getApplicationContext().getSharedPreferences("VOLUME", MODE_PRIVATE);
         Constants.VOLUME_MODE = preferences.getInt("volume", 0);
-        Constants.THEME_MODE = preferences.getString("theme", "BROWN");
+        Constants.THEME_MODE = preferences.getString("theme", "BLACK");
         Constants.CHARACTER_SELECTED = preferences.getInt("character", 0);
        
         Constants.appContext = getApplicationContext();

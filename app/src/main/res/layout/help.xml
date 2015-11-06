@@ -16,8 +16,6 @@
         android:onClick="backtomain"
         android:backgroundTint="@android:color/transparent"
         android:id="@+id/btnClose"
-        android:layout_marginTop="29dp"
-        android:layout_marginRight="-7dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
