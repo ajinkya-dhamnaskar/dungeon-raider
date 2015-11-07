@@ -2,13 +2,6 @@ package com.group2.dungeonraider.data;
 
 import android.content.Context;
 
-/**
- * An extension of GameUnit, PlayerUnit represents the player-controlled
- * unit in the game.
- * 
- * @author Dan Ruscoe (ruscoe.org)
- * @version 1.0
- */
 public class PlayerUnit extends GameUnit
 {
 	public static final int SPEED = 3;

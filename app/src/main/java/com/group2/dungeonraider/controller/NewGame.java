@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.group2.dungeonraider.R;
@@ -20,7 +19,6 @@ import com.group2.dungeonraider.domain.Item;
 import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.domain.PlayerItem;
-import com.group2.dungeonraider.domain.PlayerView;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
@@ -112,6 +110,8 @@ public class NewGame extends Activity {
                                     playerItemList =  db.loadPlayerItems(player.getId());
                                     player.setItemList(playerItemList);
                                     db.deletePlayerRoomDetails();
+                                    player.getRoomList().clear();
+                                    Constants.GAME_LEVEL = 0;
                                     playerMutatorList=db.loadPlayerMutators(player.getId());
                                     player.setMutatorList(playerMutatorList);
 
@@ -133,7 +133,7 @@ public class NewGame extends Activity {
                     player.setScore(0);
                     player.setTime(0);
                     player.setGold(Constants.INITIAL_GOLD);
-
+                    player.getRoomList().clear();
                     long returnValue = db.addPlayerDetail(player);
 
 
@@ -162,6 +162,8 @@ public class NewGame extends Activity {
                         player.setMutatorList((playerMutatorList));
                         Intent i = new Intent(this, Level.class);
                         openFlag=false;
+                        Constants.GAME_LEVEL = 0;
+                        Constants.IS_PLAYER_LEVEL = false;
                         startActivity(i);
                     }
 

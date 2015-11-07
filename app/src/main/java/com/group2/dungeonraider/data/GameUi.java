@@ -2,17 +2,6 @@ package com.group2.dungeonraider.data;
 
 import android.content.Context;
 
-/**
- * An extension of GameImage, GameUi represents a UI element provided
- * for the user.
- * 
- * In addition to the GameImage properties, UI elements include a
- * state identifier, allowing buttons to appear in different states
- * with associated drawables.
- * 
- * @author Dan Ruscoe (ruscoe.org)
- * @version 1.0
- */
 public class GameUi extends GameUnit
 {
 	public static final int STATE_NORMAL = 1;

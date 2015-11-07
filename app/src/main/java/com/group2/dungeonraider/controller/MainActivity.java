@@ -5,11 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,15 +18,11 @@ import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 
-import java.util.List;
+import java.util.Map;
 
-/*
-Entry point
- */
 
 public class MainActivity extends Activity {
 
-    MediaPlayer stereo;
     Audio audio  = new AudioImpl();
 
     @Override
@@ -120,15 +113,20 @@ public class MainActivity extends Activity {
 
     public void resume(View V)
     {
-        Player p = Player.getInstance();
-        List<Room> lstRoom = p.getRoomList();
+        int maxLevel = 0;
+        Map<Integer, Room> rooms =Player.getInstance().getRoomList();
+        for(Map.Entry<Integer, Room> room : rooms.entrySet()){
+            if(room.getKey()>maxLevel){
+                maxLevel = room.getKey();
+            }
+        }
         audio.play(getApplicationContext(), R.raw.btn_click);
-        if(lstRoom.isEmpty())
+        if(rooms.isEmpty())
             Toast.makeText(this, "There is no saved game to resume", Toast.LENGTH_SHORT).show();
-        else
-        {
-           Intent i = new Intent(this, Play.class);
-           startActivity(i);
+        else{
+            Intent i = new Intent(this, Play.class);
+            Player.getInstance().setCurrentLevel(maxLevel);
+            startActivity(i);
         }
     }
 }

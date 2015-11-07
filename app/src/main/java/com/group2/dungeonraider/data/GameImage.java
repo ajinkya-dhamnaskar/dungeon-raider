@@ -4,15 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-/**
- * The GameImage class represents an image used in the game.
- * 
- * Each instance contains a Bitmap image, a width / height
- * and an on-screen position.
- * 
- * @author Dan Ruscoe (ruscoe.org)
- * @version 1.0
- */
 public class GameImage 
 {
 	protected Bitmap mImg = null;

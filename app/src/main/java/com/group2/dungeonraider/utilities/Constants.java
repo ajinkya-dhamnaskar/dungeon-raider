@@ -15,6 +15,8 @@ public class Constants {
 
     private static final String LOG = Constants.class.getSimpleName();
 
+
+
     // public static FPropsLoader drProps = new FPropsLoader("DRGame");
 
     public static int VOLUME_MODE;
@@ -32,6 +34,10 @@ public class Constants {
     public static int INITIAL_GOLD=100;
 
     public static int CHEST_PRIZE=100;
+
+    public static boolean IS_PLAYER_LEVEL = false ;
+    public static boolean IS_NEXT_ROOM = false;
+    public static final int PUZZLE_WIDTH = 15;
 
     public static int PLAYER_GOLD;
     public static int PLAYER_SCORE;
@@ -62,7 +68,7 @@ public class Constants {
     public static int PANT_VALUE=50;
     public static int SKIN_VALUE=100;
 
-
+    public static final int STAGE = 1;
 
 
     public static Context appContext;
@@ -84,44 +90,82 @@ public class Constants {
     public static int GAME_NO_OF_KEYS;
     public static int GAME_NO_OF_MAP;
 
-    static MediaPlayer getMediaPlayer(Context context){
-
-        MediaPlayer MP = new MediaPlayer();
-
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
-            return MP;
-        }
-
-        try {
-            Class<?> cMediaTimeProvider = Class.forName( "android.media.MediaTimeProvider" );
-            Class<?> cSubtitleController = Class.forName( "android.media.SubtitleController" );
-            Class<?> iSubtitleControllerAnchor = Class.forName( "android.media.SubtitleController$Anchor" );
-            Class<?> iSubtitleControllerListener = Class.forName( "android.media.SubtitleController$Listener" );
-
-            Constructor constructor = cSubtitleController.getConstructor(new Class[]{Context.class, cMediaTimeProvider, iSubtitleControllerListener});
-
-            Object subtitleInstance = constructor.newInstance(context, null, null);
-
-            Field f = cSubtitleController.getDeclaredField("mHandler");
-
-            f.setAccessible(true);
-            try {
-                f.set(subtitleInstance, new Handler());
-            }
-            catch (IllegalAccessException e) {return MP;}
-            finally {
-                f.setAccessible(false);
-            }
-
-            Method setsubtitleanchor = MP.getClass().getMethod("setSubtitleAnchor", cSubtitleController, iSubtitleControllerAnchor);
-
-            setsubtitleanchor.invoke(MP, subtitleInstance, null);
-
-        } catch (Exception e) {}
-
-        return MP;
-    }
-
+//    /*
+//    DB details
+//     */
+//   /* public static String DB_NAME = drProps.getValue("db.name");
+//    public static String DB_SERVER = drProps.getValue("db.server");
+//    public static String DB_PORT = drProps.getValue("db.port");
+//    public static String DB_PASSWORD = drProps.getValue("db.password");
+//
+//    /*
+//    item type
+//     */
+//    public static String IT_KEY = drProps.getValue("it.key");
+//    public static String IY_BOMB = drProps.getValue("it.bfomb");
+//    public static String IT_POTION = drProps.getValue("it.potion");
+//    public static String IT_MAP = drProps.getValue("it.map");
+//
+//    /*
+//    direction
+//     */
+//    public static String DIR_UP = drProps.getValue("dir.up");
+//    public static String DIR_DOWN = drProps.getValue("dir.down");
+//    public static String DIR_LEFT = drProps.getValue("dir.left");
+//    public static String DIR_RIGHT = drProps.getValue("dir.right");
+//
+//    /*
+//    levels
+//     */
+//    public static String LVL_TUTORIAL = drProps.getValue("lvl.tutorial");
+//    public static String LVL_EASY = drProps.getValue("lvl.easy");
+//    public static String LVL_MEDIUM = drProps.getValue("lvl.medium");
+//    public static String LVL_HARD = drProps.getValue("lvl.hard");
+//
+//    /*
+//    mutator type
+//     */
+//    public static String MT_HAIR = drProps.getValue("mt.hair");
+//    public static String MT_SKIN= drProps.getValue("mt.skin");
+//    public static String MT_SHIRT = drProps.getValue("mt.shirt");
+//    public static String MT_PANTS = drProps.getValue("mt.pants");
+//
+//    /*
+//    move results
+//     */
+//    public static String MR_SUCCESS = drProps.getValue("mr.success");
+//    public static String MR_FAILURE = drProps.getValue("mr.failure");
+//    public static String MR_KEY_RECEIVED = drProps.getValue("mr.key.received");
+//    public static String MR_SWITCH_ROOMS = drProps.getValue("mr.switch.rooms");
+//    public static String MR_BOMB_RECEIVED = drProps.getValue("mr.cbomb.received");
+//
+//    /*
+//    block type
+//     */
+//    public static String BT_EMPTY = drProps.getValue("bt.empty");
+//    public static String BT_WALL = drProps.getValue("bt.wall");
+//    public static String BT_SLIDING = drProps.getValue("bt.sliding");
+//    public static String BT_DOOR = drProps.getValue("bt.door");
+//    public static String BT_KEY = drProps.getValue("bt.key");
+//    public static String BT_BREAKABLEWALL = drProps.getValue("bt.breakable.wall");
+//    public static String BT_CHEST = drProps.getValue("bt.chest");
+//    public static String BT_WEIGHT_SWITCH = drProps.getValue("bt.weight.switch");
+//    public static String BT_FIRE = drProps.getValue("bt.fire");
+//    public static String BT_SPIKE = drProps.getValue("bt.spike");
+//    public static String BT_ENTRANCE_START = drProps.getValue("bt.entrance.start");
+//    public static String BT_EXIT_SOLVE = drProps.getValue("bt.exit.solve");
+//    public static String BT_FINISH = drProps.getValue("bt.finish");
+//
+//    /*
+//    block state
+//     */
+//    public static String BS_MOVING = drProps.getValue("bs.moving");
+//    public static String BS_STILL = drProps.getValue("bs.still");
+//    public static String BS_OPEN_TEMPORARILY = drProps.getValue("bs.open.temporarily");
+//    public static String BS_OPEN_ALWAYS = drProps.getValue("bs.open.always");
+//    public static String BS_CLOSED = drProps.getValue("bs.closed");
+//    public static String BS_ON = drProps.getValue("bs.on");
+//    public static String BS_OFF = drProps.getValue("bs.off");
 
     public enum Direction {
         UP(1), DOWN(2), LEFT(3), RIGHT(4);
@@ -197,10 +241,10 @@ public class Constants {
     };
 
     public enum BlockType {
-        EMPTY(1), WALL(2), SLIDING(3), DOOR(4),
-        KEY(5), BOMB(6), BREAKABLEWALL(7), CHEST(8),
-        WEIGHTSWITCH(9), FIRE(10), SPIKE(11), ENTRANCESTART(12),
-        EXITSOLVE(13), FINISH(14), DOOROPEN(15),DUNGEONFINISH(16);
+        EMPTY(0), WALL(1),BREAKABLEWALL(2), BOMB(3), FIRE(4),
+        CHEST(5), ENTRANCESTART(6), SLIDING(7), KEY(8),
+        EXITSOLVE(9), FINISH(10), WEIGHTSWITCH(11),DOOROPEN(12),DUNGEONFINISH(13);
+
         private int value;
 
         private BlockType(int value) {

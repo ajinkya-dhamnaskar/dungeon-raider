@@ -9,13 +9,6 @@ import java.util.HashMap;
 
 import static android.provider.BaseColumns._ID;
 
-/**
- * The GameTileData class represents a definition of a game
- * tile stored in the database.
- * 
- * @author Dan Ruscoe (ruscoe.org)
- * @version 1.0
- */
 public class GameTileData extends DatabaseHelper
 {
 	public static final String TABLE_NAME = "gameTileData";

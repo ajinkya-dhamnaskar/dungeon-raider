@@ -3,7 +3,10 @@ package com.group2.dungeonraider.domain;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Rohit on 10/27/2015.
@@ -18,16 +21,17 @@ public class Player {
     private List<Item> itemList;
     private String playerCharacter;
     private List<Mutator> mutatorList;
+    private int currentLevel;
+    private Map<Integer, Room> roomList = new HashMap<Integer, Room>();
 
-    public List<Room> getRoomList() {
+
+    public Map<Integer, Room> getRoomList() {
         return roomList;
     }
 
-    public void setRoomList(List<Room> roomList) {
+    public void setRoomList(Map<Integer, Room> roomList) {
         this.roomList = roomList;
     }
-
-    private List<Room> roomList;
 
     public List<Mutator> getMutatorList() {
         return mutatorList;
@@ -130,6 +134,13 @@ public class Player {
 
     public void setPlayerCharacter(String playerCharacter) { this.playerCharacter = playerCharacter;}
 
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 
     @Override
     public String toString() {

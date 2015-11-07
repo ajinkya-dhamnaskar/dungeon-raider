@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
@@ -25,6 +26,7 @@ import android.widget.ImageView;
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.controller.EndLevel;
 import com.group2.dungeonraider.domain.Player;
+import com.group2.dungeonraider.domain.Room;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
@@ -34,22 +36,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-/**
- * The game view and main game thread.
- *
- * GameView creates a new thread (GameThread) to handle all calculations
- * and drawing of game components.
- *
- * GameThread contains the run() function, which serves as the game loop,
- * updating each cycle while the game is running.
- *
- * To see how game level data is parsed and turned into a playable, tile level,
- * see the function GameView.parseGameLevelData.
- *
- * @author Dan Ruscoe (ruscoe.org)
- * @version 1.0
- */
 public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
 	private static final int CONTROLS_PADDING = 10;
@@ -122,6 +110,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	 * GameTile instances for each game tile used by the current level.
 	 */
 	private List<GameTile> mGameTiles = new ArrayList<GameTile>();
+	private Map<Integer, GameTile> mGameTilesMap = new HashMap<Integer, GameTile>();
+	private List<GameTile> mAllGameTiles = new ArrayList<GameTile>();
 
 	private int mPlayerStartTileX = 0;
 	private int mPlayerStartTileY = 0;
@@ -133,6 +123,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	Audio audio = new AudioImpl();
 	DatabaseHelper db=new DatabaseHelper(Constants.appContext);
 	long timeElapsed = 0;
+	Room room = new Room();
+	Play play = new Play();
+	Room preRoom = new Room();
 	class GameThread extends Thread
 	{
 
@@ -405,7 +398,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 				collisionTile = getCollisionTile(newX, newY, mPlayerUnit.getWidth(), mPlayerUnit.getHeight(), null);
 
-				if ((collisionTile != null)&& collisionTile.isBlockerTile() && !(collisionTile.getType() == Constants.BlockType.DOOROPEN.getValue())){
+				if ((collisionTile != null)&& collisionTile.isBlockerTile() && collisionTile.getType()!= Constants.BlockType.DOOROPEN.getValue()){
 
 					if(collisionTile.getType() == GameTile.TYPE_SLIDING){
 						updateSlidingTile(newX, newY, mPlayerUnit, collisionTile);
@@ -438,26 +431,125 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			int newXTile = 0;
 			int newYTile = 0;
 			boolean result = true;
+			GameTile gm;
+			int nextTileKey;
 
 			if(tileTop >= plyBottom){
 				//move down
 				newXTile = slidingTile.getX();
 				newYTile = slidingTile.getY() + Constants.SLIDE_TILE_BY_DP;
+
+				nextTileKey = slidingTile.getKey() + Constants.PUZZLE_WIDTH ;
+
+				gm = mGameTilesMap.get(nextTileKey);
+				while((newYTile - gm.getY())> slidingTile.getHeight()){
+
+					gm.setType(Constants.BlockType.EMPTY.getValue());
+					gm.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					gm = mGameTilesMap.get(nextTileKey);
+				}
+				if((gm.getY() - newYTile)<slidingTile.getHeight()/2){
+					//slidingTile.setType(Constants.BlockType.EMPTY.getValue());
+					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					if(gm.getType()!=Constants.BlockType.WEIGHTSWITCH.getValue()) {
+						gm.setType(Constants.BlockType.SLIDING.getValue());
+						gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+					}
+//					gm.setType(Constants.BlockType.SLIDING.getValue());
+//					gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+				}
+
+//				gm = mGameTilesMap.get(slidingTile.getKey() + 15);
+//				if((gm.getY()-newYTile)>slidingTile.getHeight()/2){
+//					slidingTile.setType(Constants.BlockType.EMPTY.getValue());
+//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+//					gm.setType(Constants.BlockType.SLIDING.getValue());
+//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+//				}
 			}else
 			if(plyTop >= tileBottom){
 				//move up
 				newXTile = slidingTile.getX();
 				newYTile = slidingTile.getY() - Constants.SLIDE_TILE_BY_DP;
 
+				nextTileKey = slidingTile.getKey() - Constants.PUZZLE_WIDTH;
+
+				gm = mGameTilesMap.get(nextTileKey);
+				while((gm.getY()-newYTile)> slidingTile.getHeight()){
+					gm.setType(Constants.BlockType.EMPTY.getValue());
+					gm.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					nextTileKey = nextTileKey - Constants.PUZZLE_WIDTH;
+					gm = mGameTilesMap.get(nextTileKey);
+				}
+				if((newYTile - gm.getY())<slidingTile.getHeight()/2){
+					//slidingTile.setType(Constants.BlockType.EMPTY.getValue());
+					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					if(gm.getType()!=Constants.BlockType.WEIGHTSWITCH.getValue()) {
+						gm.setType(Constants.BlockType.SLIDING.getValue());
+						gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+					}
+//					gm.setType(Constants.BlockType.SLIDING.getValue());
+//					gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+				}
+
+//				gm = mGameTilesMap.get(slidingTile.getKey() - 15);
+//				if((newYTile-gm.getY())>slidingTile.getHeight()/2){
+//					slidingTile.setType(Constants.BlockType.EMPTY.getValue());
+//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+//					gm.setType(Constants.BlockType.SLIDING.getValue());
+//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+//				}
+
 			} else if (plyLeft >= tileRight) {
 				//move left
 				newXTile = slidingTile.getX() - Constants.SLIDE_TILE_BY_DP;
 				newYTile = slidingTile.getY();
+				nextTileKey = slidingTile.getKey() - 1;
+				gm = mGameTilesMap.get(nextTileKey);
+				while((gm.getX()-newXTile)> slidingTile.getWidth()){
+					gm.setType(Constants.BlockType.EMPTY.getValue());
+					gm.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					gm = mGameTilesMap.get(--nextTileKey);
+				}
+				if(newXTile - (gm.getX())<slidingTile.getWidth()/2){
+					//slidingTile.setType(Constants.BlockType.EMPTY.getValue());
+					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					if(gm.getType()!=Constants.BlockType.WEIGHTSWITCH.getValue()) {
+						gm.setType(Constants.BlockType.SLIDING.getValue());
+						gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+					}
+//					gm.setType(Constants.BlockType.SLIDING.getValue());
+//					gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+				}
+
+//				gm = mGameTilesMap.get(slidingTile.getKey() - 1);
+//				if((newXTile-gm.getX())>slidingTile.getHeight()/2){
+//					slidingTile.setType(Constants.BlockType.EMPTY.getValue());
+//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+//					gm.setType(Constants.BlockType.SLIDING.getValue());
+//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+//				}
 			}else
 			if(tileLeft >= plyRight){
 				//move right
 				newXTile = slidingTile.getX() + Constants.SLIDE_TILE_BY_DP;
 				newYTile = slidingTile.getY();
+				nextTileKey = slidingTile.getKey() + 1;
+				gm = mGameTilesMap.get(nextTileKey);
+				while((newXTile - gm.getX())> slidingTile.getWidth()){
+					gm.setType(Constants.BlockType.EMPTY.getValue());
+					gm.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					gm = mGameTilesMap.get(++nextTileKey);
+				}
+				if((gm.getX() - newXTile)<slidingTile.getWidth()/2){
+					//slidingTile.setType(Constants.BlockType.EMPTY.getValue());
+					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+					if(gm.getType()!=Constants.BlockType.WEIGHTSWITCH.getValue()) {
+						gm.setType(Constants.BlockType.SLIDING.getValue());
+						gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+					}
+
+				}
 			}
 
 			if(canSlidingTileMove(newXTile, newYTile, slidingTile.getWidth(), slidingTile.getHeight(), slidingTile)){
@@ -481,14 +573,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				result = false;
 			}
 			if(collisionTile!=null && checkForOvelap(slidingTile, collisionTile)){
-				//mLastStatusMessage = "hogaya";
-				processNearByFire(collisionTile);
+				processNearByFireAndSwitch(collisionTile);
 
 			}
 			return result;
 		}
 
-		private GameTile processNearByFire(GameTile switchWeightTile)
+		private GameTile processNearByFireAndSwitch(GameTile switchWeightTile)
 		{
 			GameTile gameTile = null;
 
@@ -496,28 +587,35 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			for (int i = 0; i < gameTilesSize; i++)
 			{
 				gameTile = mGameTiles.get(i);
+
 				if ((gameTile != null) && gameTile.getType() == Constants.BlockType.FIRE.getValue())
 				{
-//                    if((gameTile.getY() == (switchWeightTile.getY() -
-//                            (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics())))
-//                    && (gameTile.getX() == switchWeightTile.getX())){
-//                        gameTile.setVisible(false);
-//                    }
-//                    if ((gameTile.getY() == (switchWeightTile.getY() +
-//                            (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics())))
-//                    && (gameTile.getX() == switchWeightTile.getX())){
-//                        gameTile.setVisible(false);
-//                    }
 					if(gameTile.getX() == switchWeightTile.getX()){
 						gameTile.setVisible(false);
 						gameTile.setType(Constants.BlockType.EMPTY.getValue());
+						gameTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
 						break;
 					}
-//                    if (gameTile.getX() == switchWeightTile.getX()){
-//                        gameTile.setVisible(false);
-//                    }
 
 				}
+				else if ((gameTile != null) && gameTile.getType() == Constants.BlockType.EXITSOLVE.getValue()) {
+//
+					if (gameTile.getX() == switchWeightTile.getX()) {
+
+						gameTile.setType(Constants.BlockType.DOOROPEN.getValue());
+						gameTile.setBitmap(setAndGetGameTileBitmap(R.drawable.tile_dooropen));
+						gameTile.setmTileTemp(String.valueOf(Constants.BlockType.DOOROPEN.getValue()));
+						break;
+					}
+					if (gameTile.getY() == switchWeightTile.getY()) {
+
+						gameTile.setType(Constants.BlockType.DOOROPEN.getValue());
+						gameTile.setBitmap(setAndGetGameTileBitmap(R.drawable.tile_dooropen));
+						gameTile.setmTileTemp(String.valueOf(Constants.BlockType.DOOROPEN.getValue()));
+						break;
+					}
+				}
+
 			}
 			return null;
 		}
@@ -535,6 +633,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			if(xDelta <= 20 && yDelta <= 20){
 				result = true;
 			}
+			if(result){
+				collisionTile.setVisible(false);
+				collisionTile.setType(Constants.BlockType.SLIDING.getValue());
+				collisionTile.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
+			}
 			return result;
 		}
 
@@ -548,8 +651,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		 * @param height - The height of the game unit.
 		 * @return GameTile - The collision game tile, if available.
 		 */
-		private GameTile getCollisionTile(int x, int y, int width, int height, GameTile tile)
-		{
+		private GameTile getCollisionTile(int x, int y, int width, int height, GameTile tile) {
 			GameTile gameTile = null;
 
 			int gameTilesSize = mGameTiles.size();
@@ -608,7 +710,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						handleFinishTileCollision(gameTile);
 						break;
 					case GameTile.TYPE_WEIGHTSWITCH:
-						handleWeightSwitchTileCollision(gameTile);
+						//handleWeightSwitchTileCollision(gameTile);
 						break;
 					case GameTile.TYPE_BREAKABLEWALL:
 						handleBreakableTileCollision(gameTile);
@@ -617,13 +719,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						handleDungeonEndTileCollision(gameTile);
 						break;
 
+					case GameTile.TYPE_ENTRANCESTART:
+						handleEntranceTileCollision(gameTile);
+						break;
 					default:
 						mLastStatusMessage = "Collision with regular tile";
 				}
 			}
 		}
-
-
 
 		/**
 		 * Handles a collision between the player unit and a dangerous
@@ -633,6 +736,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			gameTile.setVisible(false);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			gameTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
 			mLastStatusMessage = "Collision with dangerous tile";
 			Intent i=new Intent(Constants.appContext, Play.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -656,15 +760,35 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			mLastStatusMessage = "Collision with weight switch tile";
 		}
 
+		private void handleEntranceTileCollision(GameTile gameTile)
+		{
+
+			mLastStatusMessage = "Collision with entrance tile";
+
+			if((Player.getInstance().getCurrentLevel() - 1)>=0) {
+
+				gameTile.setVisible(false);
+				room.setPuzzleStruct(getRoomStructure());
+				gameTile.setType(Constants.BlockType.EMPTY.getValue());
+				gameTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+				Constants.IS_PLAYER_LEVEL = true;
+				Constants.IS_NEXT_ROOM = false;
+				room.setId(Player.getInstance().getCurrentLevel());
+				Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() - 1);
+
+				Player.getInstance().getRoomList().put(room.getId(), room);
+				db.savePlayerRoomDetails();
+				Intent i = new Intent(Constants.appContext, Play.class);
+				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				Constants.appContext.startActivity(i);
+			}
+		}
+
 		private void handleFinishTileCollision(GameTile gameTile)
 		{
 			mLastStatusMessage = "Collision with finish tile";
-
-			Intent i=new Intent(Constants.appContext,Play.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
-			Constants.appContext.startActivity(i);
-			Constants.GAME_LEVEL++;
+			gameTile.setmTileTemp(String.valueOf(Constants.BlockType.FINISH.getValue()));
 			Player.getInstance().setItemCount(Constants.ITEM_POTION, Constants.GAME_NO_OF_POTIONS);
 			Player.getInstance().setItemCount(Constants.ITEM_MAP, Constants.GAME_NO_OF_MAP);
 			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
@@ -674,9 +798,62 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
 				Constants.PLAYER_SCORE += ((mDesiredTime*1000 - Constants.LAST_TIME)*7/1000);
 			}
-			Player.getInstance().setTime(Player.getInstance().getTime() + (int)Constants.LAST_TIME/1000);
+			Player.getInstance().setTime(Player.getInstance().getTime() + (int) Constants.LAST_TIME / 1000);
 			Player.getInstance().setScore(Constants.PLAYER_SCORE);
+			Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() + 1);
+			if(Player.getInstance().getCurrentLevel() > Constants.GAME_LEVEL) {
+				Constants.IS_PLAYER_LEVEL = false;
+				++Constants.GAME_LEVEL;
+				room.setId(Player.getInstance().getCurrentLevel()-1);
+			}
+			if(Player.getInstance().getCurrentLevel() < Constants.GAME_LEVEL){
+				Constants.IS_PLAYER_LEVEL = true;
+				room.setId(Player.getInstance().getCurrentLevel()-1);
+			}
+
+			if(Player.getInstance().getRoomList().size()>0
+					&& null!=Player.getInstance().getRoomList().get(Constants.GAME_LEVEL)
+					&& (Player.getInstance().getCurrentLevel() == Constants.GAME_LEVEL)){
+				Constants.IS_PLAYER_LEVEL = true;
+				room.setId(Player.getInstance().getCurrentLevel()-1);
+			}else{
+				if(Player.getInstance().getCurrentLevel() == Constants.GAME_LEVEL) {
+					Constants.IS_PLAYER_LEVEL = false;
+					room.setId(Player.getInstance().getCurrentLevel()-1);
+				}
+			}
+
+			Constants.IS_NEXT_ROOM = true;
+			room.setPlayerStartX(gameTile.getX() - gameTile.getWidth());
+			room.setPlayerStartY(gameTile.getY());
+			room.setPuzzleStruct(getRoomStructure());
+			Player.getInstance().getRoomList().put(room.getId(), room);
+			db.savePlayerRoomDetails();
 			db.saveProfile();
+
+			Intent i=new Intent(Constants.appContext,Play.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			Constants.appContext.startActivity(i);
+
+		}
+
+		private String getRoomStructure(){
+			StringBuilder gameStruct = new StringBuilder();
+			int j = 0;
+			for(int i=0; i<mGameTiles.size(); i++){
+				if(15 == j){
+					gameStruct.setLength(gameStruct.length()-1);
+					gameStruct.append(GameLevelTileData.TILE_DATA_LINE_BREAK);
+					j=0;
+					i--;
+				}else {
+					gameStruct.append(mGameTiles.get(i).getmTileTemp());
+					gameStruct.append(",");
+					j++;
+				}
+			}
+			gameStruct.setLength(gameStruct.length() - 1);
+			return gameStruct.toString();
 		}
 
 		private void handleBreakableTileCollision(GameTile gameTile)
@@ -726,6 +903,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			gameTile.setVisible(false);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			gameTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
 			Constants.GAME_NO_OF_BOMBS++;
 			mLastStatusMessage = "Collision with bomb tile";
 		}
@@ -748,6 +926,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			gameTile.setVisible(false);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			gameTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
 			Constants.GAME_NO_OF_KEYS++;
 			audio.play(Constants.appContext, R.raw.coin);
 			mLastStatusMessage = "Collision with key tile";
@@ -760,6 +939,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			gameTile.setVisible(false);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+			gameTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
 			audio.play(Constants.appContext, R.raw.coin);
 			Constants.PLAYER_GOLD = Constants.PLAYER_GOLD + Constants.CHEST_PRIZE;
 			Constants.PLAYER_SCORE = Constants.PLAYER_SCORE + Constants.CHEST_PRIZE;
@@ -787,6 +967,53 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 	private GameThread thread;
 
+	private Room getPlayerRoom(){
+		Room room = null;
+		if(Player.getInstance().getRoomList().size()>0) {
+			room = Player.getInstance().getRoomList().get(Player.getInstance().getCurrentLevel());
+		}
+		return room;
+	}
+	public GameView(Context context, Play activity, float screenDensity)
+	{
+		super(context);
+		Room room = getPlayerRoom();
+		mGameContext = context;
+		mGameActivity = activity;
+
+		mScreenDensity = screenDensity;
+
+		mPlayerStage = 1;
+		mPlayerLevel = room.getId();
+
+		mGameTileData = new GameTileData(context);
+		mGameLevelTileData = new GameLevelTileData(context);
+
+		mGameTileTemplates = mGameTileData.getTilesData();
+
+		SurfaceHolder holder = getHolder();
+		holder.addCallback(this);
+
+		// create thread only; it's started in surfaceCreated()
+		thread = new GameThread(holder, context, null);
+
+		setFocusable(true);
+
+		mUiTextPaint = new Paint();
+		mUiTextPaint.setStyle(Paint.Style.FILL);
+		mUiTextPaint.setColor(Color.YELLOW);
+		mUiTextPaint.setAntiAlias(true);
+
+		Typeface uiTypeface = Typeface.createFromAsset(activity.getAssets(), "fonts/f1.ttf");
+		if (uiTypeface != null)
+		{
+			mUiTextPaint.setTypeface(uiTypeface);
+		}
+		mUiTextPaint.setTextSize(mGameContext.getApplicationContext().getResources().getDimensionPixelSize(R.dimen.ui_text_size));
+
+		startPreLevel(room);
+		thread.doStart();
+	}
 /*	/**
 	 * The game view.
 	 * @param Context context
@@ -799,7 +1026,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	public GameView(Context context, Play activity, int stage, int level, float screenDensity)
 	{
 		super(context);
-
 		mGameContext = context;
 		mGameActivity = activity;
 
@@ -826,11 +1052,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mUiTextPaint.setColor(Color.YELLOW);
 		mUiTextPaint.setAntiAlias(true);
 
-//		Typeface uiTypeface = Typeface.createFromAsset(activity.getAssets(), "fonts/Molot.otf");
-//		if (uiTypeface != null)
-//		{
-//			mUiTextPaint.setTypeface(uiTypeface);
-//		}
+		Typeface uiTypeface = Typeface.createFromAsset(activity.getAssets(), "fonts/f1.ttf");
+		if (uiTypeface != null)
+		{
+			mUiTextPaint.setTypeface(uiTypeface);
+		}
 		mUiTextPaint.setTextSize(mGameContext.getApplicationContext().getResources().getDimensionPixelSize(R.dimen.ui_text_size));
 
 		startLevel();
@@ -1004,6 +1230,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 								if (tile != null && tile.getType() == Constants.BlockType.EXITSOLVE.getValue()) {
 									tile.setBitmap(setAndGetGameTileBitmap(R.drawable.tile_dooropen));
 									tile.setType(Constants.BlockType.DOOROPEN.getValue());
+									tile.setmTileTemp(String.valueOf(Constants.BlockType.DOOROPEN.getValue()));
 									Constants.GAME_NO_OF_KEYS--;
 									audio.play(Constants.appContext, R.raw.btn_click);
 								}
@@ -1034,18 +1261,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	}
 
 	public void showImage() {
-
-//		AlertDialog.Builder builder = new AlertDialog.Builder(Constants.appContext);
-//		builder.setTitle("asdf");
-//		builder.setMessage("asdfASDF");
-//		builder.setNeutralButton(android.R.string.ok,
-//				new DialogInterface.OnClickListener() {
-//					public void onClick(DialogInterface dialog, int whichButton) {
-//						dialog.dismiss();
-//					}
-//				});
-//
-//		AlertDialog dialog = builder.show();
 
 		final Dialog dialog = new Dialog(Constants.appContext);
 
@@ -1210,7 +1425,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 		// Clear any existing loaded game tiles.
 		mGameTiles.clear();
-
+		mGameTilesMap.clear();
 		// Split level tile data by line.
 		String[] tileLines = levelTileData.split(GameLevelTileData.TILE_DATA_LINE_BREAK);
 
@@ -1219,7 +1434,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		int tileX = 0;
 		int tileY = 0;
 
-		int tileKey = 0;
+		int tileKey = 1;
 
 		// Loop through each line of the level tile data.
 		for (String tileLine : tileLines)
@@ -1230,23 +1445,26 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			String[] tiles = tileLine.split(",");
 
 			// Loop through the tile IDs, creating a new GameTile instance for each one.
-			for (String tile : tiles)
+			for(String tile : tiles)
 			{
-				// Get tile definition for the current tile ID.
+
 				ArrayList<Integer> tileData = mGameTileTemplates.get(Integer.parseInt(tile));
 
+				// Set tile position.
+				tilePoint.x = tileX;
+				tilePoint.y = tileY;
+
+				GameTile gameTile = new GameTile(mGameContext, tilePoint);
+				gameTile.setmTileTemp(tile);
+
+				gameTile.setVisible(false);
 				// Check for valid tile data.
 				if ((tileData != null)
 						&& (tileData.size() > 0)
-						&& (tileData.get(GameTileData.FIELD_ID_DRAWABLE) > 0))
-				{
-					// Set tile position.
-					tilePoint.x = tileX;
-					tilePoint.y = tileY;
-
-					GameTile gameTile = new GameTile(mGameContext, tilePoint);
+						&& (tileData.get(GameTileData.FIELD_ID_DRAWABLE) > 0)) {
 
 					// Set tile bitmap.
+					gameTile.setVisible(true);
 					bitmap = setAndGetGameTileBitmap(tileData.get(GameTileData.FIELD_ID_DRAWABLE));
 					gameTile.setBitmap(bitmap);
 
@@ -1254,11 +1472,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					gameTile.setType(tileData.get(GameTileData.FIELD_ID_TYPE));
 
 					// Set tile visibility.
-					if (tileData.get(GameTileData.FIELD_ID_VISIBLE) == 0)
-					{
+					if (tileData.get(GameTileData.FIELD_ID_VISIBLE) == 0) {
 						gameTile.setVisible(false);
 					}
-
+				}
 					gameTile.setKey(tileKey);
 
 					// If undefined, set global tile width / height values.
@@ -1272,11 +1489,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					}
 
 					// Add new game tile to loaded game tiles.
-					mGameTiles.add(gameTile);
+					//mGameTiles.add(gameTile);
 
-					tileKey++;
-				}
-
+//				}
+				mGameTilesMap.put(tileKey, gameTile);
+				mGameTiles.add(gameTile);
+				tileKey++;
 				// Increment next tile X (horizontal) position by tile width.
 				tileX += mTileWidth;
 			}
@@ -1288,6 +1506,120 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		updatingGameTiles = false;
 	}
 
+
+	private void parsePreLevelData(Room room)
+	{
+		updatingGameTiles = true;
+
+		String levelTileData = room.getPuzzleStruct();
+
+		if (levelTileData == null)
+		{
+			return;
+		}
+
+		// Get player start position.
+		mPlayerStartTileX = 0;
+		mPlayerStartTileY = 0;
+
+		// Clear any existing loaded game tiles.
+		mGameTilesMap.clear();
+		mGameTiles.clear();
+
+		// Split level tile data by line.
+		String[] tileLines = levelTileData.split(GameLevelTileData.TILE_DATA_LINE_BREAK);
+
+		Bitmap bitmap = null;
+		Point tilePoint = new Point(0, 0);
+		int tileX = 0;
+		int tileY = 0;
+
+		int tileKey = 1;
+		int xForPlayer = 0;
+		int yForPlayer = 0;
+
+		// Loop through each line of the level tile data.
+		for (String tileLine : tileLines)
+		{
+			tileX = 0;
+			xForPlayer=1;
+			yForPlayer++;
+			// Split tile data line by tile delimiter, producing an array of tile IDs.
+			String[] tiles = tileLine.split(",");
+
+			// Loop through the tile IDs, creating a new GameTile instance for each one.
+			for (String tile : tiles)
+			{
+				xForPlayer++;
+				// Get tile definition for the current tile ID.
+				ArrayList<Integer> tileData = mGameTileTemplates.get(Integer.parseInt(tile));
+				tilePoint.x = tileX;
+				tilePoint.y = tileY;
+
+				GameTile gameTile = new GameTile(mGameContext, tilePoint);
+				gameTile.setmTileTemp(tile);
+				if(Integer.parseInt(tile) == Constants.BlockType.FINISH.getValue() && !Constants.IS_NEXT_ROOM){
+					gameTile.setType(Constants.BlockType.FINISH.getValue());
+					mPlayerStartTileX = xForPlayer;
+					mPlayerStartTileY = yForPlayer;
+				}
+				if(Integer.parseInt(tile) == Constants.BlockType.ENTRANCESTART.getValue() &&Constants.IS_NEXT_ROOM){
+					gameTile.setType(Constants.BlockType.ENTRANCESTART.getValue());
+					mPlayerStartTileX = xForPlayer;
+					mPlayerStartTileY = yForPlayer;
+				}
+				gameTile.setVisible(false);
+				// Check for valid tile data.
+				if ((tileData != null)
+						&& (tileData.size() > 0)
+						&& (tileData.get(GameTileData.FIELD_ID_DRAWABLE) > 0)) {
+					// Set tile position.
+
+					gameTile.setVisible(true);
+					// Set tile bitmap.
+					bitmap = setAndGetGameTileBitmap(tileData.get(GameTileData.FIELD_ID_DRAWABLE));
+					gameTile.setBitmap(bitmap);
+
+					// Set tile type.
+					gameTile.setType(tileData.get(GameTileData.FIELD_ID_TYPE));
+
+					// Set tile visibility.
+					if (tileData.get(GameTileData.FIELD_ID_VISIBLE) == 0) {
+						gameTile.setVisible(false);
+					}
+
+				}
+					gameTile.setKey(tileKey);
+
+					// If undefined, set global tile width / height values.
+					if (mTileWidth == 0)
+					{
+						mTileWidth = gameTile.getWidth();
+					}
+					if (mTileHeight == 0)
+					{
+						mTileHeight = gameTile.getHeight();
+					}
+
+					// Add new game tile to loaded game tiles.
+					//mGameTiles.add(gameTile);
+//				}else{
+//					gameTile.setVisible(false);
+//				}
+				mGameTilesMap.put(tileKey, gameTile);
+				mGameTiles.add(gameTile);
+				tileKey++;
+				// Increment next tile X (horizontal) position by tile width.
+				tileX += mTileWidth;
+			}
+
+			// Increment next tile Y (vertical) position by tile width.
+			tileY += mTileHeight;
+
+		}
+
+		updatingGameTiles = false;
+	}
 	/**
 	 * Sets the state for a new game.
 	 */
@@ -1303,6 +1635,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	private void startLevel()
 	{
 		parseGameLevelData();
+		setPlayerStart();
+
+		thread.unpause();
+	}
+
+	private void startPreLevel(Room room)
+	{
+		parsePreLevelData(room);
 		setPlayerStart();
 
 		thread.unpause();

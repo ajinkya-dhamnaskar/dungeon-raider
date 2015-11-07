@@ -26,6 +26,7 @@ import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static android.provider.BaseColumns._ID;
 
@@ -143,7 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     + "(2,\"Tile 02\"," + Constants.BlockType.BREAKABLEWALL.getValue() + "," + R.drawable.tile_breakable + ",1);",
 
             "INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-                    + "(3,\"Tile 03\"," + GameTile.TYPE_BOMB + "," + R.drawable.tile_bomb + ",1);",
+                    + "(3,\"Tile 03\"," + Constants.BlockType.BOMB.getValue() + "," + R.drawable.tile_bomb + ",1);",
 
             "INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
                     + "(4,\"Tile 04\"," + Constants.BlockType.FIRE.getValue() + "," + R.drawable.tile_fire + ",1);",
@@ -170,7 +171,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     + "(11,\"Weight Switch\"," + Constants.BlockType.WEIGHTSWITCH.getValue() + "," + R.drawable.tile_switch + ",1);",
 
             "INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
-                    + "(12,\"Dungeon Finish\"," + Constants.BlockType.DUNGEONFINISH.getValue() + "," + R.drawable.tile_dungeonfinish + ",1);"
+                    + "(12,\"Exit Tile\"," + Constants.BlockType.DOOROPEN.getValue() + "," + R.drawable.tile_dooropen + ",1);",
+            "INSERT INTO " + GameTileData.TABLE_NAME + " VALUES "
+                    + "(13,\"Dungeon Finish\"," + Constants.BlockType.DUNGEONFINISH.getValue() + "," + R.drawable.tile_dungeonfinish + ",1);"
     };
 
 
@@ -212,7 +215,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 6  */+ "01,01,01,01,01,00,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 7  */+ "01,01,01,01,01,00,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,01,01,01,01,00,01,01,01,01,01,00,00,00,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 9  */+ "06,00,00,07,00,00,00,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,07,00,00,00,01,01,01,01,00,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 10 */+ "01,01,01,01,01,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,01,01,01,01,00,01,01,01,01,01,09,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,01,01,01,01,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -238,10 +241,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 6  */+ "01,01,00,01,01,01,00,01,01,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 7  */+ "01,01,00,01,01,01,00,01,01,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,01,00,01,01,01,00,00,01,00,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 9  */+ "06,00,00,02,02,00,07,00,01,00,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,02,02,00,00,07,01,00,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 10 */+ "01,00,00,01,01,01,11,05,00,01,00,00,00,09,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 11 */+ "01,00,00,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 12 */+ "01,00,00,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 11 */+ "01,00,00,01,01,01,01,01,00,01,00,01,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 12 */+ "01,00,01,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,00,07,11,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 14 */+ "01,00,01,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 15 */+ "01,00,00,01,01,01,01,01,00,01,00,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -264,8 +267,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 7  */+ "01,00,01,11,01,11,07,11,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,00,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 9  */+ "06,00,00,04,04,04,04,04,04,00,00,05,00,05,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 10 */+ "01,00,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 11 */+ "01,00,00,01,11,00,11,01,11,02,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,00,01,01,01,01,01,01,01,01,01,01,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 11 */+ "01,00,00,01,11,01,11,01,11,02,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,00,07,00,00,07,00,01,02,07,07,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,00,00,00,00,00,00,00,00,00,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 14 */+ "01,03,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -287,7 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 7  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 9  */+ "06,00,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 10 */+ "01,01,00,00,00,00,00,00,00,00,12,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,01,00,00,00,00,00,00,00,00,13,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -310,7 +313,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 6  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 7  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 9  */+ "01,00,00,00,00,00,00,00,00,00,00,00,00,10,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,00,00,00,00,00,00,00,00,00,00,10,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 10 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -859,24 +862,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Player player = Player.getInstance();
 
-        List<Room> playerRoomList=new ArrayList<Room>();
+        Map<Integer, Room> playerRoomList;
 
         playerRoomList=player.getRoomList();
         if((playerRoomList != null) && !playerRoomList.isEmpty())
         {
-            for (Room room : playerRoomList) {
-                SQLiteStatement sqLiteStatement = db.compileStatement("select count(1) from PLAYER_ROOM where PLAYER_ID=" + player.getId() + " and ROOM_ID=" + room.getId() + ";");
+            for (Map.Entry<Integer, Room> entry : playerRoomList.entrySet()) {
+                SQLiteStatement sqLiteStatement = db.compileStatement("select count(1) from PLAYER_ROOM where PLAYER_ID=" + player.getId() + " and ROOM_ID=" + entry.getValue().getId() + ";");
 
                 long count = sqLiteStatement.simpleQueryForLong();
                 if (count == 1) {
                     //UPDATE
-                    String strSQLupdate = "UPDATE " + TABLE_PLAYER_ROOM + " SET playerStartTileX =" + room.getPlayerStartX() + ", playerStartTileY = " + room.getPlayerStartY() + ", PUZZLE_STRUCT=" + room.getPuzzleStruct() + ";";
+                    String strSQLupdate = "UPDATE " + TABLE_PLAYER_ROOM + " SET playerStartTileX = " + entry.getValue().getPlayerStartX() + ", playerStartTileY = " + entry.getValue().getPlayerStartY() + ", PUZZLE_STRUCT='" + entry.getValue().getPuzzleStruct() + "' where PLAYER_ID=" + player.getId() + " and ROOM_ID=" + entry.getValue().getId() +";";
                     db.execSQL(strSQLupdate);
                     Log.d(TAG, strSQLupdate);
+
+
+
                 } else {
-                    String strSQLinsert = "INSERT INTO " + TABLE_PLAYER_ROOM + " VALUES(" + player.getId() + "," + room.getId() + "," + room.getPlayerStartX() + "," + room.getPlayerStartY() + "," + room.getPuzzleStruct() + ");";
+                    String strSQLinsert = "INSERT INTO " + TABLE_PLAYER_ROOM + " VALUES(" + player.getId() + "," + entry.getValue().getId()
+                            + "," + entry.getValue().getPlayerStartX() + "," + entry.getValue().getPlayerStartY() + ",'" + entry.getValue().getPuzzleStruct() + "');";
                     db.execSQL(strSQLinsert);
                     Log.d(TAG, strSQLinsert);
+
                 }
             }
         }
