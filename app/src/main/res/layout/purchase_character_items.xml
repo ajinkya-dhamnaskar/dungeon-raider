@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="PURCHASE CHARACTER ITEMS"
-
+        android:layout_marginRight="30dp"
         android:id="@+id/txtdungeongold"
         android:textSize="30dp"
         android:textAlignment="center"
@@ -21,11 +21,13 @@
         android:layout_toEndOf="@+id/imageButton4" />
 
     <ImageButton
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/back_icon"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:onClick="backtostore"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
         android:textSize="30dp"
         android:textColor="#FF0000"
         android:id="@+id/btn_back"
@@ -100,6 +102,7 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="Your Gold :"
+
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"

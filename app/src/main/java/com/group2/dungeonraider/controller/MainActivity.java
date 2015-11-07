@@ -67,6 +67,7 @@ public class MainActivity extends Activity {
 
 
     public void quit(final View v) {
+        audio.play(getApplicationContext(), R.raw.btn_click);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 MainActivity.this);
 

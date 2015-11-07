@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.domain.Player;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
     private RadioGroup radioGroup;
     private RadioButton radioButton1,radioButton2;
     Player player = Player.getInstance();
+    Audio audio = new AudioImpl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +128,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
         {
             editor.putInt("volume", 1);
             editor.commit();
+            audio.play(getApplicationContext(), R.raw.btn_click);
             Toast.makeText(this, "Volume on", Toast.LENGTH_SHORT).show();
             Constants.VOLUME_MODE = 1;
         }

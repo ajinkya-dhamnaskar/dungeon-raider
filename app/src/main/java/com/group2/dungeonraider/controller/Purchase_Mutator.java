@@ -18,6 +18,8 @@ import com.group2.dungeonraider.data.DatabaseHelper;
 import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.domain.PlayerMutator;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class Purchase_Mutator extends Activity {
     DatabaseHelper db=new DatabaseHelper(Constants.appContext);
     List<Mutator> playerMutatorList= new ArrayList<Mutator>();
     Integer mutatorCost=0;
-
+    Audio audio = new AudioImpl();
 
 
 
@@ -278,6 +280,7 @@ public class Purchase_Mutator extends Activity {
         // current activity
 
         //start
+        audio.play(getApplicationContext(), R.raw.btn_click);
         final RadioGroup radiogroup;
         final int selectedId;
         final Player player = Player.getInstance();

@@ -1053,7 +1053,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		dialog.setContentView(R.layout.img_blueprint_dialog);
 
 		ImageView image = (ImageView)dialog.findViewById(R.id.image);
-		image.setImageDrawable(getResources().getDrawable(R.drawable.blueprint1));
+		image.setImageDrawable(getResources().getDrawable(R.drawable.blueprint));
 
 		//adding button click event
 		Button dismissButton = (Button) dialog.findViewById(R.id.button);

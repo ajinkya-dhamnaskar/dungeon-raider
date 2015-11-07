@@ -21,6 +21,8 @@ import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.domain.PlayerItem;
 import com.group2.dungeonraider.domain.PlayerView;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class NewGame extends Activity {
     List<Item> itemList = new ArrayList<Item>();
     List<Item> playerItemList = new ArrayList<Item>();
     List<Mutator> playerMutatorList= new ArrayList<Mutator>();
+    Audio audio = new AudioImpl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +56,7 @@ public class NewGame extends Activity {
     public void gotolevel(View v)
     {
         radioGroup = (RadioGroup) findViewById(R.id.radioGroupCharacter);
-
+        audio.play(getApplicationContext(), R.raw.btn_click);
         final String Name=NameEditText.getText().toString();
         if(Name.isEmpty())
         {

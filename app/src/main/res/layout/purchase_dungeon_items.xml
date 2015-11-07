@@ -14,13 +14,15 @@
         android:textAlignment="center"
         android:id="@+id/textview_purchase_items"
         android:textColor="#4C0000"
-        android:layout_marginTop="30dp"
         android:textStyle="bold|italic"
         android:textSize="30dp"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignTop="@+id/imageViewBackButton"
+        android:layout_alignBottom="@+id/imageButton5"
+        android:layout_toLeftOf="@+id/txtbombcost"
         android:layout_toRightOf="@+id/imageButton5"
-        android:layout_alignRight="@+id/txtbombcost"
-        android:layout_alignEnd="@+id/txtbombcost" />
+        android:layout_toEndOf="@+id/imageButton5" />
 
 
     <ImageButton
@@ -30,6 +32,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:onClick="backtostorescreen"
         android:textSize="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:id="@+id/imageViewBackButton"

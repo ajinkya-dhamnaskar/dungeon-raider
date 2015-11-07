@@ -7,20 +7,6 @@
     android:background="@drawable/back_norm"
     >
 
-    <ImageButton
-        android:id="@+id/btn_backstore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_icon"
-        android:backgroundTint="@android:color/transparent"
-        android:onClick="backtolevel"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView_goldvalue"
-        android:layout_toEndOf="@+id/textView_goldvalue" />
-
     <TextView
         android:id="@+id/textview_store"
         android:layout_width="wrap_content"
@@ -28,10 +14,10 @@
         android:text="ITEM SHOP"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#4C0000"
-        android:gravity="center"
         android:textSize="30dp"
+        android:layout_marginLeft="20dp"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/btn_backstore"
+        android:layout_above="@+id/btn_buy_mutator"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -53,70 +39,101 @@
     <Button
 
         android:id="@+id/btn_buy_mutator"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="purchase_character_items"
         android:backgroundTint="@android:color/transparent"
         android:text="Browse character mutators"
-        android:textSize="25dp"
+
+        android:textSize="20dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView_gold"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="63dp"
+        android:layout_toLeftOf="@+id/btn_view_equip_mutator"
+        android:layout_toStartOf="@+id/btn_view_equip_mutator" />
 
     <Button
         android:id="@+id/btn_buy_items"
         android:onClick="browsedungeonitems"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/btn_view_equip_mutator"
+        android:layout_alignLeft="@+id/textView_gold"
+        android:layout_alignStart="@+id/textView_gold"
+        android:layout_alignTop="@+id/btn_view_equip_mutator"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@android:color/transparent"
         android:text="Browse Dungeon Items"
         android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:layout_below="@+id/btn_view_equip_mutator"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textStyle="bold|italic" />
 
     <Button
         android:id="@+id/btn_view_equip_mutator"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="20dp"
+        android:layout_alignLeft="@+id/textview_store"
+        android:layout_alignStart="@+id/textview_store"
+        android:layout_alignTop="@+id/btn_buy_mutator"
         android:onClick="equip_character_items"
+        android:layout_toLeftOf="@+id/btn_buy_items"
+        android:layout_toStartOf="@+id/btn_buy_items"
         android:backgroundTint="@android:color/transparent"
         android:text="View &amp; Equip Purchased Items"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/btn_buy_mutator"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/btn_buy_mutator" />
 
     <TextView
         android:id="@+id/textView_goldvalue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+
+        android:layout_alignRight="@+id/btn_buy_items"
+        android:layout_alignEnd="@+id/btn_buy_items"
+        android:layout_above="@+id/btn_buy_mutator"
+        android:layout_toRightOf="@+id/textView_gold"
+        android:layout_toEndOf="@+id/textView_gold"
         android:textSize="20dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/btn_backstore"
-        android:layout_toRightOf="@+id/textView_gold"
-        android:layout_toEndOf="@+id/textView_gold" />
+        android:layout_alignTop="@+id/textView_gold" />
 
-    <ImageButton
+    <ImageView
         android:layout_width="180dp"
         android:layout_height="80dp"
-        android:id="@+id/imageButton10"
-        android:layout_margin="20dp"
+        android:id="@+id/imageView2"
         android:background="@drawable/logo_back"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/textview_store"
+        android:layout_toStartOf="@+id/textview_store"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/btn_buy_mutator" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/back_icon"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:onClick="backtolevel"
+        android:textSize="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/imageButton10"
+        android:foregroundTint="@android:color/black"
+        android:layout_above="@+id/textview_store"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
-
-
-</RelativeLayout>
+</RelativeLayout><!-- From: file:/D:/Ajinkya/dugeonraider/app/src/main/res/layout/activity_store.xml -->

@@ -6,11 +6,12 @@
     android:background="@drawable/back_norm">
 
     <ImageButton
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/back_icon"
         android:onClick="backtomain"
-
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
         android:backgroundTint="@android:color/transparent"
         android:id="@+id/btnClose"
         android:layout_alignParentTop="true"
@@ -67,7 +68,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="HELP"
-        android:textSize="38dp"
+        android:textSize="30dp"
         android:layout_marginLeft="20dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"

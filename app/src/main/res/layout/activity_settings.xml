@@ -14,7 +14,7 @@
         android:id="@+id/lbl_settings"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold|italic"
-        android:textSize="38dp"
+        android:textSize="30dp"
         android:textColor="#4C0000"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
@@ -89,12 +89,14 @@
         android:layout_alignEnd="@+id/switch_volume" />
 
         <ImageButton
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/back_icon"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:onClick="backtomaingame"
             android:textSize="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:textColor="#4C0000"
             android:textStyle="bold|italic"
             android:id="@+id/textView2"

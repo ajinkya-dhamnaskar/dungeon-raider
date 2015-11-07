@@ -16,6 +16,8 @@ import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.DatabaseHelper;
 import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class EquipMutator extends Activity {
     RadioGroup radioGroup;
     Integer mutatorCost=0;
     TextView goldview;
+    Audio audio = new AudioImpl();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -249,7 +252,7 @@ public class EquipMutator extends Activity {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 EquipMutator.this);
-
+        audio.play(getApplicationContext(), R.raw.btn_click);
         alertDialogBuilder.setTitle("Are you sure you want to equip the mutator?");
 
 

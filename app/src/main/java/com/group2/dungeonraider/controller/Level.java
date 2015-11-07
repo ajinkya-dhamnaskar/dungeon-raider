@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.data.Play;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 
 /**
@@ -24,6 +26,7 @@ public class Level  extends Activity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button btnDisplay;
+    Audio audio = new AudioImpl();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,7 @@ public class Level  extends Activity {
 
         radioGroup = (RadioGroup) findViewById(R.id.radioGrouplevel);
 
-
+        audio.play(getApplicationContext(), R.raw.btn_click);
         int selectedId = radioGroup.getCheckedRadioButtonId();
 
         if(selectedId==R.id.radiostore)
