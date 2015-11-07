@@ -23,23 +23,20 @@ Entry point
 
 public class MainActivity extends Activity {
 
-    Audio audio = new AudioImpl();
+    MediaPlayer stereo;
+    Audio audio  = new AudioImpl();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences preferences = getApplicationContext().getSharedPreferences("VOLUME", MODE_PRIVATE);
-        Constants.VOLUME_MODE = preferences.getInt("volume", 0);
-        Constants.THEME_MODE = preferences.getString("theme", "BLACK");
-        Constants.CHARACTER_SELECTED = preferences.getInt("character", 0);
-       
+
         Constants.appContext = getApplicationContext();
         setContentView(R.layout.activity_main);
 
-
-
-        audio.play(Constants.appContext, R.raw.game);
-        audio.setlooping();
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("DUNGEON", MODE_PRIVATE);
+        Constants.VOLUME_MODE = preferences.getInt("volume", 0);
+        Constants.THEME_MODE = preferences.getString("theme", "BLACK");
+        Constants.CHARACTER_SELECTED = preferences.getInt("character", 0);
     }
 
     public void setting(View v) {
@@ -57,31 +54,10 @@ public class MainActivity extends Activity {
     public void newgame(View v) {
         Intent i = new Intent(this, NewGame.class);
         audio.play(getApplicationContext(), R.raw.btn_click);
+        i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(i);
     }
 
-//    public void theme(View v)
-//    {
-//
-//        Spinner staticSpinner = (Spinner) findViewById(R.id.spn_theme);
-//
-//        // Create an ArrayAdapter using the string array and a default spinner
-//        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
-//                .createFromResource(this, R.array.theme_array,
-//                        android.R.layout.simple_spinner_item);
-//
-//        // Specify the layout to use when the list of choices appears
-//        staticAdapter
-//                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); xx
-//
-//        // Apply the adapter to the spinner
-//        staticSpinner.setAdapter(staticAdapter);
-//
-//
-//
-//
-//
-//        }
 
 
     public void quit(final View v) {
@@ -120,6 +96,15 @@ public class MainActivity extends Activity {
         alertDialog.show();
     }
 
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+
+        //Constants.DELAY_LAST_TIME = System.currentTimeMillis() - Constants.LAST_TIME;
+        //mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
+
+    }
     public void scorecard(View v) {
         Intent i = new Intent(this, ScoreCard.class);
         audio.play(getApplicationContext(), R.raw.btn_click);

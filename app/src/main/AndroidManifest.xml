@@ -35,6 +35,8 @@
         </activity>
         <activity android:name="com.group2.dungeonraider.controller.Purchase_Mutator" android:screenOrientation="landscape" android:label="EquipMutator ">
         </activity>
+        <activity android:name="com.group2.dungeonraider.controller.EndLevel" android:screenOrientation="landscape" android:label="EndLevel ">
+        </activity>
 
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

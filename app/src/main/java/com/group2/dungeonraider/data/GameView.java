@@ -1,10 +1,7 @@
 package com.group2.dungeonraider.data;
 
-import android.app.AlertDialog;
-import android.app.Application;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,42 +10,30 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 
 import com.group2.dungeonraider.R;
-import com.group2.dungeonraider.controller.Level;
+import com.group2.dungeonraider.controller.EndLevel;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.TimeZone;
 
 /**
  * The game view and main game thread.
@@ -628,6 +613,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					case GameTile.TYPE_BREAKABLEWALL:
 						handleBreakableTileCollision(gameTile);
 						break;
+					case GameTile.TYPE_DUNGEONFINISH:
+						handleDungeonEndTileCollision(gameTile);
+						break;
 
 					default:
 						mLastStatusMessage = "Collision with regular tile";
@@ -696,6 +684,38 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			mLastStatusMessage = "Collision with breakable tile";
 			mVertDir = mPlayerVerticalDirection;
 			mHorDir = mPlayerHorizontalDirection;
+		}
+
+		private void handleDungeonEndTileCollision(GameTile gameTile)
+		{
+
+			Intent i=new Intent(Constants.appContext, EndLevel.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+			Constants.appContext.startActivity(i);
+			gameTile.setType(Constants.BlockType.EMPTY.getValue());
+
+
+			Player.getInstance().setItemCount(Constants.ITEM_POTION, Constants.GAME_NO_OF_POTIONS);
+			Player.getInstance().setItemCount(Constants.ITEM_MAP, Constants.GAME_NO_OF_MAP);
+			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
+			Player.getInstance().setItemCount(Constants.ITEM_KEY, Constants.GAME_NO_OF_KEYS);
+			Player.getInstance().setGold(Constants.PLAYER_GOLD);
+
+			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
+				Constants.PLAYER_SCORE += ((mDesiredTime*1000 - Constants.LAST_TIME)*7/1000);
+			}
+			Player.getInstance().setTime(Player.getInstance().getTime() + (int) Constants.LAST_TIME / 1000);
+			Player.getInstance().setScore(Constants.PLAYER_SCORE);
+			db.saveProfile();
+
+
+
+
+
+
+
+
 		}
 
 		/**
@@ -1033,7 +1053,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		dialog.setContentView(R.layout.img_blueprint_dialog);
 
 		ImageView image = (ImageView)dialog.findViewById(R.id.image);
-		image.setImageDrawable(getResources().getDrawable(R.drawable.blueprint));
+		image.setImageDrawable(getResources().getDrawable(R.drawable.blueprint1));
 
 		//adding button click event
 		Button dismissButton = (Button) dialog.findViewById(R.id.button);

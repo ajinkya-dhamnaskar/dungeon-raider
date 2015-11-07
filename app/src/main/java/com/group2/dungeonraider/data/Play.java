@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
@@ -14,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.controller.Help;
@@ -37,20 +39,34 @@ public class Play extends Activity
 
 	private DisplayMetrics mMetrics = new DisplayMetrics();
 	private float mScreenDensity;
-	Audio audio = new AudioImpl();
 
+	Audio audio = new AudioImpl();
+	MediaPlayer stereo= null;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+
+
 		super.onCreate(savedInstanceState);
 		
 		Context mContext = getApplicationContext();
 		Constants.appContext = getApplicationContext();
 
+		if(Constants.VOLUME_MODE == 1) {
+
+			if(stereo!=null)
+			{
+				stereo.reset();
+				stereo.release();
+			}
+
+			stereo = MediaPlayer.create(Constants.appContext, R.raw.game);
+			stereo.start();
+			stereo.setLooping(true);
+		}
 	//	audio.play(Constants.appContext, R.raw.game);
 	//	audio.setloop(Constants.appContext, R.raw.game);
-
-		/**
+				/**
 		 * Get the screen density that all pixel values will be based on.
 		 * This allows scaling of pixel values over different screen sizes.
 		 * 
@@ -85,61 +101,81 @@ public class Play extends Activity
 	{
 		super.onCreateOptionsMenu(menu);
 		MenuInflater inflater = getMenuInflater();
-	//	inflater.inflate(R.id.btn_buy_bombs, menu);
+
 		
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		Intent i = null;
-		
-		switch (item.getItemId())
-
-		{
-			case R.id.btnHowToPlay:
-				i = new Intent(this, Help.class);
-    			startActivity(i);
-				return true;
-			case R.id.btnClose:
-				finish();
-				return true;
-		}
-
-		return false;
-	}
+//	@Override
+//	public boolean onOptionsItemSelected(MenuItem item)
+//	{
+//		Intent i = null;
+//
+//		switch (item.getItemId())
+//
+//		{
+//			case R.id.btnHowToPlay:
+//				i = new Intent(this, Help.class);
+//    			startActivity(i);
+//				return true;
+//			case R.id.btnClose:
+//				finish();
+//				return true;
+//		}
+//
+//		return false;
+//	}
 	
 	/**
 	 * Invoked when the Activity loses user focus.
 	 */
-	@Override
-	protected void onPause()
-	{
-		super.onPause();
-	//	audio.stop(Constants.appContext, R.raw.game);
 
-		//Constants.DELAY_LAST_TIME = System.currentTimeMillis() - Constants.LAST_TIME;
-		//mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
-
-	}
 
 	@Override
 	public void onResume() {
+
 		super.onResume();
+		if(Constants.VOLUME_MODE == 1) {
+
+			if(stereo!=null)
+			{
+				stereo.reset();
+				stereo.release();
+
+			}
+			stereo = MediaPlayer.create(Constants.appContext, R.raw.game);
+			stereo.start();
+			stereo.setLooping(true);
 
 
-		//mGameView.getThread().setState(GameView.STATE_RUNNING);
+		}
+
 	}
 
 	@Override
+	protected void onPause() {
+
+		super.onPause();
+		if(Constants.VOLUME_MODE ==1) {
+			stereo.stop();
+		}
+
+	}
+	@Override
 	public void onBackPressed() {
-	//	audio.stop(Constants.appContext, R.raw.game);
-		Log.d("Play", "onBackPressed Called");
+		super.onBackPressed();
+
+		if(Constants.VOLUME_MODE ==1) {
+			stereo.stop();
+			//Toast.makeText(this, "volume play", Toast.LENGTH_SHORT).show();
+		}
+
 
 		Play.this.finish();
 
 
 	}
 
-}
+
+	}
+

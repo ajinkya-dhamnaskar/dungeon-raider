@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="2dp"
-    android:paddingRight="2dp"
-    android:paddingTop="2dp"
-    android:paddingBottom="2dp"
+
     android:background="@drawable/back_norm">
     <TextView
         android:layout_width="wrap_content"
@@ -18,8 +15,8 @@
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:layout_below="@+id/btn_back"
-        android:layout_toRightOf="@+id/imageButton3"
-        android:layout_toEndOf="@+id/imageButton3" />
+        android:layout_toRightOf="@+id/imgview_mutator"
+        android:layout_toEndOf="@+id/imgview_mutator" />
 
     <ImageButton
         android:layout_width="32dp"
@@ -66,6 +63,11 @@
         android:layout_marginLeft="30dp"
         android:layout_alignRight="@+id/btn_back"
         android:layout_alignEnd="@+id/btn_back"
+        android:buttonTint="@color/dungeon"
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:checked="false"
+        android:textColor="#4C0000"
         android:layout_toRightOf="@+id/imgview_mutator"
         android:id="@+id/radio_selection_group"
         android:layout_alignTop="@+id/imgview_mutator"
@@ -74,17 +76,6 @@
 
     </RadioGroup>
 
-
-
-
-    <ImageButton
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:id="@+id/imageButton3"
-        android:background="@drawable/logo_eye"
-        android:layout_below="@+id/txtequipgold"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -95,11 +86,23 @@
         android:backgroundTint="@android:color/transparent"
         android:onClick="equipmutator"
         android:textSize="25dp"
+        android:layout_margin="10dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/radio_selection_group"
-        android:layout_toStartOf="@+id/radio_selection_group" />
+        android:layout_alignLeft="@+id/radio_selection_group"
+        android:layout_alignStart="@+id/radio_selection_group" />
+
+    <ImageButton
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageButton11"
+        android:background="@drawable/logo_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_alignTop="@+id/btn_back"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

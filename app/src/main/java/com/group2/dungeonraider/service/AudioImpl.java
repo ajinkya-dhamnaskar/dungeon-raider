@@ -20,6 +20,8 @@ public class AudioImpl extends Activity implements Audio {
 
     @Override
     public boolean mute() {
+
+
         Log.d(LOG, "mute() -> Mute game.");
         return false;
 
@@ -34,6 +36,7 @@ public class AudioImpl extends Activity implements Audio {
     public boolean play(Context context, int resId) {
         Constants.MP.setAudioStreamType(AudioManager.STREAM_MUSIC);
         if(Constants.VOLUME_MODE == 1) {
+
             Constants.MP.create(context, resId).start();
 
         }

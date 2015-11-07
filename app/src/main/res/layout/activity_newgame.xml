@@ -19,7 +19,7 @@
         android:layout_centerVertical="true"
         android:cursorVisible="true"
         android:outlineProvider="none"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:editable="true"
         android:longClickable="true"
         android:height="75dp"
@@ -70,19 +70,6 @@
         android:layout_alignRight="@+id/txt_entername"
         android:layout_alignEnd="@+id/txt_entername" />
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="15dp"
-        android:id="@+id/imageButton"
-
-        android:background="@drawable/logo_eye"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/txt_entername"
-        android:layout_alignStart="@+id/txt_entername"
-        android:layout_above="@+id/txt_entername"
-        android:layout_toLeftOf="@+id/radioGroupCharacter"
-        android:layout_toStartOf="@+id/radioGroupCharacter" />
-
     <ImageButton
         android:layout_width="32dp"
         android:layout_height="32dp"
@@ -117,16 +104,17 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/radioGroupCharacter"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_toRightOf="@+id/imageView"
         android:layout_toEndOf="@+id/imageView"
-        android:layout_below="@+id/imageButton"
         android:layout_alignParentBottom="true">
 
 
         <RadioButton
             android:layout_width="wrap_content"
             android:drawableRight="@drawable/bbpwa"
-            android:layout_height="204dp"
+            android:layout_height="wrap_content"
             android:id="@+id/radioCharacter1"
             android:checked="false"
             android:buttonTint="@color/dungeon"
@@ -146,5 +134,14 @@
             android:layout_alignParentBottom="true"
             />
     </RadioGroup>
+
+    <ImageButton
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton9"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/logo_back"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

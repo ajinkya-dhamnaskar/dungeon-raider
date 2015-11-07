@@ -5,10 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_norm"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    >
+
+    <ImageButton
+        android:id="@+id/btn_backstore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back_icon"
+        android:backgroundTint="@android:color/transparent"
+        android:onClick="backtolevel"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView_goldvalue"
+        android:layout_toEndOf="@+id/textView_goldvalue" />
 
     <TextView
         android:id="@+id/textview_store"
@@ -17,9 +28,10 @@
         android:text="ITEM SHOP"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#4C0000"
+        android:gravity="center"
         android:textSize="30dp"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/textView_gold"
+        android:layout_below="@+id/btn_backstore"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -38,94 +50,73 @@
         android:textColor="#4C0000"
         android:textStyle="bold|italic" />
 
-    <ImageButton
-        android:id="@+id/btn_backstore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/back_icon"
-        android:backgroundTint="@android:color/transparent"
-        android:onClick="backtolevel"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#4C0000"
-        android:textStyle="bold|italic"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <Button
 
         android:id="@+id/btn_buy_mutator"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="purchase_character_items"
         android:backgroundTint="@android:color/transparent"
         android:text="Browse character mutators"
+        android:textSize="25dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/textView_gold"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="63dp"
-        android:layout_toLeftOf="@+id/btn_view_equip_mutator"
-        android:layout_toStartOf="@+id/btn_view_equip_mutator" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btn_buy_items"
         android:onClick="browsedungeonitems"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btn_view_equip_mutator"
-        android:layout_alignEnd="@+id/btn_backstore"
-        android:layout_alignLeft="@+id/textView_gold"
-        android:layout_alignRight="@+id/btn_backstore"
-        android:layout_alignStart="@+id/textView_gold"
-        android:layout_alignTop="@+id/btn_view_equip_mutator"
-        android:layout_centerHorizontal="true"
+        android:textSize="25dp"
         android:backgroundTint="@android:color/transparent"
         android:text="Browse Dungeon Items"
         android:textColor="#4C0000"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/btn_view_equip_mutator"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:id="@+id/btn_view_equip_mutator"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/btn_buy_mutator"
-        android:layout_alignLeft="@+id/textview_store"
-        android:layout_alignStart="@+id/textview_store"
-        android:layout_alignTop="@+id/btn_buy_mutator"
+        android:textSize="25dp"
         android:onClick="equip_character_items"
-        android:layout_toLeftOf="@+id/btn_buy_items"
-        android:layout_toStartOf="@+id/btn_buy_items"
         android:backgroundTint="@android:color/transparent"
         android:text="View &amp; Equip Purchased Items"
         android:textColor="#4C0000"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/btn_buy_mutator"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/textView_goldvalue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textview_store"
-        android:layout_toEndOf="@+id/textView_gold"
-        android:layout_toRightOf="@+id/textView_gold"
-        android:text=""
+        android:layout_marginLeft="8dp"
         android:textSize="20dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#4C0000"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        android:layout_below="@+id/btn_backstore"
+        android:layout_toRightOf="@+id/textView_gold"
+        android:layout_toEndOf="@+id/textView_gold" />
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:background="@drawable/logo_eye"
+    <ImageButton
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageButton10"
+        android:layout_margin="20dp"
+        android:background="@drawable/logo_back"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/textview_store"
-        android:layout_toStartOf="@+id/textview_store"
-        android:layout_above="@+id/textview_store"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentStart="true" />
+
+
 
 
 </RelativeLayout>

@@ -7,7 +7,7 @@
         android:id="@+id/image"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:src="@drawable/blueprint" />
+        android:src="@drawable/blueprint1" />
 
     <Button
         android:layout_width="wrap_content"

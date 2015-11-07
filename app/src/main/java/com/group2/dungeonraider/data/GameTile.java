@@ -33,6 +33,7 @@ public class GameTile extends GameImage
 	public static final int TYPE_EXITSOLVE = 13;
 	public static final int TYPE_FINISH = 14;
 	public static final int TYPE_COIN = 15;
+	public static final int TYPE_DUNGEONFINISH = 16;
 	
 	private int mKey = 0;
 	private int mType = TYPE_EMPTY;
