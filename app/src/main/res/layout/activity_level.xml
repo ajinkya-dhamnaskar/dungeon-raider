@@ -16,7 +16,7 @@
         android:textSize="25dp"
         android:textStyle="bold|italic"
         android:backgroundTint="@android:color/transparent"
-        android:layout_alignBottom="@+id/radioGrouplevel"
+        android:layout_below="@+id/radioGrouplevel"
         android:layout_toLeftOf="@+id/textView"
         android:layout_toStartOf="@+id/textView" />
 
@@ -28,20 +28,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/textview_store"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="LEVEL"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#4C0000"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:textStyle="bold|italic"
-            android:layout_below="@+id/btn_backstore"
-            android:layout_centerHorizontal="true" />
-
-    <RadioButton
+        <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lvl_tutorial"
@@ -54,9 +41,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/btn_back"
         android:layout_alignEnd="@+id/btn_back"
-        android:layout_marginTop="94dp" />
+        android:layout_marginTop="30dp" />
 
-    <RadioButton
+        <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lvl_medium"
@@ -137,5 +124,18 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textview_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LEVEL"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#4C0000"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textStyle="bold|italic"
+        android:layout_above="@+id/radioGrouplevel"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
