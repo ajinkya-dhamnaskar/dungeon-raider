@@ -11,11 +11,17 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.group2.dungeonraider.R;
+import com.group2.dungeonraider.data.Play;
+import com.group2.dungeonraider.domain.Player;
+import com.group2.dungeonraider.domain.Room;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
+
+import java.util.List;
 
 /*
 Entry point
@@ -109,6 +115,19 @@ public class MainActivity extends Activity {
         Intent i = new Intent(this, ScoreCard.class);
         audio.play(getApplicationContext(), R.raw.btn_click);
         startActivity(i);
+    }
+
+    public void resume(View V)
+    {
+        Player p = Player.getInstance();
+        List<Room> lstRoom = p.getRoomList();
+        if(lstRoom.isEmpty())
+            Toast.makeText(this, "There is no saved game to resume", Toast.LENGTH_SHORT).show();
+        else
+        {
+           Intent i = new Intent(this, Play.class);
+           startActivity(i);
+        }
     }
 }
 

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +37,11 @@ public class PurchaseDungeonItems extends Activity {
     TextView textViewPotion;
     TextView textViewBombs;
     TextView textCosts;
+    ImageButton btn;
     int potionCount = p.getItemCount(Constants.ITEM_POTION);
     int keyCount = p.getItemCount(Constants.ITEM_KEY);
     int bombsCount = p.getItemCount(Constants.ITEM_BOMB);
-
+    int mapCount = p.getItemCount(Constants.ITEM_MAP);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,27 +63,31 @@ public class PurchaseDungeonItems extends Activity {
         textCosts.setText(Integer.toString(Constants.ITEM_BOMB_VALUE) + Constants.DOLLAR);
         textViewKeys.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtkeycost);
-        textCosts.setText(Integer.toString(Constants.ITEM_KEY_VALUE)+Constants.DOLLAR);
+        textCosts.setText(Integer.toString(Constants.ITEM_KEY_VALUE) + Constants.DOLLAR);
         textViewKeys.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtpotioncost);
-        textCosts.setText(Integer.toString(Constants.ITEM_POTION_VALUE)+Constants.DOLLAR);
+        textCosts.setText(Integer.toString(Constants.ITEM_POTION_VALUE) + Constants.DOLLAR);
         textViewKeys.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtmapcost);
-        textCosts.setText(Integer.toString(Constants.ITEM_MAP_VALUE)+Constants.DOLLAR);
+        textCosts.setText(Integer.toString(Constants.ITEM_MAP_VALUE) + Constants.DOLLAR);
         textViewKeys.setGravity(Gravity.CENTER);
-
-
     }
 
     public void buydungeonmap(View v) {
         Log.d("PurchaseDungeonItems", "buydungeonmap called");
-        if (p.getGold() >= mapCost) {
+        if(p.getItemCount(Constants.ITEM_MAP) >= 1)
+            Toast.makeText(this,"You already have an identical map !! Cannot buy another.",Toast.LENGTH_SHORT).show();
+        else if (p.getGold() >= mapCost) {
             p.setGold(p.getGold() - mapCost);
+            p.setItemCount(Constants.ITEM_MAP, p.getItemCount(Constants.ITEM_MAP) + 1);
             databaseHelper.updatePlayerGoldValue(p);
+            databaseHelper.updatePlayerItemCount(Constants.ITEM_MAP, getItemId(Constants.ITEM_MAP));
             TextView textView = (TextView) findViewById(R.id.textView_goldvalue);
             textView.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
+            btn = (ImageButton) findViewById(R.id.imgBtnMap);
+           // btn.setEnabled(false);
         } else {
-            Toast.makeText(this, "Not enough gold to purchase map", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Not enough gold to purchase map", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -97,7 +104,7 @@ public class PurchaseDungeonItems extends Activity {
             textViewKeys = (TextView) findViewById(R.id.textViewKeysOwned);
             textViewKeys.setText(Constants.OWNED+Integer.toString(p.getItemCount(Constants.ITEM_KEY)));
         } else {
-            Toast.makeText(this, "Not enough gold to purchase key", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Not enough gold to purchase key", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -113,7 +120,7 @@ public class PurchaseDungeonItems extends Activity {
             textViewPotion = (TextView) findViewById(R.id.textViewPotionsOwned);
             textViewPotion.setText(Constants.OWNED+Integer.toString(p.getItemCount(Constants.ITEM_POTION)));
         } else {
-            Toast.makeText(this, "Not enough gold to purchase potion", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Not enough gold to purchase potion", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -129,7 +136,7 @@ public class PurchaseDungeonItems extends Activity {
             textViewBombs = (TextView) findViewById(R.id.textViewBombsOwned);
             textViewBombs.setText(Constants.OWNED+Integer.toString(p.getItemCount(Constants.ITEM_BOMB)));
         } else {
-            Toast.makeText(this, "Not enough gold to purchase bomb", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Not enough gold to purchase bomb", Toast.LENGTH_SHORT).show();
         }
 
     }

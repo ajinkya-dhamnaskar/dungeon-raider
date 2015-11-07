@@ -57,7 +57,7 @@ public class NewGame extends Activity {
         final String Name=NameEditText.getText().toString();
         if(Name.isEmpty())
         {
-            Toast.makeText(this,"Please enter valid Player Name to proceed", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Please enter valid Player Name to proceed", Toast.LENGTH_SHORT).show();
         }
         else {
 
@@ -135,9 +135,9 @@ public class NewGame extends Activity {
 
 
                     if (returnValue == -1) {
-                        Toast.makeText(this, "Player Already Exists", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Player Already Exists", Toast.LENGTH_SHORT).show();
                     } else if (returnValue == -2 || returnValue == -3) {
-                        Toast.makeText(this, "Error occurred while creating player", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Error occurred while creating player", Toast.LENGTH_SHORT).show();
                     } else {
                         player =  db.loadProfile(Name);
                         itemList=db.getAllItems();
