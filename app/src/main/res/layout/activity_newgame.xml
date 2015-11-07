@@ -129,7 +129,7 @@
             android:layout_height="204dp"
             android:id="@+id/radioCharacter1"
             android:checked="false"
-
+            android:buttonTint="@color/dungeon"
             android:layout_above="@+id/imageView"
             android:layout_toRightOf="@+id/txt_character"
             android:layout_below="@+id/imageButton" />
@@ -140,6 +140,7 @@
             android:layout_height="match_parent"
             android:id="@+id/radioCharacter2"
             android:checked="false"
+            android:buttonTint="@color/dungeon"
             android:layout_toRightOf="@+id/radioCharacter1"
             android:layout_below="@+id/imageButton"
             android:layout_alignParentBottom="true"

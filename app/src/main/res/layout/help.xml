@@ -23,7 +23,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hp_how_to_play"
+        android:text="@string/help_how_to_play"
         android:onClick="howtoplay"
         android:id="@+id/btnHowToPlay"
         android:textSize="30dp"
@@ -37,7 +37,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hp_tips"
+        android:text="@string/help_tips"
         android:onClick="tips"
         android:id="@+id/btnTips"
         android:textSize="30dp"
@@ -51,7 +51,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hp_about_the_game"
+        android:text="@string/help_about_the_game"
         android:onClick="aboutthegame"
         android:id="@+id/btnAboutTheGame"
         android:textSize="30dp"

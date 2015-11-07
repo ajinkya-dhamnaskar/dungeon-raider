@@ -34,6 +34,7 @@ public class PurchaseDungeonItems extends Activity {
     TextView textViewKeys;
     TextView textViewPotion;
     TextView textViewBombs;
+    TextView textCosts;
     int potionCount = p.getItemCount(Constants.ITEM_POTION);
     int keyCount = p.getItemCount(Constants.ITEM_KEY);
     int bombsCount = p.getItemCount(Constants.ITEM_BOMB);
@@ -45,7 +46,7 @@ public class PurchaseDungeonItems extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.purchase_dungeon_items);
         textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-        textViewGold.setText(Integer.toString(p.getGold()));
+        textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
         textViewKeys = (TextView) findViewById(R.id.textViewKeysOwned);
         textViewKeys.setText(Integer.toString(keyCount));
         textViewKeys.setGravity(Gravity.CENTER);
@@ -55,6 +56,19 @@ public class PurchaseDungeonItems extends Activity {
         textViewBombs = (TextView) findViewById(R.id.textViewBombsOwned);
         textViewBombs.setText(Integer.toString(bombsCount));
         textViewBombs.setGravity(Gravity.CENTER);
+        textCosts = (TextView) findViewById(R.id.txtbombcost);
+        textCosts.setText(Integer.toString(Constants.ITEM_BOMB_VALUE) + Constants.DOLLAR);
+        textViewKeys.setGravity(Gravity.CENTER);
+        textCosts = (TextView) findViewById(R.id.txtkeycost);
+        textCosts.setText(Integer.toString(Constants.ITEM_KEY_VALUE)+Constants.DOLLAR);
+        textViewKeys.setGravity(Gravity.CENTER);
+        textCosts = (TextView) findViewById(R.id.txtpotioncost);
+        textCosts.setText(Integer.toString(Constants.ITEM_POTION_VALUE)+Constants.DOLLAR);
+        textViewKeys.setGravity(Gravity.CENTER);
+        textCosts = (TextView) findViewById(R.id.txtmapcost);
+        textCosts.setText(Integer.toString(Constants.ITEM_MAP_VALUE)+Constants.DOLLAR);
+        textViewKeys.setGravity(Gravity.CENTER);
+
 
     }
 
@@ -64,7 +78,7 @@ public class PurchaseDungeonItems extends Activity {
             p.setGold(p.getGold() - mapCost);
             databaseHelper.updatePlayerGoldValue(p);
             TextView textView = (TextView) findViewById(R.id.textView_goldvalue);
-            textView.setText(Integer.toString(p.getGold()));
+            textView.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
         } else {
             Toast.makeText(this, "Not enough gold to purchase map", Toast.LENGTH_LONG).show();
         }
@@ -79,9 +93,9 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_KEY,getItemId(Constants.ITEM_KEY));
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-            textViewGold.setText(Integer.toString(p.getGold()));
+            textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
             textViewKeys = (TextView) findViewById(R.id.textViewKeysOwned);
-            textViewKeys.setText(Integer.toString(p.getItemCount(Constants.ITEM_KEY)));
+            textViewKeys.setText(Constants.OWNED+Integer.toString(p.getItemCount(Constants.ITEM_KEY)));
         } else {
             Toast.makeText(this, "Not enough gold to purchase key", Toast.LENGTH_LONG).show();
         }
@@ -95,9 +109,9 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_POTION,getItemId(Constants.ITEM_POTION));
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-            textViewGold.setText(Integer.toString(p.getGold()));
+            textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
             textViewPotion = (TextView) findViewById(R.id.textViewPotionsOwned);
-            textViewPotion.setText(Integer.toString(p.getItemCount(Constants.ITEM_POTION)));
+            textViewPotion.setText(Constants.OWNED+Integer.toString(p.getItemCount(Constants.ITEM_POTION)));
         } else {
             Toast.makeText(this, "Not enough gold to purchase potion", Toast.LENGTH_LONG).show();
         }
@@ -111,9 +125,9 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_BOMB, getItemId(Constants.ITEM_BOMB));
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-            textViewGold.setText(Integer.toString(p.getGold()));
+            textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
             textViewBombs = (TextView) findViewById(R.id.textViewBombsOwned);
-            textViewBombs.setText(Integer.toString(p.getItemCount(Constants.ITEM_BOMB)));
+            textViewBombs.setText(Constants.OWNED+Integer.toString(p.getItemCount(Constants.ITEM_BOMB)));
         } else {
             Toast.makeText(this, "Not enough gold to purchase bomb", Toast.LENGTH_LONG).show();
         }

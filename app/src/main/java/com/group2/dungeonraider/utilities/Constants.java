@@ -25,11 +25,11 @@ public class Constants {
     public static String ITEM_KEY="KEY";
     public static String ITEM_BOMB="BOMB";
     public static String ITEM_MAP="MAP";
-    public static int ITEM_POTION_VALUE=100;
-    public static int ITEM_BOMB_VALUE=400;
-    public static int ITEM_MAP_VALUE=500;
-    public static int ITEM_KEY_VALUE=1200;
-    public static int INITIAL_GOLD=1000;
+    public static int ITEM_POTION_VALUE=10;
+    public static int ITEM_BOMB_VALUE=30;
+    public static int ITEM_MAP_VALUE=40;
+    public static int ITEM_KEY_VALUE=50;
+    public static int INITIAL_GOLD=100;
 
     public static int CHEST_PRIZE=100;
 
@@ -47,6 +47,8 @@ public class Constants {
     public static String COLOR_YELLOW="YELLOW";
     public static String COLOR_PINK="PINK";
     public static String COLOR_BROWN="BROWN";
+    public static String DOLLAR="$";
+    public static String OWNED="Owned : ";
 
 
     public static String PLAYER_A="bbpwa";

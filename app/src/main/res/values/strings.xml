@@ -42,9 +42,6 @@
     <!-- Scoreboard End-->
 
     <!-- Help start-->
-    <string name="hp_how_to_play">HOW TO PLAY</string>
-    <string name="hp_tips">TIPS</string>
-    <string name="hp_about_the_game">ABOUT THE GAME</string>
     <string name="hp_help">HELP</string>
     <!-- Help End-->
 
@@ -63,7 +60,7 @@
     <string name="help_how_to_play">How to play</string>
     <string name="help_how_to_play_details">"The player needs to solve every dungeon room in order to solve the entire level.\n\nThe dungeon room has many blocks of different types.\n\nThere are some sliding blocks which the player has to move to make his way through the dungeon.\n\nThe player has to collect all keys in order to open the doors for the next puzzle rooms. Use the joystick on-screen to move your player in the desired direction."</string>
     <string name="help_tips">Tips</string>
-    <string name="help_tips_details">"Try to solve the dungeon room in least number of steps and also in least amount of time to get most number of gold coins.\n\nUse the bombs to break the breakable walls. There might be treasure chest or keys behind the breakable wall.\n\nUse your potions to slow down the timer to reduce the time required to solve he dungeon room. This can earn you more gold."</string>
+    <string name="help_tips_details">"Try to solve the dungeon room in least number of steps and also in least amount of time to get most number of gold coins.\n\nUse the bombs to break the breakable walls. There might be treasure chest or keys behind the breakable wall.\n\nUse your potions to slow down the timer to reduce the time required to solve the dungeon room. This can earn you more gold.\n\nUse sliding blocks to open doors and extinguishing fire by placing them on floor switches."</string>
     <string name="help_about_the_game">About the game</string>
     <string name="help_about_the_game_details">"VERSION: 1.0 \n\nDEVELOPED BY:\nAURA Gaming Inc.\n\nINFO &amp; SUPPORT:\nSE GROUP 2"</string>
     <!--Help end -->
