@@ -3,6 +3,7 @@ package com.group2.dungeonraider.controller;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,7 +59,9 @@ public class ScoreCard extends Activity{
         TextView playerTV = new TextView(this);
         playerTV.setText("Player Name");
 
-        playerTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            playerTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        }
         playerTV.setTextSize((float) 28.0);
         playerTV.setTextColor(Color.parseColor("#4C0000"));
         playerTV.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
@@ -70,7 +73,9 @@ public class ScoreCard extends Activity{
         TextView lootTV = new TextView(this);
         lootTV.setText(" Loot Value");
         lootTV.setTextSize((float) 28.0);
-        lootTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            lootTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        }
         lootTV.setTextColor(Color.parseColor("#4C0000"));
         lootTV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
         lootTV.setPadding(5, 5, 5, 0);
@@ -79,7 +84,9 @@ public class ScoreCard extends Activity{
 
         TextView timeTV = new TextView(this);
         timeTV.setText(" Time Taken");
-        timeTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            timeTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        }
         timeTV.setTextSize((float) 28.0);
         timeTV.setTextColor(Color.parseColor("#4C0000"));;
         timeTV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -114,7 +121,9 @@ public class ScoreCard extends Activity{
                 playerTV = new TextView(this);
                 playerTV.setText(p.getName());
                 playerTV.setTextSize((float) 22.0);
-                playerTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    playerTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                }
                 playerTV.setTextColor(Color.BLACK);
                 playerTV.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
                 playerTV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -125,7 +134,9 @@ public class ScoreCard extends Activity{
                 lootTV = new TextView(this);
                 lootTV.setText(String.valueOf(p.getScore()));
                 lootTV.setTextColor(Color.BLACK);
-                lootTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    lootTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                }
                 lootTV.setTextSize((float) 22.0);
                 lootTV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                 lootTV.setPadding(5, 5, 5, 5);
@@ -136,7 +147,9 @@ public class ScoreCard extends Activity{
                 timeTV = new TextView(this);
                 timeTV.setText(String.valueOf(p.getTime()));
                 timeTV.setTextColor(Color.BLACK);
-                timeTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    timeTV.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                }
                 timeTV.setTextSize((float) 22.0);
                 timeTV.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                 timeTV.setPadding(5, 5, 5, 5);

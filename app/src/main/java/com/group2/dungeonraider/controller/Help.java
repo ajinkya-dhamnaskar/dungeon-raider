@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,15 +26,18 @@ public class Help extends Activity {
 
     Audio audio  = new AudioImpl();
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Help", "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help);
     }
 
     public void backtomain(View v) {
+        Log.d("Help", "backtomain called");
         Help.this.finish();
     }
 
     public void howtoplay(View v) {
+        Log.d("Help", "howtoplay called");
         String alertTitle = getResources().getString(R.string.help_how_to_play);
         ;
         String alertMessage = getResources().getString(R.string.help_how_to_play_details);
@@ -42,6 +46,7 @@ public class Help extends Activity {
     }
 
     public void tips(View view) {
+        Log.d("Help", "tips called");
         String alertTitle = getResources().getString(R.string.help_tips);
         String alertMessage = getResources().getString(R.string.help_tips_details);
         displayAlert(alertTitle, alertMessage, false);
@@ -49,6 +54,7 @@ public class Help extends Activity {
     }
 
     public void aboutthegame(View view) {
+        Log.d("Help", "aboutthegame called");
         final String alertTitle = getResources().getString(R.string.help_about_the_game);
         final String alertMessage = getResources().getString(R.string.help_about_the_game_details);
         displayAlert(alertTitle, alertMessage, true);
@@ -57,6 +63,7 @@ public class Help extends Activity {
 
     public void displayAlert(String alertTitle, String alertMessage, boolean centerAligned)
     {
+        Log.d("Help", "displayAlert called");
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(alertTitle);
         builder.setMessage(alertMessage);

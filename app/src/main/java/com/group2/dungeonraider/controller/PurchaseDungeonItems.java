@@ -30,28 +30,45 @@ public class PurchaseDungeonItems extends Activity {
     Audio audio  = new AudioImpl();
     Player p = Player.getInstance();
     List<Item> lstItem = databaseHelper.getAllItems();
-    int mapCost = Constants.ITEM_MAP_VALUE;
-    int keyCost = Constants.ITEM_KEY_VALUE;
-    int bombCost = Constants.ITEM_BOMB_VALUE;
-    int potionCost = Constants.ITEM_POTION_VALUE;
+
     TextView textViewGold;
     TextView textViewKeys;
     TextView textViewPotion;
     TextView textViewBombs;
     TextView textCosts;
     ImageButton btn;
-    int potionCount = p.getItemCount(Constants.ITEM_POTION);
-    int keyCount = p.getItemCount(Constants.ITEM_KEY);
-    int bombsCount = p.getItemCount(Constants.ITEM_BOMB);
-    int mapCount = p.getItemCount(Constants.ITEM_MAP);
+    int mapCost;
+    int keyCost;
+    int potionCost;
+    int bombCost;
+    int potionCount;
+    int keyCount;
+    int bombsCount;
+    int mapCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("PurchaseDungeonItems", "onCreate called");
         super.onCreate(savedInstanceState);
+        loadStore();
+    }
+
+    public void loadStore() {
+        Log.d("PurchaseDungeonsItems", "loadStore Called");
+
+        mapCost = Constants.ITEM_MAP_VALUE;
+        keyCost = Constants.ITEM_KEY_VALUE;
+        bombCost = Constants.ITEM_BOMB_VALUE;
+        potionCost = Constants.ITEM_POTION_VALUE;
+
+        potionCount = p.getItemCount(Constants.ITEM_POTION);
+        keyCount = p.getItemCount(Constants.ITEM_KEY);
+        bombsCount = p.getItemCount(Constants.ITEM_BOMB);
+        mapCount = p.getItemCount(Constants.ITEM_MAP);
+
         setContentView(R.layout.purchase_dungeon_items);
         textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-        textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
+        textViewGold.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
         textViewKeys = (TextView) findViewById(R.id.textViewKeysOwned);
         textViewKeys.setText(Integer.toString(keyCount));
         textViewKeys.setGravity(Gravity.CENTER);
@@ -62,16 +79,16 @@ public class PurchaseDungeonItems extends Activity {
         textViewBombs.setText(Integer.toString(bombsCount));
         textViewBombs.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtbombcost);
-        textCosts.setText(Integer.toString(Constants.ITEM_BOMB_VALUE) + Constants.DOLLAR);
+        textCosts.setText(Constants.DOLLAR+Integer.toString(Constants.ITEM_BOMB_VALUE));
         textViewKeys.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtkeycost);
-        textCosts.setText(Integer.toString(Constants.ITEM_KEY_VALUE) + Constants.DOLLAR);
+        textCosts.setText(Constants.DOLLAR+Integer.toString(Constants.ITEM_KEY_VALUE));
         textViewKeys.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtpotioncost);
-        textCosts.setText(Integer.toString(Constants.ITEM_POTION_VALUE) + Constants.DOLLAR);
+        textCosts.setText(Constants.DOLLAR+Integer.toString(Constants.ITEM_POTION_VALUE));
         textViewKeys.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtmapcost);
-        textCosts.setText(Integer.toString(Constants.ITEM_MAP_VALUE) + Constants.DOLLAR);
+        textCosts.setText(Constants.DOLLAR+Integer.toString(Constants.ITEM_MAP_VALUE));
         textViewKeys.setGravity(Gravity.CENTER);
     }
 
@@ -86,7 +103,7 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_MAP, getItemId(Constants.ITEM_MAP));
             TextView textView = (TextView) findViewById(R.id.textView_goldvalue);
-            textView.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
+            textView.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             btn = (ImageButton) findViewById(R.id.imgBtnMap);
 
         } else {
@@ -104,7 +121,7 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_KEY, getItemId(Constants.ITEM_KEY));
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-            textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
+            textViewGold.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             textViewKeys = (TextView) findViewById(R.id.textViewKeysOwned);
             textViewKeys.setText(Constants.OWNED + Integer.toString(p.getItemCount(Constants.ITEM_KEY)));
 
@@ -122,7 +139,7 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_POTION, getItemId(Constants.ITEM_POTION));
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-            textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
+            textViewGold.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             textViewPotion = (TextView) findViewById(R.id.textViewPotionsOwned);
             textViewPotion.setText(Constants.OWNED + Integer.toString(p.getItemCount(Constants.ITEM_POTION)));
 
@@ -140,7 +157,7 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_BOMB, getItemId(Constants.ITEM_BOMB));
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
-            textViewGold.setText(Integer.toString(p.getGold())+Constants.DOLLAR);
+            textViewGold.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             textViewBombs = (TextView) findViewById(R.id.textViewBombsOwned);
             textViewBombs.setText(Constants.OWNED + Integer.toString(p.getItemCount(Constants.ITEM_BOMB)));
 
@@ -156,7 +173,7 @@ public class PurchaseDungeonItems extends Activity {
     }
 
     public int getItemId(String name) {
-
+        Log.d("PurchaseDungeonsItems", "getItemId Called");
         int value = 0;
         for (Item item : lstItem) {
             if (item.getName().equals(name)) {
