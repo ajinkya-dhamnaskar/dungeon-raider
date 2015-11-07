@@ -682,9 +682,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
 			Player.getInstance().setItemCount(Constants.ITEM_KEY, Constants.GAME_NO_OF_KEYS);
 			Player.getInstance().setGold(Constants.PLAYER_GOLD);
+
 			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
 				Constants.PLAYER_SCORE += ((mDesiredTime*1000 - Constants.LAST_TIME)*7/1000);
 			}
+			Player.getInstance().setTime(Player.getInstance().getTime() + (int)Constants.LAST_TIME/1000);
 			Player.getInstance().setScore(Constants.PLAYER_SCORE);
 			db.saveProfile();
 		}
