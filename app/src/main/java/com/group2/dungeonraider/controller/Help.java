@@ -15,12 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.group2.dungeonraider.R;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 
 /**
  * Created by ukara on 10/27/2015.
  */
 public class Help extends Activity {
 
+    Audio audio  = new AudioImpl();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.help);
@@ -35,18 +38,21 @@ public class Help extends Activity {
         ;
         String alertMessage = getResources().getString(R.string.help_how_to_play_details);
         displayAlert(alertTitle, alertMessage, false);
+        audio.play(getApplicationContext(), R.raw.btn_click);
     }
 
     public void tips(View view) {
         String alertTitle = getResources().getString(R.string.help_tips);
         String alertMessage = getResources().getString(R.string.help_tips_details);
         displayAlert(alertTitle, alertMessage, false);
+        audio.play(getApplicationContext(), R.raw.btn_click);
     }
 
     public void aboutthegame(View view) {
         final String alertTitle = getResources().getString(R.string.help_about_the_game);
         final String alertMessage = getResources().getString(R.string.help_about_the_game_details);
         displayAlert(alertTitle, alertMessage, true);
+        audio.play(getApplicationContext(), R.raw.btn_click);
     }
 
     public void displayAlert(String alertTitle, String alertMessage, boolean centerAligned)
