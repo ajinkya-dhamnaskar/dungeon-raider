@@ -44,7 +44,6 @@ public class ScoreCard extends Activity{
         Log.d("Scorecard", "onBackPressed Called");
 
         ScoreCard.this.finish();
-        return;
     }
 
     public void addHeaders(){

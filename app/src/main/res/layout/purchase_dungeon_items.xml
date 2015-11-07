@@ -14,16 +14,17 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/pd_purchase_dungeon_items"
-        android:id="@+id/textview_store"
+        android:id="@+id/textview_purchase_items"
         android:textColor="#4C0000"
+        android:layout_marginTop="30dp"
         android:textStyle="bold|italic"
         android:textSize="30dp"
-        android:layout_below="@+id/imageViewBackButton"
-        android:layout_alignRight="@+id/textView_goldvalue"
-        android:layout_alignEnd="@+id/textView_goldvalue" />
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imageViewBackButton"
+        android:layout_toStartOf="@+id/imageViewBackButton" />
 
 
-    <ImageView
+    <ImageButton
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/back_icon"
@@ -43,19 +44,24 @@
         android:layout_height="wrap_content"
         android:id="@+id/imgBtnKey"
         android:onClick="buydungeonkey"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:background="@drawable/img_key"
         android:layout_alignTop="@+id/imgBtnPotion"
         android:layout_toLeftOf="@+id/imgBtnPotion"
-        android:layout_above="@+id/textViewPotionsOwned" />
+        android:layout_toStartOf="@+id/imgBtnPotion"
+        android:layout_alignBottom="@+id/imgBtnPotion" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgBtnMap"
         android:onClick="buydungeonmap"
+
         android:background="@drawable/map"
-        android:layout_above="@+id/textViewKeysOwned"
-        android:layout_toLeftOf="@+id/imgBtnKey" />
+        android:layout_alignTop="@+id/imgBtnKey"
+        android:layout_alignRight="@+id/imageButton5"
+        android:layout_alignEnd="@+id/imageButton5" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -90,9 +96,10 @@
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:id="@+id/txtdungeongold"
-        android:layout_alignRight="@+id/imgBtnBomb"
-        android:layout_alignEnd="@+id/imgBtnBomb"
-        android:layout_below="@+id/textview_store" />
+        android:layout_marginBottom="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/textView_goldvalue"
+        android:layout_toStartOf="@+id/textView_goldvalue" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -100,12 +107,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/textView_goldvalue"
         android:text=""
+        android:layout_marginLeft="8dp"
         android:textSize="20dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:layout_alignTop="@+id/txtdungeongold"
-        android:layout_toLeftOf="@+id/imageViewBackButton"
-        android:layout_toStartOf="@+id/imageViewBackButton" />
+        android:layout_alignRight="@+id/textViewBombsOwned"
+        android:layout_alignEnd="@+id/textViewBombsOwned" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,7 +123,9 @@
         android:id="@+id/textViewKeysOwned"
         android:layout_below="@+id/imgBtnKey"
         android:layout_alignLeft="@+id/imgBtnKey"
+
         android:layout_alignStart="@+id/imgBtnKey"
+        android:layout_marginLeft="10dp"
         android:layout_toLeftOf="@+id/imgBtnPotion"
         android:layout_toStartOf="@+id/imgBtnPotion" />
 
@@ -141,7 +151,8 @@
         android:layout_alignLeft="@+id/imgBtnBomb"
         android:layout_alignStart="@+id/imgBtnBomb"
         android:layout_alignRight="@+id/imgBtnBomb"
-        android:layout_alignEnd="@+id/imgBtnBomb" />
+        android:layout_alignEnd="@+id/imgBtnBomb"
+        android:layout_alignBottom="@+id/textViewPotionsOwned" />
 
     <ImageButton
         android:layout_width="180dp"
@@ -151,5 +162,61 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/imgBtnKey"
         android:layout_toStartOf="@+id/imgBtnKey" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="$500"
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/txtmapcost"
+        android:layout_above="@+id/imgBtnMap"
+        android:layout_alignLeft="@+id/imgBtnMap"
+        android:layout_alignStart="@+id/imgBtnMap"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="$1200"
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/txtkeycost"
+        android:layout_above="@+id/imgBtnKey"
+        android:layout_alignLeft="@+id/textViewKeysOwned"
+        android:layout_alignStart="@+id/textViewKeysOwned" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="$100"
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/txtpotioncost"
+        android:layout_above="@+id/imgBtnPotion"
+        android:layout_alignLeft="@+id/imgBtnPotion"
+        android:layout_alignStart="@+id/imgBtnPotion"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="$400"
+        android:textSize="20dp"
+        android:textColor="#4C0000"
+        android:textStyle="bold|italic"
+        android:id="@+id/txtbombcost"
+        android:layout_above="@+id/imgBtnBomb"
+        android:layout_alignRight="@+id/txtdungeongold"
+        android:layout_alignEnd="@+id/txtdungeongold" />
 
 </RelativeLayout>

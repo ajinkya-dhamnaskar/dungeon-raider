@@ -10,18 +10,16 @@
         android:layout_width="195dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/st_settings"
+        android:text="@string/mm_settings"
         android:id="@+id/lbl_settings"
-        android:onClick="setting"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold|italic"
-        android:textSize="30dp"
+        android:textSize="38dp"
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
         android:layout_weight="0.57"
-        android:layout_above="@+id/lbl_character"
-        android:layout_toLeftOf="@+id/lbl_character"
-        android:layout_toStartOf="@+id/lbl_character" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,7 +84,7 @@
         android:layout_marginLeft="33dp"
         android:layout_marginStart="33dp" />
 
-        <ImageView
+        <ImageButton
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:background="@drawable/back_icon"
@@ -106,7 +104,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:id="@+id/radioGroupCharacterSettings"
-            android:onClick="radioListener"
+
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
 
@@ -140,9 +138,9 @@
         android:layout_height="80dp"
         android:id="@+id/imageButton2"
         android:background="@drawable/logo_eye"
+        android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/lbl_settings"
-        android:layout_toStartOf="@+id/lbl_settings"
-        android:layout_above="@+id/lbl_volume" />
+        android:layout_toStartOf="@+id/lbl_settings" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -154,8 +152,10 @@
         android:gravity="center|fill_vertical"
         android:textColor="#4C0000"
         android:layout_weight="0.14"
-        android:layout_above="@+id/switch_volume"
+        android:layout_above="@+id/spinner_theme"
         android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2" />
+        android:layout_toStartOf="@+id/textView2"
+        android:layout_marginRight="39dp"
+        android:layout_marginEnd="39dp" />
 
 </RelativeLayout>

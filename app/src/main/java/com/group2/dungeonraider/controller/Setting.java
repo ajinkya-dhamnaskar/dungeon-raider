@@ -163,7 +163,7 @@ public class Setting extends Activity implements AdapterView.OnItemSelectedListe
         Log.d("Settings", "onBackPressed Called");
 
         Setting.this.finish();
-        return;
+
     }
 
     public void backtomaingame(View v)

@@ -468,7 +468,7 @@ public class Purchase_Mutator extends Activity {
         Log.d("Settings", "onBackPressed Called");
 
         Purchase_Mutator.this.finish();
-        return;
+
     }
 
     public void backtostore(View v)

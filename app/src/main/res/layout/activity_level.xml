@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/back">
+    android:background="@drawable/back_norm">
 
 
     <Button
@@ -16,7 +16,7 @@
         android:textSize="30dp"
         android:textStyle="bold|italic"
         android:backgroundTint="@android:color/transparent"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/radioGrouplevel"
         android:layout_toLeftOf="@+id/textView"
         android:layout_toStartOf="@+id/textView" />
 
@@ -95,7 +95,7 @@
         android:layout_centerHorizontal="true" />
     </RadioGroup>
 
-    <TextView
+    <ImageButton
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/back_icon"
@@ -109,4 +109,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton6"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/logo_eye"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/radioGrouplevel"
+        android:layout_alignEnd="@+id/radioGrouplevel" />
 </RelativeLayout>

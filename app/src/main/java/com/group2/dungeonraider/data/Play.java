@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.DisplayMetrics;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.controller.Help;
 import com.group2.dungeonraider.domain.Player;
+import com.group2.dungeonraider.service.Audio;
+import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
 import com.group2.dungeonraider.utilities.Utils;
 
@@ -34,6 +37,7 @@ public class Play extends Activity
 
 	private DisplayMetrics mMetrics = new DisplayMetrics();
 	private float mScreenDensity;
+	Audio audio = new AudioImpl();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -42,6 +46,9 @@ public class Play extends Activity
 		
 		Context mContext = getApplicationContext();
 		Constants.appContext = getApplicationContext();
+
+	//	audio.play(Constants.appContext, R.raw.game);
+	//	audio.setloop(Constants.appContext, R.raw.game);
 
 		/**
 		 * Get the screen density that all pixel values will be based on.
@@ -110,6 +117,8 @@ public class Play extends Activity
 	protected void onPause()
 	{
 		super.onPause();
+	//	audio.stop(Constants.appContext, R.raw.game);
+
 		//Constants.DELAY_LAST_TIME = System.currentTimeMillis() - Constants.LAST_TIME;
 		//mGameView.getThread().setState(GameView.STATE_PAUSED); // pause game when Activity pauses
 
@@ -119,8 +128,18 @@ public class Play extends Activity
 	public void onResume() {
 		super.onResume();
 
+
 		//mGameView.getThread().setState(GameView.STATE_RUNNING);
 	}
 
+	@Override
+	public void onBackPressed() {
+	//	audio.stop(Constants.appContext, R.raw.game);
+		Log.d("Play", "onBackPressed Called");
+
+		Play.this.finish();
+
+
+	}
 
 }

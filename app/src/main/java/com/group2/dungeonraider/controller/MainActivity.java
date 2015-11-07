@@ -24,6 +24,7 @@ Entry point
 public class MainActivity extends Activity {
 
     Audio audio = new AudioImpl();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,11 @@ public class MainActivity extends Activity {
        
         Constants.appContext = getApplicationContext();
         setContentView(R.layout.activity_main);
+
+
+
+        audio.play(Constants.appContext, R.raw.game);
+        audio.setlooping();
     }
 
     public void setting(View v) {
@@ -66,7 +72,7 @@ public class MainActivity extends Activity {
 //
 //        // Specify the layout to use when the list of choices appears
 //        staticAdapter
-//                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); xx
 //
 //        // Apply the adapter to the spinner
 //        staticSpinner.setAdapter(staticAdapter);

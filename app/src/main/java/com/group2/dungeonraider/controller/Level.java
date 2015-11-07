@@ -35,7 +35,7 @@ public class Level  extends Activity {
         Log.d("Level", "onBackPressed Called");
 
         Level.this.finish();
-        return;
+
     }
 
     public void backtonewgame(View v)
@@ -68,7 +68,7 @@ public class Level  extends Activity {
         }
         else if(selectedId==R.id.radiohard || selectedId==R.id.radiomedium || selectedId==R.id.radiotutorial){
 
-            Toast.makeText(this, "This option will be available in the future releases", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "This option will be available in the future releases", Toast.LENGTH_SHORT).show();
 
         }
 

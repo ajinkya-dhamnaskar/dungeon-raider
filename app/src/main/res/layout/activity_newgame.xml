@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
+        android:maxLength="12"
         android:ems="18"
         android:id="@+id/txt_name"
         android:width="10dp"
@@ -82,7 +83,7 @@
         android:layout_toLeftOf="@+id/radioGroupCharacter"
         android:layout_toStartOf="@+id/radioGroupCharacter" />
 
-    <TextView
+    <ImageButton
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/back_icon"

@@ -110,6 +110,7 @@
         android:layout_toEndOf="@+id/textView_gold"
         android:layout_toRightOf="@+id/textView_gold"
         android:text=""
+        android:textSize="20dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#4C0000"
         android:textStyle="bold|italic" />

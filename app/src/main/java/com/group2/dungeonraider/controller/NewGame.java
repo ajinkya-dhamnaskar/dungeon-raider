@@ -108,6 +108,7 @@ public class NewGame extends Activity {
                                     player =  db.loadProfile(Name);
                                     playerItemList =  db.loadPlayerItems(player.getId());
                                     player.setItemList(playerItemList);
+                                    db.deletePlayerRoomDetails();
                                     playerMutatorList=db.loadPlayerMutators(player.getId());
                                     player.setMutatorList(playerMutatorList);
 
@@ -177,7 +178,7 @@ public class NewGame extends Activity {
         Log.d("Newgame", "onBackPressed Called");
 
         NewGame.this.finish();
-        return;
+
     }
     private void launchIntent() {
         Intent i = new Intent(this, Level.class);

@@ -7,7 +7,7 @@
     android:weightSum="1">
 
 
-    <TextView
+    <ImageButton
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/back_icon"
@@ -43,20 +43,23 @@
         android:text="@string/sc_score_card"
         android:id="@+id/textViewScoreCard"
         android:textColor="#4C0000"
-        android:textSize="30dp"
+        android:textSize="38dp"
+        android:layout_marginTop="15dp"
         android:textStyle="bold|italic"
-        android:layout_marginLeft="74dp"
-        android:layout_marginStart="74dp"
-        android:layout_below="@+id/btn_back"
+        android:layout_marginLeft="80dp"
+        android:layout_marginStart="80dp"
+        android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageEye"
         android:layout_toEndOf="@+id/imageEye" />
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="15dp"
-        android:layout_below="@+id/imageEye">
+        android:layout_below="@+id/imageEye"
+        android:layout_toRightOf="@+id/imageEye"
+        android:layout_toEndOf="@+id/imageEye">
         android:layout_below="@+id/imageEye">
         <TableLayout
             android:layout_width="match_parent"

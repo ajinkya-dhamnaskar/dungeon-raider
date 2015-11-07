@@ -35,7 +35,18 @@ public class AudioImpl extends Activity implements Audio {
         Constants.MP.setAudioStreamType(AudioManager.STREAM_MUSIC);
         if(Constants.VOLUME_MODE == 1) {
             Constants.MP.create(context, resId).start();
+
         }
         return true;
+    }
+    @Override
+    public void stop(){
+        Constants.MP.stop();
+
+    }
+    @Override
+    public void setlooping(){
+
+        Constants.MP.setLooping(true);
     }
 }

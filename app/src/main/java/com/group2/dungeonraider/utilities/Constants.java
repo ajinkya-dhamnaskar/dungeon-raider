@@ -273,7 +273,7 @@ public class Constants {
         EMPTY(1), WALL(2), SLIDING(3), DOOR(4),
         KEY(5), BOMB(6), BREAKABLEWALL(7), CHEST(8),
         WEIGHTSWITCH(9), FIRE(10), SPIKE(11), ENTRANCESTART(12),
-        EXITSOLVE(13), FINISH(14), DOOROPEN(15);
+        EXITSOLVE(13), FINISH(14), DOOROPEN(15),DUNGEONFINISH(16);
         private int value;
 
         private BlockType(int value) {

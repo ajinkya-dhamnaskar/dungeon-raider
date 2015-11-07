@@ -17,11 +17,11 @@
         android:textSize="30dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
-        android:layout_below="@+id/textView_gold_purchasemutators"
-        android:layout_toRightOf="@+id/imgview_mutator"
-        android:layout_toEndOf="@+id/imgview_mutator" />
+        android:layout_below="@+id/btn_back"
+        android:layout_toRightOf="@+id/imageButton3"
+        android:layout_toEndOf="@+id/imageButton3" />
 
-    <TextView
+    <ImageButton
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:background="@drawable/back_icon"
@@ -68,8 +68,8 @@
         android:layout_alignEnd="@+id/btn_back"
         android:layout_toRightOf="@+id/imgview_mutator"
         android:id="@+id/radio_selection_group"
-        android:layout_alignBottom="@+id/btn_equip"
-        android:layout_below="@+id/imageButton3">
+        android:layout_alignTop="@+id/imgview_mutator"
+        android:layout_above="@+id/btn_equip">
 
 
     </RadioGroup>

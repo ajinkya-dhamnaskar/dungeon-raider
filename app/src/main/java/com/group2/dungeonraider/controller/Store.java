@@ -59,7 +59,7 @@ public class Store extends Activity {
         Log.d("Store", "onBackPressed Called");
 
         Store.this.finish();
-        return;
+
     }
     public void purchase_character_items(View v) {
         Intent i = new Intent(this, Purchase_Mutator.class);
