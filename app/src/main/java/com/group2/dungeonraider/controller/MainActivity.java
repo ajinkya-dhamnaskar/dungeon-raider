@@ -121,6 +121,7 @@ public class MainActivity extends Activity {
     {
         Player p = Player.getInstance();
         List<Room> lstRoom = p.getRoomList();
+        audio.play(getApplicationContext(), R.raw.btn_click);
         if(lstRoom.isEmpty())
             Toast.makeText(this, "There is no saved game to resume", Toast.LENGTH_SHORT).show();
         else
