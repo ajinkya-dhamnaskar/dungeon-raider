@@ -92,26 +92,6 @@ public class Play extends Activity
 		return true;
 	}
 
-//	@Override
-//	public boolean onOptionsItemSelected(MenuItem item)
-//	{
-//		Intent i = null;
-//
-//		switch (item.getItemId())
-//
-//		{
-//			case R.id.btnHowToPlay:
-//				i = new Intent(this, Help.class);
-//    			startActivity(i);
-//				return true;
-//			case R.id.btnClose:
-//				finish();
-//				return true;
-//		}
-//
-//		return false;
-//	}
-	
 	/**
 	 * Invoked when the Activity loses user focus.
 	 */

@@ -69,6 +69,8 @@ public class Constants {
     public static int SKIN_VALUE=100;
 
     public static final int STAGE = 1;
+    public static final int START_ROOM = 0;
+    public static final int EXIT_ROOM = 4;
 
 
     public static Context appContext;
@@ -84,7 +86,7 @@ public class Constants {
     public static int MAX_TIME_DELAY = 1000;
     public static long LAST_CURR_TIME = 0;
     public static MediaPlayer MP = new MediaPlayer();
-
+    public static int CURRENT_LEVEL_DESIRED_TIME = 0;
     public static int GAME_NO_OF_BOMBS;
     public static int GAME_NO_OF_POTIONS;
     public static int GAME_NO_OF_KEYS;

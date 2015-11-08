@@ -296,29 +296,39 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				text.setColor(Color.RED);
 				text.setTextSize(50);
 				long currTime = System.currentTimeMillis();
-				if(Constants.IS_SLOW_DOWN_TIMER){
-					if(Constants.TICK_COUNTER_FOR_DELAY == 0){
-						timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
-						Constants.TICK_COUNTER_FOR_DELAY++;
-					}else{
-						timeElapsed = Constants.LAST_TIME;
-						Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
-						Constants.TICK_COUNTER_FOR_DELAY++;
-						if(Constants.TICK_COUNTER_FOR_DELAY == Constants.MAX_TICK_COUNTER_FOR_DELAY){
-							Constants.TICK_COUNTER_FOR_DELAY = 0;
+				if(Constants.GAME_LEVEL != Player.getInstance().getCurrentLevel()){
+					Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
+				}else{
+					if (Constants.IS_SLOW_DOWN_TIMER) {
+						if (Constants.TICK_COUNTER_FOR_DELAY == 0) {
+							timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
+							Constants.TICK_COUNTER_FOR_DELAY++;
+						} else {
+							timeElapsed = Constants.LAST_TIME;
+							Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
+							Constants.TICK_COUNTER_FOR_DELAY++;
+							if (Constants.TICK_COUNTER_FOR_DELAY == Constants.MAX_TICK_COUNTER_FOR_DELAY) {
+								Constants.TICK_COUNTER_FOR_DELAY = 0;
+							}
 						}
-					}
 
-				}else {
-					timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
+					} else {
+						timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
+					}
 				}
+				timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
 				Constants.TIME_DELAY++;
 				if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
 					Constants.IS_SLOW_DOWN_TIMER = false;
 					Constants.TIME_DELAY=0;
 				}
-				canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
-				canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(mDesiredTime*1000)).toString(), 250, 50, text);
+				if(Player.getInstance().getCurrentLevel() != Constants.START_ROOM && Player.getInstance().getCurrentLevel() != Constants.EXIT_ROOM) {
+
+					if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()) {
+						canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
+						canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(Constants.CURRENT_LEVEL_DESIRED_TIME * 1000)).toString(), 250, 50, text);
+					}
+				}
 				Constants.LAST_TIME = timeElapsed;
 				Constants.LAST_CURR_TIME = currTime;
 				//canvas.drawText(mLastStatusMessage, 100, 50, mUiTextPaint);
@@ -455,17 +465,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						gm.setType(Constants.BlockType.SLIDING.getValue());
 						gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
 					}
-//					gm.setType(Constants.BlockType.SLIDING.getValue());
-//					gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
 				}
-
-//				gm = mGameTilesMap.get(slidingTile.getKey() + 15);
-//				if((gm.getY()-newYTile)>slidingTile.getHeight()/2){
-//					slidingTile.setType(Constants.BlockType.EMPTY.getValue());
-//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
-//					gm.setType(Constants.BlockType.SLIDING.getValue());
-//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
-//				}
 			}else
 			if(plyTop >= tileBottom){
 				//move up
@@ -488,17 +488,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						gm.setType(Constants.BlockType.SLIDING.getValue());
 						gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
 					}
-//					gm.setType(Constants.BlockType.SLIDING.getValue());
-//					gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
 				}
-
-//				gm = mGameTilesMap.get(slidingTile.getKey() - 15);
-//				if((newYTile-gm.getY())>slidingTile.getHeight()/2){
-//					slidingTile.setType(Constants.BlockType.EMPTY.getValue());
-//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
-//					gm.setType(Constants.BlockType.SLIDING.getValue());
-//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
-//				}
 
 			} else if (plyLeft >= tileRight) {
 				//move left
@@ -518,17 +508,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						gm.setType(Constants.BlockType.SLIDING.getValue());
 						gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
 					}
-//					gm.setType(Constants.BlockType.SLIDING.getValue());
-//					gm.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
 				}
 
-//				gm = mGameTilesMap.get(slidingTile.getKey() - 1);
-//				if((newXTile-gm.getX())>slidingTile.getHeight()/2){
-//					slidingTile.setType(Constants.BlockType.EMPTY.getValue());
-//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
-//					gm.setType(Constants.BlockType.SLIDING.getValue());
-//					slidingTile.setmTileTemp(String.valueOf(Constants.BlockType.SLIDING.getValue()));
-//				}
 			}else
 			if(tileLeft >= plyRight){
 				//move right
@@ -555,7 +536,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			if(canSlidingTileMove(newXTile, newYTile, slidingTile.getWidth(), slidingTile.getHeight(), slidingTile)){
 				slidingTile.setX(newXTile);
 				slidingTile.setY(newYTile);
-				//audio.play(Constants.appContext, R.raw.btn_click);
 			}else{
 				result = false;
 			}
@@ -1198,6 +1178,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 								GameTile tile = getCollisionTile(newX, newY, mPlayerUnit.getWidth(), mPlayerUnit.getHeight(), null);
 								if (tile != null && tile.getType() == Constants.BlockType.BREAKABLEWALL.getValue()) {
 									tile.setVisible(false);
+									tile.setType(Constants.BlockType.EMPTY.getValue());
+									tile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
 									Constants.GAME_NO_OF_BOMBS--;
 									audio.play(Constants.appContext, R.raw.bomb);
 								}
@@ -1422,6 +1404,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mPlayerStartTileX = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_PLAYER_START_TILE_X));
 		mPlayerStartTileY = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_PLAYER_START_TILE_Y));
 		mDesiredTime = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_DESIRED_TIME));
+		if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()){
+			Constants.CURRENT_LEVEL_DESIRED_TIME = mDesiredTime;
+		}
+
 
 		// Clear any existing loaded game tiles.
 		mGameTiles.clear();
