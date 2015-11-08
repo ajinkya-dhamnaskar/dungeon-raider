@@ -296,37 +296,35 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				text.setColor(Color.RED);
 				text.setTextSize(50);
 				long currTime = System.currentTimeMillis();
-//				if(Constants.GAME_LEVEL != Player.getInstance().getCurrentLevel()){
-//					Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
-//				}else{
-					if (Constants.IS_SLOW_DOWN_TIMER) {
-						if (Constants.TICK_COUNTER_FOR_DELAY == 0) {
-							timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
-							Constants.TICK_COUNTER_FOR_DELAY++;
-						} else {
-							timeElapsed = Constants.LAST_TIME;
-							Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
-							Constants.TICK_COUNTER_FOR_DELAY++;
-							if (Constants.TICK_COUNTER_FOR_DELAY == Constants.MAX_TICK_COUNTER_FOR_DELAY) {
-								Constants.TICK_COUNTER_FOR_DELAY = 0;
-							}
-						}
-						Constants.TIME_DELAY++;
-						if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
-							Constants.IS_SLOW_DOWN_TIMER = false;
-							Constants.TIME_DELAY=0;
-						}
-
-					} else {
+				if (Constants.IS_SLOW_DOWN_TIMER) {
+					if (Constants.TICK_COUNTER_FOR_DELAY == 0) {
 						timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
+						Constants.TICK_COUNTER_FOR_DELAY++;
+					} else {
+						timeElapsed = Constants.LAST_TIME;
+						Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
+						Constants.TICK_COUNTER_FOR_DELAY++;
+						if (Constants.TICK_COUNTER_FOR_DELAY == Constants.MAX_TICK_COUNTER_FOR_DELAY) {
+							Constants.TICK_COUNTER_FOR_DELAY = 0;
+						}
 					}
 
-				if(Player.getInstance().getCurrentLevel() != Constants.START_ROOM && Player.getInstance().getCurrentLevel() != Constants.EXIT_ROOM) {
-					canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
-					if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()) {
-						canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(Constants.CURRENT_LEVEL_DESIRED_TIME * 1000)).toString(), 250, 50, text);
-					}
+
+				} else {
+					timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
 				}
+				Constants.TIME_DELAY++;
+				if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
+					Constants.IS_SLOW_DOWN_TIMER = false;
+					Constants.TIME_DELAY=0;
+				}
+				canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
+//				if(Player.getInstance().getCurrentLevel() != Constants.START_ROOM) {
+//					canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
+//					if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()) {
+//						canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(Constants.CURRENT_LEVEL_DESIRED_TIME * 1000)).toString(), 250, 50, text);
+//					}
+//				}
 				Constants.LAST_TIME = timeElapsed;
 				Constants.LAST_CURR_TIME = currTime;
 
@@ -334,7 +332,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_BOMBS), 100, 140, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_POTIONS), 100, 220, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_KEYS), 100, 300, mUiTextPaint);
-				//canvas.drawText(String.valueOf(Constants.GAME_NO_OF_MAP), 100, 380, mUiTextPaint);
+				if(Constants.GAME_NO_OF_MAP <= 0) {
+					canvas.drawText("/", 100, 380, mUiTextPaint);
+				}else{
+					canvas.drawText("", 100, 380, mUiTextPaint);
+				}
 			}
 		}
 
@@ -747,11 +749,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			if((Player.getInstance().getCurrentLevel() - 1)>=0) {
 
 				gameTile.setVisible(false);
+
 				room.setPuzzleStruct(getRoomStructure());
 				gameTile.setType(Constants.BlockType.EMPTY.getValue());
 				gameTile.setmTileTemp(String.valueOf(Constants.BlockType.EMPTY.getValue()));
+
 				Constants.IS_PLAYER_LEVEL = true;
 				Constants.IS_NEXT_ROOM = false;
+
 				room.setId(Player.getInstance().getCurrentLevel());
 				Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() - 1);
 
