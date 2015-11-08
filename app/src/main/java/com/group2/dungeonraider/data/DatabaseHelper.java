@@ -205,7 +205,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //first puzzle
 
             "INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
-                    + "(null,1,1,2,9,180,\""
+                    + "(null,1,1,2,9,40,\""
                     // 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
 		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -216,7 +216,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 7  */+ "01,01,01,01,01,00,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,01,01,01,01,00,01,01,01,01,01,00,00,00,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 9  */+ "06,00,00,07,00,00,00,01,01,01,01,00,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 10 */+ "01,01,01,01,01,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,00,00,01,01,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,01,01,01,01,00,01,01,01,01,01,09,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,01,01,01,01,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,00,00,00,00,00,01,01,01,01,01,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -231,7 +231,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
             "INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
-                    + "(null,1,2,2,9,220,\""
+                    + "(null,1,2,2,9,125,\""
                     // 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
 		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 2  */+ "01,03,00,01,01,01,00,00,00,00,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -256,7 +256,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // third puzzle
 
             "INSERT INTO " + GameLevelTileData.TABLE_NAME + " VALUES "
-                    + "(null,1,3,2,9,350,\""
+                    + "(null,1,3,2,9,150,\""
                     // 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15
 		/* 1  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 2  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -264,10 +264,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 4  */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 5  */+ "01,00,00,00,07,00,00,01,00,00,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 6  */+ "01,00,07,05,07,00,00,07,00,00,05,00,07,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 7  */+ "01,00,01,11,01,11,07,11,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 7  */+ "01,00,01,11,01,11,01,11,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,00,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 9  */+ "06,00,00,04,04,04,04,04,04,00,00,05,00,05,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 10 */+ "01,00,01,01,01,01,01,01,01,01,01,01,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,00,00,01,01,01,01,01,01,01,01,01,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,00,00,01,11,01,11,01,11,02,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,00,07,00,00,07,00,01,02,07,07,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,00,00,00,00,00,00,00,00,00,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
@@ -289,8 +289,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 6  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 7  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 8  */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 9  */+ "06,00,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 10 */+ "01,01,00,00,00,00,00,00,00,00,13,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 9  */+ "06,00,00,00,00,00,00,00,00,00,13,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 10 */+ "01,00,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 12 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,01,00,00,00,00,00,00,00,00,00,00,00,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK

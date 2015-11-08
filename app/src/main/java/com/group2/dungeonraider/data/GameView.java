@@ -844,14 +844,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 		private void handleDungeonEndTileCollision(GameTile gameTile)
 		{
-
-			Intent i=new Intent(Constants.appContext, EndLevel.class);
-			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-			Constants.appContext.startActivity(i);
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
-
-
 			Player.getInstance().setItemCount(Constants.ITEM_POTION, Constants.GAME_NO_OF_POTIONS);
 			Player.getInstance().setItemCount(Constants.ITEM_MAP, Constants.GAME_NO_OF_MAP);
 			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
@@ -864,14 +857,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			Player.getInstance().setTime(Player.getInstance().getTime() + (int) Constants.LAST_TIME / 1000);
 			Player.getInstance().setScore(Constants.PLAYER_SCORE);
 			db.saveProfile();
-
-
-
-
-
-
-
-
+			Intent i=new Intent(Constants.appContext, EndLevel.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			Constants.appContext.startActivity(i);
 		}
 
 		/**
