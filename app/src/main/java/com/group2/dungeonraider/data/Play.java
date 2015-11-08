@@ -69,7 +69,7 @@ public class Play extends Activity
 		}else{
 			Utils.clearGameData();
 			Constants.GAME_NO_OF_POTIONS = Player.getInstance().getItemCount(Constants.ITEM_POTION);
-			Constants.GAME_NO_OF_MAP = 5;//Player.getInstance().getItemCount(Constants.ITEM_MAP);
+			Constants.GAME_NO_OF_MAP = Player.getInstance().getItemCount(Constants.ITEM_MAP);
 			Constants.GAME_NO_OF_BOMBS = Player.getInstance().getItemCount(Constants.ITEM_BOMB);
 			Constants.GAME_NO_OF_KEYS = Player.getInstance().getItemCount(Constants.ITEM_KEY);
 			Constants.PLAYER_GOLD = Player.getInstance().getGold();

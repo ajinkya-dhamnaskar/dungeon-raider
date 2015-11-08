@@ -334,7 +334,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_BOMBS), 100, 140, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_POTIONS), 100, 220, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_KEYS), 100, 300, mUiTextPaint);
-				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_MAP), 100, 380, mUiTextPaint);
+				//canvas.drawText(String.valueOf(Constants.GAME_NO_OF_MAP), 100, 380, mUiTextPaint);
 			}
 		}
 
@@ -1223,7 +1223,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 							if (Constants.GAME_NO_OF_MAP > 0) {
 								mLastStatusMessage = "Map used";
 								showImage();
-								Constants.GAME_NO_OF_MAP--;
+
 							}
 						}
 					}

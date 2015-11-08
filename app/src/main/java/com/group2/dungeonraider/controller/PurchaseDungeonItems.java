@@ -102,6 +102,7 @@ public class PurchaseDungeonItems extends Activity {
             p.setItemCount(Constants.ITEM_MAP, p.getItemCount(Constants.ITEM_MAP) + 1);
             databaseHelper.updatePlayerGoldValue(p);
             databaseHelper.updatePlayerItemCount(Constants.ITEM_MAP, getItemId(Constants.ITEM_MAP));
+            Constants.GAME_NO_OF_MAP=p.getItemCount(Constants.ITEM_MAP);
             TextView textView = (TextView) findViewById(R.id.textView_goldvalue);
             textView.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             btn = (ImageButton) findViewById(R.id.imgBtnMap);
@@ -122,6 +123,7 @@ public class PurchaseDungeonItems extends Activity {
             databaseHelper.updatePlayerItemCount(Constants.ITEM_KEY, getItemId(Constants.ITEM_KEY));
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
             textViewGold.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
+            Constants.GAME_NO_OF_KEYS=p.getItemCount(Constants.ITEM_KEY);
             textViewKeys = (TextView) findViewById(R.id.textViewKeysOwned);
             textViewKeys.setText(Constants.OWNED + Integer.toString(p.getItemCount(Constants.ITEM_KEY)));
 
@@ -141,6 +143,7 @@ public class PurchaseDungeonItems extends Activity {
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
             textViewGold.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             textViewPotion = (TextView) findViewById(R.id.textViewPotionsOwned);
+            Constants.GAME_NO_OF_POTIONS=p.getItemCount(Constants.ITEM_POTION);
             textViewPotion.setText(Constants.OWNED + Integer.toString(p.getItemCount(Constants.ITEM_POTION)));
 
         } else {
@@ -159,6 +162,7 @@ public class PurchaseDungeonItems extends Activity {
             textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
             textViewGold.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             textViewBombs = (TextView) findViewById(R.id.textViewBombsOwned);
+            Constants.GAME_NO_OF_BOMBS=p.getItemCount(Constants.ITEM_BOMB);
             textViewBombs.setText(Constants.OWNED + Integer.toString(p.getItemCount(Constants.ITEM_BOMB)));
 
         } else {
