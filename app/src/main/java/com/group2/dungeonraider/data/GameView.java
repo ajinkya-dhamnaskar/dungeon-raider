@@ -316,16 +316,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
 					}
 				}
-				timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
 				Constants.TIME_DELAY++;
 				if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
 					Constants.IS_SLOW_DOWN_TIMER = false;
 					Constants.TIME_DELAY=0;
 				}
 				if(Player.getInstance().getCurrentLevel() != Constants.START_ROOM && Player.getInstance().getCurrentLevel() != Constants.EXIT_ROOM) {
-
+					canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
 					if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()) {
-						canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
 						canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(Constants.CURRENT_LEVEL_DESIRED_TIME * 1000)).toString(), 250, 50, text);
 					}
 				}
@@ -1404,11 +1402,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mPlayerStartTileX = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_PLAYER_START_TILE_X));
 		mPlayerStartTileY = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_PLAYER_START_TILE_Y));
 		mDesiredTime = Integer.parseInt(gameLevelData.get(GameLevelTileData.FIELD_ID_DESIRED_TIME));
-		if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()){
+		if(Player.getInstance().getCurrentLevel() == Constants.GAME_LEVEL){
 			Constants.CURRENT_LEVEL_DESIRED_TIME = mDesiredTime;
 		}
-
-
 		// Clear any existing loaded game tiles.
 		mGameTiles.clear();
 		mGameTilesMap.clear();
