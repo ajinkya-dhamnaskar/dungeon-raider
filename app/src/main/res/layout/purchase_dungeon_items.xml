@@ -18,6 +18,7 @@
         android:textSize="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
+        android:gravity="center"
         android:layout_alignTop="@+id/imageViewBackButton"
         android:layout_alignBottom="@+id/imageButton5"
         android:layout_toLeftOf="@+id/txtbombcost"
@@ -26,8 +27,8 @@
 
 
     <ImageButton
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/back_icon"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:onClick="backtostorescreen"

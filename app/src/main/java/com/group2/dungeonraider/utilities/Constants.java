@@ -53,6 +53,7 @@ public class Constants {
     public static String COLOR_YELLOW="YELLOW";
     public static String COLOR_PINK="PINK";
     public static String COLOR_BROWN="BROWN";
+    public static String COLOR_WHITE="WHITE";
     public static String DOLLAR="$";
     public static String OWNED="Owned : ";
 

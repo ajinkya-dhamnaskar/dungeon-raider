@@ -84,32 +84,37 @@ public class Purchase_Mutator extends Activity {
          }
 
 
-        for (Mutator mutator : playerMutatorList)
-        {
-            RadioButton rb = new RadioButton(this);
+        for (Mutator mutator : playerMutatorList) {
 
-            rb.setLayoutParams
-                    (new RadioGroup.LayoutParams
-                            (RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT));
+            if (((mutator.getName().equals(Constants.MUTATOR_CAP)) && (mutator.getColor().equals(Constants.COLOR_BROWN))) ||((mutator.getName().equals(Constants.MUTATOR_SHIRT)) && (mutator.getColor().equals(Constants.COLOR_BLUE))) ||((mutator.getName().equals(Constants.MUTATOR_SKIN)) && (mutator.getColor().equals(Constants.COLOR_WHITE)))||((mutator.getName().equals(Constants.MUTATOR_PANT)) && (mutator.getColor().equals(Constants.COLOR_PINK)))) {
 
-
-            if("YES".equals(mutator.getAlreadyPurchased()))
-            {
-                rb.setChecked(false);
-                rb.setEnabled(false);
+            //do nothing
             }
-            rb.setText(mutator.getName() + "-" + mutator.getColor());
+            else
+            {
+                RadioButton rb = new RadioButton(this);
+                rb.setLayoutParams
+                        (new RadioGroup.LayoutParams
+                                (RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT));
 
-            rb.setId(mutator.getId());
-            //rb.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            rb.setTextSize((float) 18.0);
-            rb.setTextColor(Color.parseColor("#4C0000"));
-            rb.setTag(mutator.getName() + "-" + mutator.getColor());
-         //   rb.setOnClickListener(first_radio_listener);
+                if ("YES".equals(mutator.getAlreadyPurchased())) {
+                    rb.setChecked(false);
+                    rb.setEnabled(false);
+                }
 
-            radioGroup.addView(rb);
+                rb.setText(mutator.getName() + "-" + mutator.getColor());
+
+                rb.setId(mutator.getId());
+                //rb.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                rb.setTextSize((float) 18.0);
+                rb.setTextColor(Color.parseColor("#4C0000"));
+                rb.setTag(mutator.getName() + "-" + mutator.getColor());
+                //   rb.setOnClickListener(first_radio_listener);
+
+                radioGroup.addView(rb);
 
 
+            }
         }
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

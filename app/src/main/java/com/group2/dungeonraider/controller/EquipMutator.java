@@ -72,7 +72,7 @@ public class EquipMutator extends Activity {
                             (RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT));
 
 
-            if(!"YES".equals(mutator.getAlreadyPurchased())) {
+//            if(!"YES".equals(mutator.getAlreadyPurchased())) {
 
                 rb.setText(mutator.getName() + "-" + mutator.getColor());
 
@@ -84,7 +84,7 @@ public class EquipMutator extends Activity {
                 //   rb.setOnClickListener(first_radio_listener);
 
                 radioGroup.addView(rb);
-            }
+//            }
 
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 public void onCheckedChanged(RadioGroup group, int checkedId) {

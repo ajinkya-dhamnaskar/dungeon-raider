@@ -453,49 +453,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
         //INSERT MUTATOR VALUES
-        ContentValues values = new ContentValues();
-//        values.put(KEY_MUTATOR_NAME, Constants.MUTATOR_CAP);
-//        values.put(KEY_MUTATOR_ID, 1);
-//        values.put(KEY_MUTATOR_COLOR, Constants.COLOR_BROWN);
-//        values.put(KEY_MUTATOR_VALUE, Constants.CAP_VALUE);
-//        db.insert(TABLE_MUTATOR, null, values);
 
+        //cap
+
+        ContentValues values = new ContentValues();
         values.put(KEY_MUTATOR_NAME, Constants.MUTATOR_CAP);
-        values.put(KEY_MUTATOR_ID,1);
-        values.put(KEY_MUTATOR_COLOR,Constants.COLOR_YELLOW);
-        values.put(KEY_MUTATOR_VALUE,Constants.CAP_VALUE);
+        values.put(KEY_MUTATOR_ID, 1);
+        values.put(KEY_MUTATOR_COLOR, Constants.COLOR_BROWN);
+        values.put(KEY_MUTATOR_VALUE, Constants.CAP_VALUE);
         db.insert(TABLE_MUTATOR, null, values);
 
-//        values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_SHIRT)
-//        values.put(KEY_MUTATOR_ID,2);
-//        values.put(KEY_MUTATOR_COLOR,Constants.COLOR_BLUE);
-//        values.put(KEY_MUTATOR_VALUE,Constants.SHIRT_VALUE);
-//        db.insert(TABLE_MUTATOR, null, values);
+        values.put(KEY_MUTATOR_NAME, Constants.MUTATOR_CAP);
+        values.put(KEY_MUTATOR_ID,2);
+        values.put(KEY_MUTATOR_COLOR,Constants.COLOR_YELLOW);
+        values.put(KEY_MUTATOR_VALUE, Constants.CAP_VALUE);
+        db.insert(TABLE_MUTATOR, null, values);
+
+        //shirt
+        values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_SHIRT);
+        values.put(KEY_MUTATOR_ID,3);
+        values.put(KEY_MUTATOR_COLOR,Constants.COLOR_BLUE);
+        values.put(KEY_MUTATOR_VALUE, Constants.SHIRT_VALUE);
+        db.insert(TABLE_MUTATOR, null, values);
 //
         values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_SHIRT);
-        values.put(KEY_MUTATOR_ID,2);
+        values.put(KEY_MUTATOR_ID,4);
         values.put(KEY_MUTATOR_COLOR,Constants.COLOR_GREEN);
         values.put(KEY_MUTATOR_VALUE,Constants.SHIRT_VALUE);
         db.insert(TABLE_MUTATOR, null, values);
 
 
+        //skin
+
         values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_SKIN);
-        values.put(KEY_MUTATOR_ID,4);
+        values.put(KEY_MUTATOR_ID,5);
         values.put(KEY_MUTATOR_COLOR,Constants.COLOR_PINK);
         values.put(KEY_MUTATOR_VALUE,Constants.SKIN_VALUE);
         db.insert(TABLE_MUTATOR, null, values);
 
+        values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_SKIN);
+        values.put(KEY_MUTATOR_ID,6);
+        values.put(KEY_MUTATOR_COLOR,Constants.COLOR_WHITE);
+        values.put(KEY_MUTATOR_VALUE,Constants.SKIN_VALUE);
+        db.insert(TABLE_MUTATOR, null, values);
+
+
+        //pant
+
         values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_PANT);
-        values.put(KEY_MUTATOR_ID,3);
+        values.put(KEY_MUTATOR_ID,7);
         values.put(KEY_MUTATOR_COLOR,Constants.COLOR_RED);
         values.put(KEY_MUTATOR_VALUE,Constants.PANT_VALUE);
         db.insert(TABLE_MUTATOR, null, values);
 
-//        values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_PANT);
-//        values.put(KEY_MUTATOR_ID,6);
-//        values.put(KEY_MUTATOR_COLOR,Constants.COLOR_PINK);
-//        values.put(KEY_MUTATOR_VALUE,Constants.PANT_VALUE);
-//        db.insert(TABLE_MUTATOR, null, values);
+        values.put(KEY_MUTATOR_NAME,Constants.MUTATOR_PANT);
+        values.put(KEY_MUTATOR_ID,8);
+        values.put(KEY_MUTATOR_COLOR,Constants.COLOR_PINK);
+        values.put(KEY_MUTATOR_VALUE,Constants.PANT_VALUE);
+        db.insert(TABLE_MUTATOR, null, values);
 
 
 

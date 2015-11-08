@@ -19,6 +19,7 @@ import com.group2.dungeonraider.domain.Item;
 import com.group2.dungeonraider.domain.Mutator;
 import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.domain.PlayerItem;
+import com.group2.dungeonraider.domain.PlayerMutator;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
@@ -40,6 +41,7 @@ public class NewGame extends Activity {
     List<Item> itemList = new ArrayList<Item>();
     List<Item> playerItemList = new ArrayList<Item>();
     List<Mutator> playerMutatorList= new ArrayList<Mutator>();
+    List<Mutator> mutatorList= new ArrayList<Mutator>();
     Audio audio = new AudioImpl();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +160,26 @@ public class NewGame extends Activity {
 
                         playerItemList =  db.loadPlayerItems(player.getId());
                         player.setItemList(playerItemList);
-                        List<Mutator> playerMutatorList= new ArrayList<Mutator>();
+
+
+                        //mutators
+
+                        mutatorList=db.getAllMutators();
+                        if (!mutatorList.isEmpty()) {
+                            for (Mutator m : mutatorList) {
+
+                                if (((m.getName().equals(Constants.MUTATOR_CAP)) && (m.getColor().equals(Constants.COLOR_BROWN))) ||((m.getName().equals(Constants.MUTATOR_SHIRT)) && (m.getColor().equals(Constants.COLOR_BLUE))) ||((m.getName().equals(Constants.MUTATOR_SKIN)) && (m.getColor().equals(Constants.COLOR_WHITE)))||((m.getName().equals(Constants.MUTATOR_PANT)) && (m.getColor().equals(Constants.COLOR_PINK)))) {
+
+                                    PlayerMutator player_mutator = new PlayerMutator();
+                                    player_mutator.setPlayerId(player.getId());
+                                    player_mutator.setMutatorId(m.getId());
+                                    db.insertPlayerMutator(player_mutator);
+
+                                }
+                            }
+                        }
+
+                        playerMutatorList =  db.loadPlayerMutators(player.getId());
                         player.setMutatorList((playerMutatorList));
                         Intent i = new Intent(this, Level.class);
                         openFlag=false;
