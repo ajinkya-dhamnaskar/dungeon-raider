@@ -36,6 +36,7 @@ public class PurchaseDungeonItems extends Activity {
     TextView textViewPotion;
     TextView textViewBombs;
     TextView textCosts;
+    TextView textViewMap;
     ImageButton btn;
     int mapCost;
     int keyCost;
@@ -106,6 +107,8 @@ public class PurchaseDungeonItems extends Activity {
             TextView textView = (TextView) findViewById(R.id.textView_goldvalue);
             textView.setText(Constants.DOLLAR+Integer.toString(p.getGold()));
             btn = (ImageButton) findViewById(R.id.imgBtnMap);
+            textViewMap = (TextView) findViewById(R.id.txtmap);
+            textViewMap.setText("Owned");
 
         } else {
             Toast.makeText(this, "Not enough gold to purchase map", Toast.LENGTH_SHORT).show();
