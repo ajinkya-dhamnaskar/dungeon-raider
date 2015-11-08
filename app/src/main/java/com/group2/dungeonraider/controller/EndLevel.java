@@ -1,12 +1,14 @@
 package com.group2.dungeonraider.controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.group2.dungeonraider.R;
+import com.group2.dungeonraider.data.Play;
 import com.group2.dungeonraider.domain.Player;
 
 /**
@@ -30,6 +32,7 @@ public class EndLevel extends Activity {
         time.setText(String.valueOf(player.getTime()));
 
 
+
         img =  (ImageView) findViewById(R.id.imgendscreen);
         filename = player.getPlayerCharacter();
         int res = getResources().getIdentifier(filename, "drawable", "com.group2.dungeonraider");
@@ -39,6 +42,16 @@ public class EndLevel extends Activity {
 
     public void backtolevelfromend(View v)
     {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        EndLevel.this.finish();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
         EndLevel.this.finish();
     }
 }

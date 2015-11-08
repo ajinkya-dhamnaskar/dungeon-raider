@@ -860,6 +860,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			Intent i=new Intent(Constants.appContext, EndLevel.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			Constants.appContext.startActivity(i);
+			Player.getInstance().getRoomList().clear();
 		}
 
 		/**

@@ -26,16 +26,13 @@ public class Play extends Activity
 	public Play getPlayeActivity(){
 		return  this;
 	}
-
+	//public static Play end;
 	Audio audio = new AudioImpl();
 	MediaPlayer stereo= null;
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-
-
 		super.onCreate(savedInstanceState);
-		
 		Context mContext = getApplicationContext();
 		Constants.appContext = getApplicationContext();
 
@@ -50,6 +47,7 @@ public class Play extends Activity
 			stereo = MediaPlayer.create(Constants.appContext, R.raw.game);
 			stereo.start();
 			stereo.setLooping(true);
+
 		}
 	//	audio.play(Constants.appContext, R.raw.game);
 	//	audio.setloop(Constants.appContext, R.raw.game);
