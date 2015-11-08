@@ -296,9 +296,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				text.setColor(Color.RED);
 				text.setTextSize(50);
 				long currTime = System.currentTimeMillis();
-				if(Constants.GAME_LEVEL != Player.getInstance().getCurrentLevel()){
-					Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
-				}else{
+//				if(Constants.GAME_LEVEL != Player.getInstance().getCurrentLevel()){
+//					Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
+//				}else{
 					if (Constants.IS_SLOW_DOWN_TIMER) {
 						if (Constants.TICK_COUNTER_FOR_DELAY == 0) {
 							timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
@@ -311,16 +311,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 								Constants.TICK_COUNTER_FOR_DELAY = 0;
 							}
 						}
+						Constants.TIME_DELAY++;
+						if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
+							Constants.IS_SLOW_DOWN_TIMER = false;
+							Constants.TIME_DELAY=0;
+						}
 
 					} else {
 						timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
 					}
-				}
-				Constants.TIME_DELAY++;
-				if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
-					Constants.IS_SLOW_DOWN_TIMER = false;
-					Constants.TIME_DELAY=0;
-				}
+
 				if(Player.getInstance().getCurrentLevel() != Constants.START_ROOM && Player.getInstance().getCurrentLevel() != Constants.EXIT_ROOM) {
 					canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
 					if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()) {
@@ -329,6 +329,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				}
 				Constants.LAST_TIME = timeElapsed;
 				Constants.LAST_CURR_TIME = currTime;
+
 				//canvas.drawText(mLastStatusMessage, 100, 50, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_BOMBS), 100, 140, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_POTIONS), 100, 220, mUiTextPaint);
