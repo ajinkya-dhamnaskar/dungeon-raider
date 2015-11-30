@@ -1,7 +1,9 @@
 package com.group2.dungeonraider.data;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -15,6 +17,7 @@ import com.group2.dungeonraider.domain.Player;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
+import com.group2.dungeonraider.utilities.CustomTimer;
 import com.group2.dungeonraider.utilities.Utils;
 
 public class Play extends Activity
@@ -63,6 +66,8 @@ public class Play extends Activity
 
 		Log.d("Tile Game Example", "Starting game at stage: " + Constants.STAGE + ", level: " + Constants.GAME_LEVEL);
 		if(Constants.IS_PLAYER_LEVEL){
+			Constants.GAME_START_TIME = System.currentTimeMillis();
+			Constants.IS_NEW = true;
 			mGameView = new GameView(mContext, this, mScreenDensity);
 		}else{
 			Utils.clearGameData();
@@ -73,10 +78,10 @@ public class Play extends Activity
 			Constants.PLAYER_GOLD = Player.getInstance().getGold();
 			Constants.PLAYER_SCORE = Player.getInstance().getScore();
 			Constants.GAME_START_TIME = System.currentTimeMillis();
+			Constants.IS_NEW = true;
 			mGameView = new GameView(mContext, this, Constants.STAGE, Constants.GAME_LEVEL, mScreenDensity);
-
 		}
-
+		new CustomTimer(1500000, 1);
 		setContentView(mGameView);
 	}
 
@@ -127,15 +132,42 @@ public class Play extends Activity
 	}
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
-
-		if(Constants.VOLUME_MODE ==1) {
-			stereo.stop();
-			//Toast.makeText(this, "volume play", Toast.LENGTH_SHORT).show();
-		}
 
 
-		Play.this.finish();
+
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+				Play.this);
+
+		alertDialogBuilder.setTitle("Are you sure you want to leave the game? All game data for this level will be lost.");
+
+
+		alertDialogBuilder
+				.setCancelable(false)
+				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+
+						Play.this.finish();
+
+						if(Constants.VOLUME_MODE ==1) {
+							stereo.stop();
+							//Toast.makeText(this, "volume play", Toast.LENGTH_SHORT).show();
+						}
+
+						//launchIntent();
+					}
+				})
+
+				.setNegativeButton("No", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+
+
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		alertDialog.show();
+
+
 
 
 	}

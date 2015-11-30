@@ -14,10 +14,16 @@ import java.lang.reflect.Method;
 public class Constants {
 
     private static final String LOG = Constants.class.getSimpleName();
+    public static String  LEVEL_TILE_DATA = "";
+    public static int DESIRED_LEVEL_TIME = 0;
+    public static boolean IS_NEW = false;
+    public static boolean IS_PAUSE =false;
 
 
     // public static FPropsLoader drProps = new FPropsLoader("DRGame");
 
+    public static boolean GAME_STARTED = false;
+    public static long TE;
     public static int VOLUME_MODE;
     public static String THEME_MODE;
     public static int CHARACTER_SELECTED;
@@ -87,14 +93,17 @@ public class Constants {
     public static int TIME_DELAY = 0;
     public static int MAX_TIME_DELAY = 1000;
     public static long LAST_CURR_TIME = 0;
+    public static long LAST_TE = 0;
     public static MediaPlayer MP = new MediaPlayer();
     public static int CURRENT_LEVEL_DESIRED_TIME = 0;
+    public static int INCREASE_TIME_BY_SECONDS = 30;
     public static int GAME_NO_OF_BOMBS;
     public static int GAME_NO_OF_POTIONS;
     public static int GAME_NO_OF_KEYS;
     public static int GAME_NO_OF_MAP;
     public static int GAME_NO_OF_TIME;
 
+    public static CountDownTimerPausable TIMER;
 
 //    /*
 //    DB details

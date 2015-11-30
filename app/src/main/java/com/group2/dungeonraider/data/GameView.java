@@ -30,6 +30,7 @@ import com.group2.dungeonraider.domain.Room;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
+import com.group2.dungeonraider.utilities.CustomTimer;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback
 {
@@ -90,6 +92,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 	private GameUi mCtrlRightArrow = null;
 	private GameUi mCtrlBomb = null;
 	private GameUi mctrlPotion = null;
+	private GameUi mctrlTime = null;
 	private GameUi mctrlKey = null;
 	private GameUi mctrlMap = null;
 
@@ -198,6 +201,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		@Override
 		public void run()
 		{
+
 			while (mGameRun)
 			{
 				Canvas c = null;
@@ -275,17 +279,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		private void doDraw(Canvas canvas) {
 			centerView();
 
-			if (canvas != null)
-			{
+			if (canvas != null) {
 				canvas.drawBitmap(mBackgroundImage, 0, 0, null);
 
-				if (!updatingGameTiles)
-				{
+				if (!updatingGameTiles) {
 					drawGameTiles(canvas);
 				}
 
-				if (mPlayerUnit != null)
-				{
+				if (mPlayerUnit != null) {
 					canvas.drawBitmap(mPlayerUnit.getBitmap(), mPlayerUnit.getX(),
 							mPlayerUnit.getY(), null);
 				}
@@ -294,31 +295,58 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 				Paint text = new Paint();
 				text.setColor(Color.RED);
-				text.setTextSize(50);
 				long currTime = System.currentTimeMillis();
 				if (Constants.IS_SLOW_DOWN_TIMER) {
+//					if(Constants.TIME_DELAY == 0) {
+//						Constants.TIMER.pause();
+//					}
 					if (Constants.TICK_COUNTER_FOR_DELAY == 0) {
-						timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
+						timeElapsed = (currTime - Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
 						Constants.TICK_COUNTER_FOR_DELAY++;
 					} else {
 						timeElapsed = Constants.LAST_TIME;
-						Constants.DELAY_LAST_TIME += (Constants.LAST_CURR_TIME - currTime);
+						//Constants.DELAY_LAST_TIME += (currTime - Constants.LAST_CURR_TIME);
+						//Constants.DELAY_LAST_TIME += (Constants.LAST_TE - Constants.TE);
 						Constants.TICK_COUNTER_FOR_DELAY++;
 						if (Constants.TICK_COUNTER_FOR_DELAY == Constants.MAX_TICK_COUNTER_FOR_DELAY) {
 							Constants.TICK_COUNTER_FOR_DELAY = 0;
 						}
 					}
-
+//					if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
+//						Constants.IS_SLOW_DOWN_TIMER = false;
+//						//Constants.TIMER.start();
+//						Constants.TIME_DELAY=0;
+//					}
 
 				} else {
-					timeElapsed = (currTime + Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
+					if (Constants.IS_NEW) {
+						if(!Constants.IS_PAUSE) {
+							Constants.DELAY_LAST_TIME = 0;
+						}
+						Constants.IS_NEW = false;
+					}
+					timeElapsed = (currTime - Constants.DELAY_LAST_TIME) - Constants.GAME_START_TIME;
 				}
 				Constants.TIME_DELAY++;
-				if(Constants.TIME_DELAY == Constants.MAX_TIME_DELAY){
+				if (Constants.TIME_DELAY == Constants.MAX_TIME_DELAY) {
 					Constants.IS_SLOW_DOWN_TIMER = false;
-					Constants.TIME_DELAY=0;
+					Constants.TIME_DELAY = 0;
 				}
-				canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
+
+				if(Constants.IS_PAUSE){
+					timeElapsed = Constants.LAST_TIME;
+				}
+				text.setTextSize(50);
+//
+				if(Constants.CURRENT_LEVEL_DESIRED_TIME> 0) {
+					canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(Constants.CURRENT_LEVEL_DESIRED_TIME * 1000 - timeElapsed)).toString(), 20, 50, text);
+				}
+
+				//canvas.drawText(String.valueOf(Constants.DELAY_LAST_TIME), 100, 50, text);
+				//canvas.drawText(String.valueOf(currTime - Constants.LAST_CURR_TIME), 200, 50, text);
+				//canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(Constants.TE)).toString(), 20, 50, text);
+
+				//canvas.drawText(secondsToString(Constants.TE), 20, 50, text);
 //				if(Player.getInstance().getCurrentLevel() != Constants.START_ROOM) {
 //					canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(timeElapsed)).toString(), 20, 50, text);
 //					if(Constants.GAME_LEVEL == Player.getInstance().getCurrentLevel()) {
@@ -327,17 +355,42 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 //				}
 				Constants.LAST_TIME = timeElapsed;
 				Constants.LAST_CURR_TIME = currTime;
+				Constants.LAST_TE = Constants.TE;
 
 				//canvas.drawText(mLastStatusMessage, 100, 50, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_BOMBS), 100, 140, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_POTIONS), 100, 220, mUiTextPaint);
 				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_KEYS), 100, 300, mUiTextPaint);
+				canvas.drawText(String.valueOf(Constants.GAME_NO_OF_TIME), 100, 380, mUiTextPaint);
 				if(Constants.GAME_NO_OF_MAP <= 0) {
-					canvas.drawText("/", 100, 380, mUiTextPaint);
+					canvas.drawText("/", 100, 460, mUiTextPaint);
 				}else{
-					canvas.drawText("", 100, 380, mUiTextPaint);
+					canvas.drawText("", 100, 460, mUiTextPaint);
+				}
+
+				if(Constants.CURRENT_LEVEL_DESIRED_TIME> 0 && (Constants.CURRENT_LEVEL_DESIRED_TIME * 1000-timeElapsed) <= 0){
+//					room.setPuzzleStruct(Constants.LEVEL_TILE_DATA);
+//
+//					Constants.IS_PLAYER_LEVEL = true;
+//					Constants.IS_NEXT_ROOM = false;
+//					room.setId(Player.getInstance().getCurrentLevel());
+//					Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() - 1);
+//
+//					Player.getInstance().getRoomList().put(Player.getInstance().getCurrentLevel(), room);
+//					db.savePlayerRoomDetails();
+					Intent i=new Intent(Constants.appContext, Play.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					audio.play(Constants.appContext, R.raw.fire);
+					Constants.appContext.startActivity(i);
 				}
 			}
+		}
+
+		private String secondsToString(long pTime) {
+			final long min = pTime/60;
+			final long sec = pTime-(min*60);
+
+			return String.format("%02d:%02d",min,sec);
 		}
 
 		/*/**
@@ -379,6 +432,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			canvas.drawBitmap(mCtrlBomb.getBitmap(), mCtrlBomb.getX(), mCtrlBomb.getY(), null);
 			canvas.drawBitmap(mctrlPotion.getBitmap(), mctrlPotion.getX(), mctrlPotion.getY(), null);
 			canvas.drawBitmap(mctrlKey.getBitmap(), mctrlKey.getX(), mctrlKey.getY(), null);
+			canvas.drawBitmap(mctrlTime.getBitmap(), mctrlTime.getX(), mctrlTime.getY(), null);
 			canvas.drawBitmap(mctrlMap.getBitmap(), mctrlMap.getX(), mctrlMap.getY(), null);
 		}
 
@@ -745,7 +799,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		{
 
 			mLastStatusMessage = "Collision with entrance tile";
-
+			int level = 0;
 			if((Player.getInstance().getCurrentLevel() - 1)>=0) {
 
 				gameTile.setVisible(false);
@@ -756,11 +810,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 				Constants.IS_PLAYER_LEVEL = true;
 				Constants.IS_NEXT_ROOM = false;
-
-				room.setId(Player.getInstance().getCurrentLevel());
+				level = Player.getInstance().getCurrentLevel();
+				room.setId(level);
 				Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() - 1);
 
-				Player.getInstance().getRoomList().put(room.getId(), room);
+				Player.getInstance().getRoomList().put(level, room);
 				db.savePlayerRoomDetails();
 				Intent i = new Intent(Constants.appContext, Play.class);
 				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -771,12 +825,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		private void handleFinishTileCollision(GameTile gameTile)
 		{
 			mLastStatusMessage = "Collision with finish tile";
+			int level = 0;
 			gameTile.setType(Constants.BlockType.EMPTY.getValue());
 			gameTile.setmTileTemp(String.valueOf(Constants.BlockType.FINISH.getValue()));
 			Player.getInstance().setItemCount(Constants.ITEM_POTION, Constants.GAME_NO_OF_POTIONS);
 			Player.getInstance().setItemCount(Constants.ITEM_MAP, Constants.GAME_NO_OF_MAP);
 			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
 			Player.getInstance().setItemCount(Constants.ITEM_KEY, Constants.GAME_NO_OF_KEYS);
+			Player.getInstance().setItemCount(Constants.ITEM_TIME, Constants.GAME_NO_OF_TIME);
 			Player.getInstance().setGold(Constants.PLAYER_GOLD);
 
 			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
@@ -784,6 +840,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			}
 			Player.getInstance().setTime(Player.getInstance().getTime() + (int) Constants.LAST_TIME / 1000);
 			Player.getInstance().setScore(Constants.PLAYER_SCORE);
+			level = Player.getInstance().getCurrentLevel();
 			Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() + 1);
 			if(Player.getInstance().getCurrentLevel() > Constants.GAME_LEVEL) {
 				Constants.IS_PLAYER_LEVEL = false;
@@ -854,6 +911,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			Player.getInstance().setItemCount(Constants.ITEM_MAP, Constants.GAME_NO_OF_MAP);
 			Player.getInstance().setItemCount(Constants.ITEM_BOMB, Constants.GAME_NO_OF_BOMBS);
 			Player.getInstance().setItemCount(Constants.ITEM_KEY, Constants.GAME_NO_OF_KEYS);
+			Player.getInstance().setItemCount(Constants.ITEM_TIME, Constants.GAME_NO_OF_TIME);
 			Player.getInstance().setGold(Constants.PLAYER_GOLD);
 
 			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
@@ -978,13 +1036,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mUiTextPaint.setAntiAlias(true);
 
 		Typeface uiTypeface = Typeface.createFromAsset(activity.getAssets(), "fonts/f1.ttf");
-		if (uiTypeface != null)
-		{
+		if (uiTypeface != null) {
 			mUiTextPaint.setTypeface(uiTypeface);
 		}
 		mUiTextPaint.setTextSize(mGameContext.getApplicationContext().getResources().getDimensionPixelSize(R.dimen.ui_text_size));
 
 		startPreLevel(room);
+
 		thread.doStart();
 	}
 /*	/**
@@ -1026,13 +1084,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mUiTextPaint.setAntiAlias(true);
 
 		Typeface uiTypeface = Typeface.createFromAsset(activity.getAssets(), "fonts/f1.ttf");
-		if (uiTypeface != null)
-		{
+		if (uiTypeface != null) {
 			mUiTextPaint.setTypeface(uiTypeface);
 		}
 		mUiTextPaint.setTextSize(mGameContext.getApplicationContext().getResources().getDimensionPixelSize(R.dimen.ui_text_size));
 
 		startLevel();
+
 		thread.doStart();
 	}
 
@@ -1186,6 +1244,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 								Constants.IS_SLOW_DOWN_TIMER = true;
 								Constants.GAME_NO_OF_POTIONS--;
 							}
+						}else if(mctrlTime.getImpact(x, y)){
+							if(Constants.GAME_NO_OF_TIME > 0) {
+								mLastStatusMessage = "time used";
+								Constants.CURRENT_LEVEL_DESIRED_TIME = Constants.CURRENT_LEVEL_DESIRED_TIME + Constants.INCREASE_TIME_BY_SECONDS;
+								Constants.GAME_NO_OF_TIME--;
+							}
 						}else if(mctrlKey.getImpact(x, y)){
 							if(Constants.GAME_NO_OF_KEYS > 0) {
 								mLastStatusMessage = "Key used";
@@ -1216,6 +1280,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 						}else if(mctrlMap.getImpact(x, y)) {
 							if (Constants.GAME_NO_OF_MAP > 0) {
 								mLastStatusMessage = "Map used";
+								Constants.IS_PAUSE = true;
 								showImage();
 
 							}
@@ -1250,9 +1315,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		dismissButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Constants.IS_PAUSE = false;
 				dialog.dismiss();
 			}
 		});
+		dialog.setCanceledOnTouchOutside(false);
 		dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 		dialog.show();
 	}
@@ -1336,6 +1403,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			mctrlPotion.setY(170);
 		}
 
+
+
 		if (mctrlKey == null)
 		{
 			mctrlKey = new GameUi(mGameContext, R.drawable.btn_key);
@@ -1344,12 +1413,20 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			mctrlKey.setY(250);
 		}
 
+		if (mctrlTime == null)
+		{
+			mctrlTime = new GameUi(mGameContext, R.drawable.btn_time);
+
+			mctrlTime.setX(10);
+			mctrlTime.setY(330);
+		}
+
 		if (mctrlMap == null)
 		{
 			mctrlMap = new GameUi(mGameContext, R.drawable.btn_map);
 
 			mctrlMap.setX(10);
-			mctrlMap.setY(330);
+			mctrlMap.setY(410);
 		}
 	}
 
@@ -1387,7 +1464,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		ArrayList<String> gameLevelData = mGameLevelTileData.getGameLevelData(mPlayerStage, mPlayerLevel);
 
 		String levelTileData = gameLevelData.get(GameLevelTileData.FIELD_ID_TILE_DATA);
-
+		Constants.LEVEL_TILE_DATA = levelTileData;
 		if (levelTileData == null)
 		{
 			return;
