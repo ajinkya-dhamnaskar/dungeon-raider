@@ -111,12 +111,12 @@
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:id="@+id/txtdungeongold"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="25dp"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/txtpotioncost"
-        android:layout_toEndOf="@+id/txtpotioncost"
-        android:layout_marginLeft="41dp"
-        android:layout_marginStart="41dp" />
+        android:layout_toLeftOf="@+id/textView_goldvalue"
+        android:layout_toStartOf="@+id/textView_goldvalue"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,13 +124,11 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/textView_goldvalue"
         android:text=""
-        android:layout_marginLeft="8dp"
         android:textSize="20dp"
         android:textColor="#4C0000"
         android:textStyle="bold|italic"
         android:layout_alignTop="@+id/txtdungeongold"
-        android:layout_alignRight="@+id/textViewBombsOwned"
-        android:layout_alignEnd="@+id/textViewBombsOwned" />
+        android:layout_toLeftOf="@+id/imageViewBackButton" />
 
     <TextView
         android:layout_width="wrap_content"
