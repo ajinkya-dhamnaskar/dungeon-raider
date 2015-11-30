@@ -116,7 +116,7 @@ public class NewGame extends Activity {
                                     Constants.GAME_LEVEL = 0;
                                     playerMutatorList=db.loadPlayerMutators(player.getId());
                                     player.setMutatorList(playerMutatorList);
-
+                                    player.setCurrentLevel(0);
                                     launchIntent();
                                 }
                             })
