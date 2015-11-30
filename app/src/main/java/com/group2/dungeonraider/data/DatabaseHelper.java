@@ -382,6 +382,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " INTEGER NOT NULL," + KEY_ROOM_ID + " INTEGER NOT NULL,"
             + KEY_PLAYER_START_TILE_X + " INTEGER DEFAULT 2,"
             + KEY_PLAYER_START_TILE_Y + " INTEGER DEFAULT 9,"
+            + KEY_TIME_TAKEN + " INTEGER ,"
             + KEY_PUZZLE_STRUCT + " TEXT NOT NULL, FOREIGN KEY("
             + KEY_PLAYER_ID + ") REFERENCES " + TABLE_PLAYER + "(" + KEY_ID + "), FOREIGN KEY("
             + KEY_ROOM_ID + ") REFERENCES " + GameLevelTileData.TABLE_NAME + "(" + GameLevelTileData.LEVEL + "), "
@@ -625,11 +626,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteStatement sqLiteStatement = db.compileStatement("select count(1) from PLAYER where USERNAME='" + name + "'; ");
 
         long count = sqLiteStatement.simpleQueryForLong();
-        if (count==1) {
-            return true;
-        }
-
-        return false;
+        return count == 1;
 
     }
     public Player loadProfile(String name) {
@@ -831,7 +828,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Player player=Player.getInstance();
         // Creating content values
-        String strSQL = "UPDATE PLAYER SET GOLD ="+player.getGold()+" WHERE ID = "+ player.getId();
+        String strSQL = "UPDATE PLAYER SET GOLD ="+player.getGold()+" WHERE ID = " + player.getId();
 
         db.execSQL(strSQL);
 
@@ -892,7 +889,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 long count = sqLiteStatement.simpleQueryForLong();
                 if (count == 1) {
                     //UPDATE
-                    String strSQLupdate = "UPDATE " + TABLE_PLAYER_ROOM + " SET playerStartTileX = " + entry.getValue().getPlayerStartX() + ", playerStartTileY = " + entry.getValue().getPlayerStartY() + ", PUZZLE_STRUCT='" + entry.getValue().getPuzzleStruct() + "' where PLAYER_ID=" + player.getId() + " and ROOM_ID=" + entry.getValue().getId() +";";
+                    String strSQLupdate = "UPDATE " + TABLE_PLAYER_ROOM + " SET TIME_TAKEN = " + entry.getValue().getTimeTaken() + ", playerStartTileX = " + entry.getValue().getPlayerStartX() + ", playerStartTileY = " + entry.getValue().getPlayerStartY() + ", PUZZLE_STRUCT='" + entry.getValue().getPuzzleStruct() + "' where PLAYER_ID=" + player.getId() + " and ROOM_ID=" + entry.getValue().getId() +";";
                     db.execSQL(strSQLupdate);
                     Log.d(TAG, strSQLupdate);
 
@@ -900,7 +897,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 } else {
                     String strSQLinsert = "INSERT INTO " + TABLE_PLAYER_ROOM + " VALUES(" + player.getId() + "," + entry.getValue().getId()
-                            + "," + entry.getValue().getPlayerStartX() + "," + entry.getValue().getPlayerStartY() + ",'" + entry.getValue().getPuzzleStruct() + "');";
+                            + "," + entry.getValue().getPlayerStartX() + "," + entry.getValue().getPlayerStartY()+ "," + entry.getValue().getTimeTaken() + ",'" + entry.getValue().getPuzzleStruct() + "');";
                     db.execSQL(strSQLinsert);
                     Log.d(TAG, strSQLinsert);
 
@@ -918,4 +915,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(strSQLupdate);
 
     }
+
+    public void deletePlayerCurrentRoom(int roomId) {
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Player player = Player.getInstance();
+        //UPDATE
+
+        String strSQLupdate = "DELETE FROM " + TABLE_PLAYER_ROOM + " WHERE PLAYER_ID  =" + player.getId()+ " and ROOM_ID = "+roomId;
+        db.execSQL(strSQLupdate);
+        Player.getInstance().getRoomList().remove(roomId);
+        Log.d(TAG, strSQLupdate);
+
+
+
+    }
+
+
+
 }

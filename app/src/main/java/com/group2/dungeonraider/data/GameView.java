@@ -337,7 +337,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					timeElapsed = Constants.LAST_TIME;
 				}
 				text.setTextSize(50);
-//
+				Constants.TIME_ELAPSED = timeElapsed;
 				if(Constants.CURRENT_LEVEL_DESIRED_TIME> 0) {
 					canvas.drawText((new SimpleDateFormat("mm:ss")).format(new Date(Constants.CURRENT_LEVEL_DESIRED_TIME * 1000 - timeElapsed)).toString(), 20, 50, text);
 				}
@@ -369,15 +369,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 				}
 
 				if(Constants.CURRENT_LEVEL_DESIRED_TIME> 0 && (Constants.CURRENT_LEVEL_DESIRED_TIME * 1000-timeElapsed) <= 0){
-//					room.setPuzzleStruct(Constants.LEVEL_TILE_DATA);
-//
-//					Constants.IS_PLAYER_LEVEL = true;
-//					Constants.IS_NEXT_ROOM = false;
-//					room.setId(Player.getInstance().getCurrentLevel());
-//					Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() - 1);
-//
-//					Player.getInstance().getRoomList().put(Player.getInstance().getCurrentLevel(), room);
-//					db.savePlayerRoomDetails();
+					db.deletePlayerCurrentRoom(Constants.GAME_LEVEL);
+					Constants.IS_PLAYER_LEVEL = false;
 					Intent i=new Intent(Constants.appContext, Play.class);
 					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					audio.play(Constants.appContext, R.raw.fire);
@@ -800,6 +793,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 
 			mLastStatusMessage = "Collision with entrance tile";
 			int level = 0;
+			Constants.IS_PAUSE = true;
 			if((Player.getInstance().getCurrentLevel() - 1)>=0) {
 
 				gameTile.setVisible(false);
@@ -834,17 +828,19 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			Player.getInstance().setItemCount(Constants.ITEM_KEY, Constants.GAME_NO_OF_KEYS);
 			Player.getInstance().setItemCount(Constants.ITEM_TIME, Constants.GAME_NO_OF_TIME);
 			Player.getInstance().setGold(Constants.PLAYER_GOLD);
-
+			Constants.CUR_LEVEL_REMAINING_TIME = 0;
 			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
-				Constants.PLAYER_SCORE += ((mDesiredTime*1000 - Constants.LAST_TIME)*7/1000);
+				Constants.PLAYER_SCORE += ((Constants.CURRENT_LEVEL_DESIRED_TIME - Constants.TIME_ELAPSED)*7/1000);
 			}
 			Player.getInstance().setTime(Player.getInstance().getTime() + (int) Constants.LAST_TIME / 1000);
 			Player.getInstance().setScore(Constants.PLAYER_SCORE);
 			level = Player.getInstance().getCurrentLevel();
+			Constants.IS_PAUSE = true;
 			Player.getInstance().setCurrentLevel(Player.getInstance().getCurrentLevel() + 1);
 			if(Player.getInstance().getCurrentLevel() > Constants.GAME_LEVEL) {
 				Constants.IS_PLAYER_LEVEL = false;
 				++Constants.GAME_LEVEL;
+				Constants.IS_PAUSE = false;
 				room.setId(Player.getInstance().getCurrentLevel()-1);
 			}
 			if(Player.getInstance().getCurrentLevel() < Constants.GAME_LEVEL){
@@ -856,21 +852,27 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 					&& null!=Player.getInstance().getRoomList().get(Constants.GAME_LEVEL)
 					&& (Player.getInstance().getCurrentLevel() == Constants.GAME_LEVEL)){
 				Constants.IS_PLAYER_LEVEL = true;
+				Constants.IS_PAUSE = false;
+
 				room.setId(Player.getInstance().getCurrentLevel()-1);
 			}else{
 				if(Player.getInstance().getCurrentLevel() == Constants.GAME_LEVEL) {
 					Constants.IS_PLAYER_LEVEL = false;
+					Constants.IS_PAUSE = false;
+					Constants.CURRENT_LEVEL_DESIRED_TIME = (int)Constants.CUR_LEVEL_REMAINING_TIME;
 					room.setId(Player.getInstance().getCurrentLevel()-1);
 				}
 			}
-
 			Constants.IS_NEXT_ROOM = true;
 			room.setPlayerStartX(gameTile.getX() - gameTile.getWidth());
 			room.setPlayerStartY(gameTile.getY());
 			room.setPuzzleStruct(getRoomStructure());
+			Constants.CUR_LEVEL_REMAINING_TIME = Constants.CURRENT_LEVEL_DESIRED_TIME - Constants.TIME_ELAPSED/1000;
+			room.setTimeTaken(Constants.CUR_LEVEL_REMAINING_TIME);
 			Player.getInstance().getRoomList().put(room.getId(), room);
 			db.savePlayerRoomDetails();
 			db.saveProfile();
+
 
 			Intent i=new Intent(Constants.appContext,Play.class);
 			i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -1021,6 +1023,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mGameLevelTileData = new GameLevelTileData(context);
 
 		mGameTileTemplates = mGameTileData.getTilesData();
+		Constants.LEVEL_DATA = mGameTileData.getTilesData();
 
 		SurfaceHolder holder = getHolder();
 		holder.addCallback(this);
@@ -1042,7 +1045,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mUiTextPaint.setTextSize(mGameContext.getApplicationContext().getResources().getDimensionPixelSize(R.dimen.ui_text_size));
 
 		startPreLevel(room);
-
+		if(Constants.CUR_LEVEL_REMAINING_TIME > 0)
+			Constants.CURRENT_LEVEL_DESIRED_TIME = (int)Constants.CUR_LEVEL_REMAINING_TIME;
 		thread.doStart();
 	}
 /*	/**
@@ -1069,7 +1073,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mGameLevelTileData = new GameLevelTileData(context);
 
 		mGameTileTemplates = mGameTileData.getTilesData();
-
+		Constants.LEVEL_DATA = mGameTileData.getTilesData();
 		SurfaceHolder holder = getHolder();
 		holder.addCallback(this);
 
@@ -1090,7 +1094,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 		mUiTextPaint.setTextSize(mGameContext.getApplicationContext().getResources().getDimensionPixelSize(R.dimen.ui_text_size));
 
 		startLevel();
-
+		if(Constants.CUR_LEVEL_REMAINING_TIME > 0)
+		Constants.CURRENT_LEVEL_DESIRED_TIME = (int)Constants.CUR_LEVEL_REMAINING_TIME;
 		thread.doStart();
 	}
 

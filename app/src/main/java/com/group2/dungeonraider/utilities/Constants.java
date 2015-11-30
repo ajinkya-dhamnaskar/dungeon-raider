@@ -7,6 +7,8 @@ import android.os.Handler;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Rohit on 10/27/2015.
@@ -28,6 +30,7 @@ public class Constants {
     public static String THEME_MODE;
     public static int CHARACTER_SELECTED;
 
+    public static long CUR_LEVEL_REMAINING_TIME;
     public static String ITEM_POTION="POTION";
     public static String ITEM_KEY="KEY";
     public static String ITEM_BOMB="BOMB";
@@ -104,6 +107,8 @@ public class Constants {
     public static int GAME_NO_OF_TIME;
 
     public static CountDownTimerPausable TIMER;
+    public static HashMap<Integer, ArrayList<Integer>> LEVEL_DATA = null;
+    public static long TIME_ELAPSED = 0;
 
 //    /*
 //    DB details
@@ -186,21 +191,21 @@ public class Constants {
         UP(1), DOWN(2), LEFT(3), RIGHT(4);
         private int value;
 
-        private Direction(int value) {
+        Direction(int value) {
             this.value = value;
         }
 
         public int getValue() {
             return value;
         }
-    };
+    }
 
     public static Direction dir;
     public enum ItemType {
         KEY(1), BOMB(2), POTION(3), MAP(4);
         private int value;
 
-        private ItemType(int value) {
+        ItemType(int value) {
             this.value = value;
         }
 
@@ -208,13 +213,13 @@ public class Constants {
             return value;
         }
 
-    };
+    }
 
     public enum LEVEL {
         TUTORIAL(1), EASY(2), MEDIUM(3), HARD(4);
         private int value;
 
-        private LEVEL(int value) {
+        LEVEL(int value) {
             this.value = value;
         }
 
@@ -222,14 +227,14 @@ public class Constants {
             return value;
         }
 
-    };
+    }
 
 
     public enum MutatorType {
         HAIR(1), SHIRT(2), SKIN(3), PANTS(4);
         private int value;
 
-        private MutatorType(int value) {
+        MutatorType(int value) {
             this.value = value;
         }
 
@@ -237,7 +242,7 @@ public class Constants {
             return value;
         }
 
-    };
+    }
 
 
     public enum MoveResult {
@@ -245,7 +250,7 @@ public class Constants {
         SWITCHROOMS(5);
         private int value;
 
-        private MoveResult(int value) {
+        MoveResult(int value) {
             this.value = value;
         }
 
@@ -253,7 +258,7 @@ public class Constants {
             return value;
         }
 
-    };
+    }
 
     public enum BlockType {
         EMPTY(0), WALL(1),BREAKABLEWALL(2), BOMB(3), FIRE(4),
@@ -262,7 +267,7 @@ public class Constants {
 
         private int value;
 
-        private BlockType(int value) {
+        BlockType(int value) {
             this.value = value;
         }
 
@@ -270,14 +275,14 @@ public class Constants {
             return value;
         }
 
-    };
+    }
 
     public enum BlockState {
         MOVING(1), STILL(2), OPENTEPORARILY(3), OPENALWAYS(4),
         CLOSED(5), ON(6), OFF(7);
         private int value;
 
-        private BlockState(int value) {
+        BlockState(int value) {
             this.value = value;
         }
 
@@ -285,6 +290,6 @@ public class Constants {
             return value;
         }
 
-    };
+    }
 
 }

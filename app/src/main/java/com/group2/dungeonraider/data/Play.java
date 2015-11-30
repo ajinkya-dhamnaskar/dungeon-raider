@@ -14,6 +14,7 @@ import android.view.Window;
 
 import com.group2.dungeonraider.R;
 import com.group2.dungeonraider.domain.Player;
+import com.group2.dungeonraider.domain.Room;
 import com.group2.dungeonraider.service.Audio;
 import com.group2.dungeonraider.service.AudioImpl;
 import com.group2.dungeonraider.utilities.Constants;
@@ -32,6 +33,9 @@ public class Play extends Activity
 	//public static Play end;
 	Audio audio = new AudioImpl();
 	MediaPlayer stereo= null;
+	Room room = new Room();
+	DatabaseHelper db=new DatabaseHelper(Constants.appContext);
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -71,6 +75,8 @@ public class Play extends Activity
 			mGameView = new GameView(mContext, this, mScreenDensity);
 		}else{
 			Utils.clearGameData();
+			Constants.IS_PAUSE = false;
+			Constants.CUR_LEVEL_REMAINING_TIME = 0;
 			Constants.GAME_NO_OF_POTIONS = Player.getInstance().getItemCount(Constants.ITEM_POTION);
 			Constants.GAME_NO_OF_MAP = Player.getInstance().getItemCount(Constants.ITEM_MAP);
 			Constants.GAME_NO_OF_BOMBS = Player.getInstance().getItemCount(Constants.ITEM_BOMB);
@@ -134,7 +140,7 @@ public class Play extends Activity
 	public void onBackPressed() {
 
 
-
+		Constants.IS_PAUSE = true;
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 				Play.this);
 
@@ -145,7 +151,8 @@ public class Play extends Activity
 				.setCancelable(false)
 				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
-
+						db.deletePlayerCurrentRoom(Constants.GAME_LEVEL);
+						Constants.IS_PLAYER_LEVEL = false;
 						Play.this.finish();
 
 						if(Constants.VOLUME_MODE ==1) {
@@ -160,6 +167,7 @@ public class Play extends Activity
 				.setNegativeButton("No", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						dialog.cancel();
+						Constants.IS_PAUSE = false;
 					}
 				});
 

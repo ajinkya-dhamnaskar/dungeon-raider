@@ -19,6 +19,16 @@ public class Room {
     private int playerStartY ;
     private String puzzleStruct;
 
+    public long getTimeTaken() {
+        return timeTaken;
+    }
+
+    public void setTimeTaken(long timeTaken) {
+        this.timeTaken = timeTaken;
+    }
+
+    private long timeTaken;
+
     public int getPlayerStartX() {
         return playerStartX;
     }
