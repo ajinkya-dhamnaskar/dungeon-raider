@@ -450,6 +450,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         valuesitem.put(KEY_PURCHASE_VALUE, Constants.ITEM_KEY_VALUE);
         db.insert(TABLE_ITEMS, null, valuesitem);
 
+        valuesitem.put(KEY_ITEM_NAME, Constants.ITEM_TIME);
+        valuesitem.put(KEY_PURCHASE_VALUE, Constants.ITEM_TIME_VALUE);
+        db.insert(TABLE_ITEMS, null, valuesitem);
+
 
 
         //INSERT MUTATOR VALUES

@@ -16,7 +16,6 @@ public class Constants {
     private static final String LOG = Constants.class.getSimpleName();
 
 
-
     // public static FPropsLoader drProps = new FPropsLoader("DRGame");
 
     public static int VOLUME_MODE;
@@ -27,10 +26,12 @@ public class Constants {
     public static String ITEM_KEY="KEY";
     public static String ITEM_BOMB="BOMB";
     public static String ITEM_MAP="MAP";
+    public static String ITEM_TIME ="TIME";
     public static int ITEM_POTION_VALUE=10;
     public static int ITEM_BOMB_VALUE=30;
     public static int ITEM_MAP_VALUE=40;
-    public static int ITEM_KEY_VALUE=50;
+    public static int ITEM_TIME_VALUE =50;
+    public static int ITEM_KEY_VALUE=35;
     public static int INITIAL_GOLD=100;
 
     public static int CHEST_PRIZE=100;
@@ -92,6 +93,8 @@ public class Constants {
     public static int GAME_NO_OF_POTIONS;
     public static int GAME_NO_OF_KEYS;
     public static int GAME_NO_OF_MAP;
+    public static int GAME_NO_OF_TIME;
+
 
 //    /*
 //    DB details

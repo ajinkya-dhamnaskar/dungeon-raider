@@ -37,15 +37,18 @@ public class PurchaseDungeonItems extends Activity {
     TextView textViewBombs;
     TextView textCosts;
     TextView textViewMap;
+    TextView textViewTime;
     ImageButton btn;
     int mapCost;
     int keyCost;
     int potionCost;
+    int timeCost;
     int bombCost;
     int potionCount;
     int keyCount;
     int bombsCount;
     int mapCount;
+    int timeCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +64,13 @@ public class PurchaseDungeonItems extends Activity {
         keyCost = Constants.ITEM_KEY_VALUE;
         bombCost = Constants.ITEM_BOMB_VALUE;
         potionCost = Constants.ITEM_POTION_VALUE;
+        timeCost = Constants.ITEM_TIME_VALUE;
 
         potionCount = p.getItemCount(Constants.ITEM_POTION);
         keyCount = p.getItemCount(Constants.ITEM_KEY);
         bombsCount = p.getItemCount(Constants.ITEM_BOMB);
         mapCount = p.getItemCount(Constants.ITEM_MAP);
+        timeCount = p.getItemCount(Constants.ITEM_TIME);
 
         setContentView(R.layout.purchase_dungeon_items);
         textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
@@ -79,18 +84,24 @@ public class PurchaseDungeonItems extends Activity {
         textViewBombs = (TextView) findViewById(R.id.textViewBombsOwned);
         textViewBombs.setText(Integer.toString(bombsCount));
         textViewBombs.setGravity(Gravity.CENTER);
+        textViewBombs = (TextView) findViewById(R.id.textViewTimeOwned);
+        textViewBombs.setText(Integer.toString(timeCount));
+        textViewBombs.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtbombcost);
         textCosts.setText(Integer.toString(Constants.ITEM_BOMB_VALUE));
-        textViewKeys.setGravity(Gravity.CENTER);
+        textCosts.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtkeycost);
         textCosts.setText(Integer.toString(Constants.ITEM_KEY_VALUE));
-        textViewKeys.setGravity(Gravity.CENTER);
+        textCosts.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtpotioncost);
         textCosts.setText(Integer.toString(Constants.ITEM_POTION_VALUE));
-        textViewKeys.setGravity(Gravity.CENTER);
+        textCosts.setGravity(Gravity.CENTER);
         textCosts = (TextView) findViewById(R.id.txtmapcost);
         textCosts.setText(Integer.toString(Constants.ITEM_MAP_VALUE));
-        textViewKeys.setGravity(Gravity.CENTER);
+        textCosts.setGravity(Gravity.CENTER);
+        textCosts = (TextView) findViewById(R.id.txttimecost);
+        textCosts.setText(Integer.toString(Constants.ITEM_TIME_VALUE));
+        textCosts.setGravity(Gravity.CENTER);
     }
 
     public void buydungeonmap(View v) {
@@ -170,6 +181,26 @@ public class PurchaseDungeonItems extends Activity {
 
         } else {
             Toast.makeText(this, "Not enough gold to purchase bomb", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    public void buydungeontime(View v) {
+        Log.d("PurchaseDungeonsItems", "buydungeontime Called");
+        audio.play(getApplicationContext(), R.raw.btn_click);
+        if (p.getGold() >= timeCost) {
+            p.setGold(p.getGold() - timeCost);
+            p.setItemCount(Constants.ITEM_TIME, p.getItemCount(Constants.ITEM_TIME) + 1);
+            databaseHelper.updatePlayerGoldValue(p);
+            databaseHelper.updatePlayerItemCount(Constants.ITEM_TIME, getItemId(Constants.ITEM_TIME));
+            textViewGold = (TextView) findViewById(R.id.textView_goldvalue);
+            textViewGold.setText(Integer.toString(p.getGold()));
+            textViewBombs = (TextView) findViewById(R.id.textViewTimeOwned);
+            Constants.GAME_NO_OF_TIME=p.getItemCount(Constants.ITEM_TIME);
+            textViewBombs.setText(Constants.OWNED + Integer.toString(p.getItemCount(Constants.ITEM_TIME)));
+
+        } else {
+            Toast.makeText(this, "Not enough gold to purchase time", Toast.LENGTH_SHORT).show();
         }
 
     }
