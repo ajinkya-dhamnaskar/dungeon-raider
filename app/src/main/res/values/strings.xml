@@ -46,7 +46,7 @@
     <!-- Help End-->
 
     <!-- Purchase dungeon item start-->
-    <string name="pd_purchase_dungeon_items">PURCHASE DUNGEON ITEMS</string>
+    <string name="pd_purchase_dungeon_items">PURCHASE ITEMS</string>
     <string name="pd_your_gold">YOUR GOLD</string>
     <string name="hp_keys_owned">Number of keys owned</string>
     <string name="hp_bombs">Number of bombs</string>
