@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
             Toast.makeText(this, "There is no saved game to resume", Toast.LENGTH_SHORT).show();
         else{
             Intent i = new Intent(this, Play.class);
-            Player.getInstance().setCurrentLevel(maxLevel);
+            Player.getInstance().setCurrentLevel(Constants.GAME_LEVEL);
             startActivity(i);
         }
     }
