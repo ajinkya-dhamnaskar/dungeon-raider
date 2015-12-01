@@ -830,7 +830,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback
 			Player.getInstance().setGold(Constants.PLAYER_GOLD);
 			Constants.CUR_LEVEL_REMAINING_TIME = 0;
 			if((mDesiredTime*1000 - Constants.LAST_TIME) > 0){
-				Constants.PLAYER_SCORE += ((Constants.CURRENT_LEVEL_DESIRED_TIME - Constants.TIME_ELAPSED)*7/1000);
+				Constants.PLAYER_SCORE += ((Constants.CURRENT_LEVEL_DESIRED_TIME  - Constants.TIME_ELAPSED/1000)*7/1000);
 			}
 			Player.getInstance().setTime(Player.getInstance().getTime() + (int) Constants.LAST_TIME / 1000);
 			Player.getInstance().setScore(Constants.PLAYER_SCORE);

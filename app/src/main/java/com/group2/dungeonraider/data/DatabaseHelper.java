@@ -269,7 +269,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		/* 9  */+ "06,00,00,04,04,04,04,04,04,00,00,05,00,05,10" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 10 */+ "01,00,00,01,01,01,01,01,01,01,01,01,00,00,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 11 */+ "01,00,00,01,11,01,11,01,11,02,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
-		/* 12 */+ "01,00,07,00,00,07,00,01,02,07,07,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
+		/* 12 */+ "01,00,07,00,00,07,00,07,02,07,07,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 13 */+ "01,00,00,00,00,00,00,00,00,00,00,00,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 14 */+ "01,03,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
 		/* 15 */+ "01,01,01,01,01,01,01,01,01,01,01,01,01,01,01" + GameLevelTileData.TILE_DATA_LINE_BREAK
