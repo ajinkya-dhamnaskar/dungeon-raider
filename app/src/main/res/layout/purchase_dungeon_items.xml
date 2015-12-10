@@ -218,10 +218,11 @@
         android:textStyle="bold|italic"
         android:id="@+id/txttimecost"
         android:layout_above="@+id/imgBtnTime"
-        android:layout_toRightOf="@+id/textView_goldvalue"
         android:layout_alignRight="@+id/imgBtnTime"
         android:layout_alignEnd="@+id/imgBtnTime"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_toRightOf="@+id/imgBtnBomb"
+        android:layout_toEndOf="@+id/imgBtnBomb" />
 
     <TextView
         android:layout_width="wrap_content"
